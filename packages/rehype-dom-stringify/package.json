@@ -1,0 +1,26 @@
+{
+  "name": "rehype-dom-stringify",
+  "version": "1.0.0",
+  "description": "DOM-based HTML compiler for rehype",
+  "keywords": [
+    "html",
+    "abstract",
+    "syntax",
+    "tree",
+    "ast",
+    "stringify"
+  ],
+  "main": "dist/rehype-dom-stringify.js",
+  "module": "dist/rehype-dom-stringify.mjs",
+  "homepage": "https://github.com/kmck/rehype-dom",
+  "repository": "https://github.com/kmck/rehype-dom/packages/rehype-dom-stringify",
+  "author": "Keith McKnight <keith@mcknig.ht> (https://keith.mcknig.ht)",
+  "license": "ISC",
+  "dependencies": {
+    "hast-util-to-dom": "^1.0.2",
+    "xtend": "^4.0.1"
+  },
+  "files": [
+    "dist"
+  ]
+}

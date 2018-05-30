@@ -1,0 +1,34 @@
+{
+  "private": true,
+  "workspaces": [
+    "packages/*"
+  ],
+  "homepage": "https://github.com/kmck/rehype-dom",
+  "repository": "https://github.com/kmck/rehype-dom.git",
+  "author": "Keith McKnight <keith@mcknig.ht> (https://keith.mcknig.ht)",
+  "license": "ISC",
+  "scripts": {
+    "clean": "npm run clean:rehype-dom && npm run clean:parse && npm run clean:stringify",
+    "clean:rehype-dom": "rm -rf packages/rehype-dom/dist",
+    "clean:parse": "rm -rf packages/rehype-dom-parse/dist",
+    "clean:stringify": "rm -rf packages/rehype-dom-stringify/dist",
+    "build": "rollup -c",
+    "lint": "eslint .",
+    "test": "jest",
+    "test:dev": "jest --watchAll"
+  },
+  "devDependencies": {
+    "babel-core": "^6.26.3",
+    "babel-eslint": "^8.2.3",
+    "babel-jest": "^23.0.1",
+    "babel-preset-env": "^1.7.0",
+    "eslint": "^4.19.1",
+    "eslint-config-airbnb-base": "^12.1.0",
+    "eslint-plugin-import": "^2.12.0",
+    "jest-cli": "^23.1.0",
+    "jsdom": "^11.11.0",
+    "rollup": "^0.59.4",
+    "rollup-plugin-babel": "^3.0.4",
+    "unified": "^7.0.0"
+  }
+}
