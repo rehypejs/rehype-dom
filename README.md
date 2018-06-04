@@ -1,72 +1,17 @@
-# rehype-dom-parse [![Build Status][travis-badge]][travis]
+# rehype-dom [![Build Status][travis-badge]][travis]
 
-[Parser][] for [**unified**][unified]. Parses HTML to a [**HAST**][hast] syntax tree using the
-browser DOM API.
+**rehype-dom** is a DOM-based version of [rehype][] built on [unified][]!
 
-If you're not concerned with bundle size or are in an environment in which you don't trust (or don't
-have) the native DOM API, you may prefer to use [`rehype-parse`][rehype-parse] instead.
-**Please note** that this library is designed for browser use and defaults to **fragment mode** when
-parsing, whereas [`rehype-parse`][rehype-parse] defaults to **document mode**!
+*   [`rehype-dom`][api] — Programmatic interface
+*   [`rehype-dom-parse`][parse] — Parser
+*   [`rehype-dom-stringify`][stringify] — Stringify
 
-## Installation
+## Related
 
-[yarn][]:
-
-```bash
-yarn add rehype-dom-parse
-```
-
-[npm][]:
-
-```bash
-npm install rehype-dom-parse
-```
-
-## Usage
-
-```js
-import unified from 'unified';
-import createStream from 'unified-stream';
-import parse from 'rehype-dom-parse';
-import stringify 'rehype-stringify';
-
-const processor = unified()
-  .use(parse)
-  .use(stringify)
-  .data('settings', { fragment: true })
-
-processor.process('<p>text, <b>hyper', (err, file) => {
-  if (err) {
-    console.error(err);
-  } else {
-    console.log(String(file));
-  }
-});
-```
-
-Yields:
-
-```
-<p>text, <b>hyper</b></p>
-```
-
-## API
-
-### `processor.use(parse[, options])`
-
-Configure the `processor` to read HTML as input and process a
-[**HAST**][hast] syntax tree.
-
-##### `options`
-
-###### `options.fragment`
-
-Specify whether to parse a fragment (`boolean`, default: `true`), instead of a complete document.
-In document mode, unopened `html`, `head`, and `body` elements are opened in just the right places.
-
-### `parse.Parser`
-
-Access to the [parser][], if you need it.
+*   [`hast`](https://github.com/syntax-tree/hast)
+*   [`rehype`](https://github.com/rehypejs/rehype)
+*   [`remark`](https://github.com/remarkjs/remark)
+*   [`retext`](https://github.com/retextjs/retext)
 
 ## License
 
@@ -74,9 +19,9 @@ Access to the [parser][], if you need it.
 
 <!-- Definitions -->
 
-[travis-badge]: https://img.shields.io/travis/kmck/rehype-dom-parse.svg
+[travis-badge]: https://img.shields.io/travis/kmck/rehype-dom.svg
 
-[travis]: https://travis-ci.org/kmck/rehype-dom-parse
+[travis]: https://travis-ci.org/kmck/rehype-dom
 
 [yarn]: https://yarnpkg.com/lang/en/docs/install
 
@@ -86,12 +31,16 @@ Access to the [parser][], if you need it.
 
 [author]: https://keith.mcknig.ht
 
+[rehype]: https://github.com/rehypejs/rehype
+
 [unified]: https://github.com/unifiedjs/unified
 
 [processor]: https://github.com/rehypejs/rehype/blob/master/packages/rehype
 
 [hast]: https://github.com/syntax-tree/hast
 
-[parser]: https://github.com/unifiedjs/unified#processorparser
+[api]: https://github.com/kmck/rehype-dom/tree/master/packages/rehype-dom
 
-[rehype-parse]: https://github.com/rehypejs/rehype/tree/master/packages/rehype-parse
+[parse]: https://github.com/kmck/rehype-dom/tree/master/packages/rehype-dom-parse
+
+[stringify]: https://github.com/kmck/rehype-dom/tree/master/packages/rehype-dom-stringify
