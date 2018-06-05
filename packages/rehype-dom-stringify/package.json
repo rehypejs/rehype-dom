@@ -17,7 +17,7 @@
   "author": "Keith McKnight <keith@mcknig.ht> (https://keith.mcknig.ht)",
   "license": "ISC",
   "dependencies": {
-    "hast-util-to-dom": "^1.0.2",
+    "hast-util-to-dom": "^1.0.3",
     "xtend": "^4.0.1"
   },
   "files": [

@@ -1,6 +1,9 @@
 import unified from 'unified';
 import rehypeParse from 'rehype-parse';
 import rehypeStringify from 'rehype-stringify';
+import highlight from 'rehype-highlight';
+import slug from 'rehype-slug';
+
 import rehypeDomParse from 'rehype-dom-parse';
 import rehypeDomStringify from 'rehype-dom-stringify';
 
@@ -61,5 +64,33 @@ describe('rehype-dom', () => {
     const outputActual = String(rehypeDom().processSync('<title>Hi</title><h2>Hello world!'));
     const outputExpected = '<title>Hi</title><h2>Hello world!</h2>';
     expect(outputActual).toEqual(outputExpected);
+  });
+
+  it('should not mangle classnames', () => {
+    const outputActual = String(rehypeDom().processSync('<div class="foo bar">baz</div>'));
+    const outputExpected = '<div class="foo bar">baz</div>';
+    expect(outputActual).toEqual(outputExpected);
+  });
+
+  describe('plugins', () => {
+    it('works with rehype-highlight', () => {
+      const outputActual = String(rehypeDom().use(highlight).processSync(`
+        <h1>Hello World!</h1>
+        <pre><code class="language-js">var name = "World";
+        console.warn("Hello, " + name + "!")</pre></code>
+      `));
+      const outputExpected = `
+        <h1>Hello World!</h1>
+        <pre><code class="hljs language-js"><span class="hljs-keyword">var</span> name = <span class="hljs-string">"World"</span>;
+        <span class="hljs-built_in">console</span>.warn(<span class="hljs-string">"Hello, "</span> + name + <span class="hljs-string">"!"</span>)</code></pre>
+      `;
+      expect(outputActual).toEqual(outputExpected);
+    });
+
+    it('works with rehype-slug', () => {
+      const outputActual = String(rehypeDom().use(slug).processSync('<h1>First</h1><h2>Second'));
+      const outputExpected = '<h1 id="first">First</h1><h2 id="second">Second</h2>';
+      expect(outputActual).toEqual(outputExpected);
+    });
   });
 });

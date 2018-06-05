@@ -24,7 +24,9 @@
     "unified": "^7.0.0"
   },
   "devDependencies": {
+    "rehype-highlight": "^2.1.0",
     "rehype-parse": "^4.1.0",
+    "rehype-slug": "^2.0.1",
     "rehype-stringify": "^3.0.0"
   },
   "files": [
