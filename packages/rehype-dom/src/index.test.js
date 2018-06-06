@@ -3,6 +3,7 @@ import rehypeParse from 'rehype-parse';
 import rehypeStringify from 'rehype-stringify';
 import highlight from 'rehype-highlight';
 import slug from 'rehype-slug';
+import visit from 'unist-util-visit';
 
 import rehypeDomParse from 'rehype-dom-parse';
 import rehypeDomStringify from 'rehype-dom-stringify';
@@ -73,6 +74,21 @@ describe('rehype-dom', () => {
   });
 
   describe('plugins', () => {
+    it('works with a generic plugin', () => {
+      function plugin() {
+        return function transformer(tree) {
+          visit(tree, 'text', (node) => {
+            // eslint-disable-next-line no-param-reassign
+            node.value = node.value.split('').reverse().join('');
+          });
+        };
+      }
+
+      const outputActual = String(rehypeDom().use(plugin).processSync('<p>a man a plan a canal panama</p>'));
+      const outputExpected = '<p>amanap lanac a nalp a nam a</p>';
+      expect(outputActual).toEqual(outputExpected);
+    });
+
     it('works with rehype-highlight', () => {
       const outputActual = String(rehypeDom().use(highlight).processSync(`
         <h1>Hello World!</h1>

@@ -1,0 +1,82 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`rehype-dom-parse should parse a complete document 1`] = `
+Object {
+  "children": Array [
+    Object {
+      "children": Array [
+        Object {
+          "children": Array [
+            Object {
+              "children": Array [
+                Object {
+                  "type": "text",
+                  "value": "Hi",
+                },
+              ],
+              "properties": Object {},
+              "tagName": "title",
+              "type": "element",
+            },
+          ],
+          "properties": Object {},
+          "tagName": "head",
+          "type": "element",
+        },
+        Object {
+          "children": Array [
+            Object {
+              "children": Array [
+                Object {
+                  "type": "text",
+                  "value": "Hello world!",
+                },
+              ],
+              "properties": Object {},
+              "tagName": "h2",
+              "type": "element",
+            },
+          ],
+          "properties": Object {},
+          "tagName": "body",
+          "type": "element",
+        },
+      ],
+      "properties": Object {},
+      "tagName": "html",
+      "type": "element",
+    },
+  ],
+  "type": "root",
+}
+`;
+
+exports[`rehype-dom-parse should parse a fragment 1`] = `
+Object {
+  "children": Array [
+    Object {
+      "children": Array [
+        Object {
+          "type": "text",
+          "value": "Hi",
+        },
+      ],
+      "properties": Object {},
+      "tagName": "title",
+      "type": "element",
+    },
+    Object {
+      "children": Array [
+        Object {
+          "type": "text",
+          "value": "Hello world!",
+        },
+      ],
+      "properties": Object {},
+      "tagName": "h2",
+      "type": "element",
+    },
+  ],
+  "type": "root",
+}
+`;

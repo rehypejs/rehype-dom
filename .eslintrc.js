@@ -10,7 +10,10 @@ module.exports = {
     files: ['*.test.*'],
     env: {
       jest: true
-    }
+    },
+    rules: {
+      'import/no-extraneous-dependencies': 'off',
+    },
   }, {
     files: ['**/src/*'],
     env: {
