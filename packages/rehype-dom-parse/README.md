@@ -1,26 +1,25 @@
-# rehype-dom-stringify [![Build Status][travis-badge]][travis]
+# rehype-dom-parse [![Build Status][travis-badge]][travis]
 
-[Compiler][] for [**unified**][unified].  Stringifies an
-[**HAST**][hast] syntax tree to HTML.  Used in the [**rehype-dom**
-processor][processor].
+[Parser][] for [**unified**][unified]. Parses HTML to a [**HAST**][hast] syntax tree using the
+browser DOM API. Used in the [**rehype-dom** processor][processor].
 
 If you're not concerned with bundle size or are in an environment in which you don't trust (or don't
-have) the native DOM API, you may prefer to use [`rehype-stringify`][rehype-stringify] instead.
+have) the native DOM API, you may prefer to use [`rehype-parse`][rehype-parse] instead.
 **Please note** that this library is designed for browser use and defaults to **fragment mode** when
-parsing, whereas [`rehype-stringify`][rehype-stringify] defaults to **document mode**!
+parsing, whereas [`rehype-parse`][rehype-parse] defaults to **document mode**!
 
 ## Installation
 
 [yarn][]:
 
 ```bash
-yarn add rehype-dom-stringify
+yarn add rehype-dom-parse
 ```
 
 [npm][]:
 
 ```bash
-npm install rehype-dom-stringify
+npm install rehype-dom-parse
 ```
 
 ## Usage
@@ -63,7 +62,11 @@ Configure the `processor` to read HTML as input and process a
 ###### `options.fragment`
 
 Specify whether to parse a fragment (`boolean`, default: `true`), instead of a complete document.
-In document mode, an `html` element is added to a fragment when needed.
+In document mode, unopened `html`, `head`, and `body` elements are opened in just the right places.
+
+### `parse.Parser`
+
+Access to the [parser][], if you need it.
 
 ## License
 
@@ -85,12 +88,10 @@ In document mode, an `html` element is added to a fragment when needed.
 
 [unified]: https://github.com/unifiedjs/unified
 
-[processor]: https://github.com/kmck/rehype-dom/blob/master/packages/rehype-dom
-
-[compiler]: https://github.com/unifiedjs/unified#processorcompiler
-
-[hast]: https://github.com/syntax-tree/hast
+[processor]: https://github.com/rehypejs/rehype/blob/master/packages/rehype
 
 [parser]: https://github.com/unifiedjs/unified#processorparser
 
-[rehype-stringify]: https://github.com/rehypejs/rehype/tree/master/packages/rehype-stringify
+[hast]: https://github.com/syntax-tree/hast
+
+[rehype-parse]: https://github.com/rehypejs/rehype/tree/master/packages/rehype-parse
