@@ -1,5 +1,5 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`rehype-dom-stringif should parse a complete document 1`] = `"<html><head><title>Hi</title></head><body><h2>Hello world!</h2></body></html>"`;
+exports[`rehype-dom-stringify should stringify a complete document 1`] = `"<html><head><title>Hi</title></head><body><h2>Hello world!</h2></body></html>"`;
 
-exports[`rehype-dom-stringif should parse a fragment 1`] = `"<title>Hi</title><h2>Hello world!</h2>"`;
+exports[`rehype-dom-stringify should stringify a fragment 1`] = `"<title>Hi</title><h2>Hello world!</h2>"`;

@@ -15,7 +15,8 @@ const external = id => (
 
 const configs = [];
 
-// Generic rollups
+// Building all packages in the monorepo
+// Note: Build order is not important because interdependencies do not need to be resolved
 const pkgNames = fs.readdirSync(path.join(__dirname, PACKAGES_DIRECTORY));
 pkgNames.forEach((pkgName) => {
   const pkgPath = path.join(PACKAGES_DIRECTORY, pkgName);

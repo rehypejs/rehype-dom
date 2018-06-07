@@ -2,10 +2,10 @@ import unified from 'unified';
 
 import parse from './index';
 
-describe('rehype-dom-stringif', () => {
+describe('rehype-dom-stringify', () => {
   const processor = unified().use(parse).freeze();
 
-  it('should parse a complete document', () => {
+  it('should stringify a complete document', () => {
     const result = processor()
       .data('settings', { fragment: false })
       .stringify({
@@ -46,7 +46,7 @@ describe('rehype-dom-stringif', () => {
     expect(result).toMatchSnapshot();
   });
 
-  it('should parse a fragment', () => {
+  it('should stringify a fragment', () => {
     const result = processor()
       .data('settings', { fragment: true })
       .stringify({

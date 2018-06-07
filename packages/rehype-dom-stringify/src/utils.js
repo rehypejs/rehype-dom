@@ -26,14 +26,14 @@ export function serializeNodeToString(node) {
 export function serializeNodeToHtmlString(node) {
   const serialized = serializeNodeToString(node);
   // XMLSerializer puts xmlns on documentElement
+  const { documentElement: ownerDocumentElement } = node.ownerDocument || node;
+  const { namespaceURI: ownerNamespaceURI } = ownerDocumentElement || {};
   const { namespaceURI } = node.documentElement || node;
-  if (namespaceURI) {
-    const { namespaceURI: ownerNamespaceURI } = node.ownerDocument
-      ? node.ownerDocument.documentElement
-      : node.documentElement;
+  if (ownerNamespaceURI) {
     if (namespaceURI === ownerNamespaceURI) {
-      return serialized.replace(` xmlns="${namespaceURI}"`, '');
+      return serialized.replace(` xmlns="${ownerNamespaceURI}"`, '');
     }
+    return serialized.replace(new RegExp(` xmlns="${ownerNamespaceURI}"`, 'g'), '');
   }
   return serialized;
 }
