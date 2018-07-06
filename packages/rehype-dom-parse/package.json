@@ -1,6 +1,6 @@
 {
   "name": "rehype-dom-parse",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "DOM-based HTML parser for rehype",
   "keywords": [
     "html",
@@ -17,7 +17,7 @@
   "author": "Keith McKnight <keith@mcknig.ht> (https://keith.mcknig.ht)",
   "license": "ISC",
   "dependencies": {
-    "hast-util-from-dom": "^1.0.0",
+    "hast-util-from-dom": "^1.0.1",
     "xtend": "^4.0.1"
   },
   "files": [

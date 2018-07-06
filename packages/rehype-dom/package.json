@@ -19,8 +19,8 @@
   "author": "Keith McKnight <keith@mcknig.ht> (https://keith.mcknig.ht)",
   "license": "ISC",
   "dependencies": {
-    "rehype-dom-parse": "^1.0.0",
-    "rehype-dom-stringify": "^1.0.0",
+    "rehype-dom-parse": "1.0.1",
+    "rehype-dom-stringify": "1.0.1",
     "unified": "^7.0.0"
   },
   "devDependencies": {

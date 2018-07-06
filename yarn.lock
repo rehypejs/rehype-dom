@@ -1863,9 +1863,9 @@ has@^1.0.1:
   dependencies:
     function-bind "^1.0.2"
 
-hast-util-from-dom@^1.0.0:
-  version "1.0.0"
-  resolved "https://registry.yarnpkg.com/hast-util-from-dom/-/hast-util-from-dom-1.0.0.tgz#e609722389cba60bf0c77a681d949b01ae5ac465"
+hast-util-from-dom@^1.0.1:
+  version "1.0.1"
+  resolved "https://registry.yarnpkg.com/hast-util-from-dom/-/hast-util-from-dom-1.0.1.tgz#3ee2eb31a045b442c45c28d5580e5d3513d5f00d"
   dependencies:
     hastscript "^3.1.0"
 
