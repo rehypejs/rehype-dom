@@ -1,6 +1,6 @@
 {
   "name": "rehype-dom",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "DOM-based HTML processor powered by plugins",
   "keywords": [
     "html",
