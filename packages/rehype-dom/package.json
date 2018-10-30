@@ -1,6 +1,6 @@
 {
   "name": "rehype-dom",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "description": "DOM-based HTML processor powered by plugins",
   "keywords": [
     "html",
@@ -15,12 +15,12 @@
   "main": "dist/rehype-dom.js",
   "module": "dist/rehype-dom.mjs",
   "homepage": "https://github.com/kmck/rehype-dom",
-  "repository": "https://github.com/kmck/rehype-dom/packages/rehype-dom",
+  "repository": "https://github.com/kmck/rehype-dom/tree/master/packages/rehype-dom",
   "author": "Keith McKnight <keith@mcknig.ht> (https://keith.mcknig.ht)",
   "license": "ISC",
   "dependencies": {
-    "rehype-dom-parse": "1.0.1",
-    "rehype-dom-stringify": "1.0.2",
+    "rehype-dom-parse": "1.0.4",
+    "rehype-dom-stringify": "1.0.4",
     "unified": "^7.0.0"
   },
   "devDependencies": {

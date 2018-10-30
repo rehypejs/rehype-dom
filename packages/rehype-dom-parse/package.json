@@ -1,6 +1,6 @@
 {
   "name": "rehype-dom-parse",
-  "version": "1.0.1",
+  "version": "1.0.4",
   "description": "DOM-based HTML parser for rehype",
   "keywords": [
     "html",
@@ -13,7 +13,7 @@
   "main": "dist/rehype-dom-parse.js",
   "module": "dist/rehype-dom-parse.mjs",
   "homepage": "https://github.com/kmck/rehype-dom",
-  "repository": "https://github.com/kmck/rehype-dom/packages/rehype-dom-parse",
+  "repository": "https://github.com/kmck/rehype-dom/tree/master/packages/rehype-dom-parse",
   "author": "Keith McKnight <keith@mcknig.ht> (https://keith.mcknig.ht)",
   "license": "ISC",
   "dependencies": {
