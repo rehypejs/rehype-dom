@@ -27,6 +27,12 @@ describe('parse', () => {
     const outputExpected = '<title>Hi</title><h2>Hello world!</h2>';
     expect(outputActual).toEqual(outputExpected);
   });
+
+  it('should parse data-* attributes correctly', () => {
+    const outputActual = String(processor().data('settings', { fragment: true }).processSync('<p data-test="true">text, <b>hyper'));
+    const outputExpected = '<p data-test="true">text, <b>hyper</b></p>';
+    expect(outputActual).toEqual(outputExpected);
+  });
 });
 
 describe('stringify', () => {
@@ -35,15 +41,21 @@ describe('stringify', () => {
     .use(rehypeDomStringify)
     .freeze();
 
-  it('should parse a complete document', () => {
+  it('should stringify a complete document', () => {
     const outputActual = String(processor().data('settings', { fragment: false }).processSync('<title>Hi</title><h2>Hello world!'));
     const outputExpected = '<html><head><title>Hi</title></head><body><h2>Hello world!</h2></body></html>';
     expect(outputActual).toEqual(outputExpected);
   });
 
-  it('should parse a fragment', () => {
+  it('should stringify a fragment', () => {
     const outputActual = String(processor().data('settings', { fragment: true }).processSync('<title>Hi</title><h2>Hello world!'));
     const outputExpected = '<title>Hi</title><h2>Hello world!</h2>';
+    expect(outputActual).toEqual(outputExpected);
+  });
+
+  it('should stringify data-* attributes correctly', () => {
+    const outputActual = String(processor().data('settings', { fragment: true }).processSync('<p data-test="true">text, <b>hyper'));
+    const outputExpected = '<p data-test="true">text, <b>hyper</b></p>';
     expect(outputActual).toEqual(outputExpected);
   });
 });
@@ -64,6 +76,18 @@ describe('rehype-dom', () => {
   it('should parse as a fragment by default', () => {
     const outputActual = String(rehypeDom().processSync('<title>Hi</title><h2>Hello world!'));
     const outputExpected = '<title>Hi</title><h2>Hello world!</h2>';
+    expect(outputActual).toEqual(outputExpected);
+  });
+
+  it('should not mangle data-* attributes', () => {
+    const outputActual = String(rehypeDom().processSync('<p data-test="true">text, <b>hyper'));
+    const outputExpected = '<p data-test="true">text, <b>hyper</b></p>';
+    expect(outputActual).toEqual(outputExpected);
+  });
+
+  it('should not mangle data-* attributes', () => {
+    const outputActual = String(rehypeDom().processSync('<input type="checkbox" checked />'));
+    const outputExpected = '<input type="checkbox" checked="">';
     expect(outputActual).toEqual(outputExpected);
   });
 

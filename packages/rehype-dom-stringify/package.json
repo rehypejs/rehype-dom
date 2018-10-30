@@ -1,6 +1,6 @@
 {
   "name": "rehype-dom-stringify",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "DOM-based HTML compiler for rehype",
   "keywords": [
     "html",
@@ -17,7 +17,7 @@
   "author": "Keith McKnight <keith@mcknig.ht> (https://keith.mcknig.ht)",
   "license": "ISC",
   "dependencies": {
-    "hast-util-to-dom": "^1.0.3",
+    "hast-util-to-dom": "^1.1.0",
     "xtend": "^4.0.1"
   },
   "files": [
