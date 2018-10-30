@@ -28,7 +28,7 @@ npm install rehype-dom-stringify
 import unified from 'unified';
 import createStream from 'unified-stream';
 import parse from 'rehype-dom-parse';
-import stringify 'rehype-dom-stringify';
+import stringify from 'rehype-dom-stringify';
 
 const processor = unified()
   .use(parse)
