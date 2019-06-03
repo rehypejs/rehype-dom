@@ -85,15 +85,27 @@ describe('rehype-dom', () => {
     expect(outputActual).toEqual(outputExpected);
   });
 
-  it('should not mangle data-* attributes', () => {
+  it('should support boolean attributes', () => {
     const outputActual = String(rehypeDom().processSync('<input type="checkbox" checked />'));
-    const outputExpected = '<input type="checkbox" checked="">';
+    const outputExpected = '<input type="checkbox" checked="" />';
     expect(outputActual).toEqual(outputExpected);
   });
 
   it('should not mangle classnames', () => {
     const outputActual = String(rehypeDom().processSync('<div class="foo bar">baz</div>'));
     const outputExpected = '<div class="foo bar">baz</div>';
+    expect(outputActual).toEqual(outputExpected);
+  });
+
+  it('should support svg', () => {
+    const outputActual = String(rehypeDom().processSync(`<svg width=230 height=120 xmlns=http://www.w3.org/2000/svg xmlns:xlink=http://www.w3.org/1999/xlink>
+  <circle cx=60 cy=60 r=50 fill=red />
+  <circle cx=170 cy=60 r=50 fill=green />
+</svg>`));
+    const outputExpected = `<svg width="230" height="120" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+  <circle cx="60" cy="60" r="50" fill="red"></circle>
+  <circle cx="170" cy="60" r="50" fill="green"></circle>
+</svg>`;
     expect(outputActual).toEqual(outputExpected);
   });
 

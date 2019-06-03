@@ -21,6 +21,7 @@
     "eslint-config-airbnb-base": "^13.0.0",
     "eslint-plugin-import": "^2.0.0",
     "jest-cli": "^24.0.0",
+    "jest-environment-jsdom-fifteen": "^1.0.0",
     "jsdom": "^15.0.0",
     "rollup": "^1.0.0",
     "rollup-plugin-babel": "^4.0.0",
@@ -37,6 +38,21 @@
     "test:dev": "jest --watchAll"
   },
   "jest": {
-    "moduleDirectories": ["node_modules"]
+    "testEnvironment": "jest-environment-jsdom-fifteen",
+    "moduleDirectories": [
+      "node_modules"
+    ],
+    "coveragePathIgnorePatterns": [
+      "/packages/.+/dist/"
+    ],
+    "collectCoverage": true,
+    "coverageThreshold": {
+      "global": {
+        "branches": 100,
+        "functions": 100,
+        "lines": 100,
+        "statements": 100
+      }
+    }
   }
 }

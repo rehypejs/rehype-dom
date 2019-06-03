@@ -3,3 +3,11 @@
 exports[`rehype-dom-stringify should stringify a complete document 1`] = `"<html><head><title>Hi</title></head><body><h2>Hello world!</h2></body></html>"`;
 
 exports[`rehype-dom-stringify should stringify a fragment 1`] = `"<title>Hi</title><h2>Hello world!</h2>"`;
+
+exports[`rehype-dom-stringify should stringify namespaced elements 1`] = `"<example xmlns=\\"https://example.com\\">Alpha</example>"`;
+
+exports[`rehype-dom-stringify should support HTML in SVG 1`] = `"<svg xmlns=\\"http://www.w3.org/2000/svg\\"><foreignObject><div>Alpha</div></foreignObject></svg>"`;
+
+exports[`rehype-dom-stringify should support HTML in SVG in HTML 1`] = `"<div><svg xmlns=\\"http://www.w3.org/2000/svg\\"><foreignobject><div>Alpha</div></foreignobject></svg></div>"`;
+
+exports[`rehype-dom-stringify should support SVG 1`] = `"<g xmlns=\\"http://www.w3.org/2000/svg\\" id=\\"foo\\" class=\\"bar\\"><circle/></g>"`;

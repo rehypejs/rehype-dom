@@ -71,4 +71,107 @@ describe('rehype-dom-stringify', () => {
       });
     expect(result).toMatchSnapshot();
   });
+
+  it('should support SVG', () => {
+    const result = processor()
+      .data('settings', { fragment: true, namespace: 'http://www.w3.org/2000/svg' })
+      .stringify({
+        type: 'element',
+        tagName: 'g',
+        properties: {
+          id: 'foo',
+          className: ['bar'],
+        },
+        children: [
+          {
+            type: 'element',
+            tagName: 'circle',
+            properties: {},
+            children: [],
+          },
+        ],
+      });
+
+    expect(result).toMatchSnapshot();
+  });
+
+  it('should support HTML in SVG', () => {
+    const result = processor()
+      .data('settings', { fragment: true, namespace: 'http://www.w3.org/2000/svg' })
+      .stringify({
+        type: 'element',
+        tagName: 'svg',
+        properties: {},
+        children: [
+          {
+            type: 'element',
+            tagName: 'foreignObject',
+            properties: {},
+            children: [
+              {
+                type: 'element',
+                tagName: 'div',
+                properties: { xmlns: 'http://www.w3.org/1999/xhtml' },
+                children: [
+                  { type: 'text', value: 'Alpha' },
+                ],
+              },
+            ],
+          },
+        ],
+      });
+
+    expect(result).toMatchSnapshot();
+  });
+
+  it('should support HTML in SVG in HTML', () => {
+    const result = processor()
+      .data('settings', { fragment: true })
+      .stringify({
+        type: 'element',
+        tagName: 'div',
+        properties: {},
+        children: [
+          {
+            type: 'element',
+            tagName: 'svg',
+            properties: { xmlns: 'http://www.w3.org/2000/svg' },
+            children: [
+              {
+                type: 'element',
+                tagName: 'foreignObject',
+                properties: {},
+                children: [
+                  {
+                    type: 'element',
+                    tagName: 'div',
+                    properties: { xmlns: 'http://www.w3.org/1999/xhtml' },
+                    children: [
+                      { type: 'text', value: 'Alpha' },
+                    ],
+                  },
+                ],
+              },
+            ],
+          },
+        ],
+      });
+
+    expect(result).toMatchSnapshot();
+  });
+
+  it('should stringify namespaced elements', () => {
+    const result = processor()
+      .data('settings', { fragment: true, namespace: 'https://example.com' })
+      .stringify({
+        type: 'element',
+        tagName: 'example',
+        properties: {},
+        children: [
+          { type: 'text', value: 'Alpha' },
+        ],
+      });
+
+    expect(result).toMatchSnapshot();
+  });
 });

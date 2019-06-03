@@ -1,7 +1,8 @@
 import xtend from 'xtend';
 import toDOM from 'hast-util-to-dom';
+import ns from 'web-namespaces';
 
-import { serializeNodeToHtmlString } from './utils';
+const htmlXmlnsExpression = new RegExp(` xmlns="${ns.html}"`, 'g');
 
 export default function stringify(config) {
   const settings = xtend(config, this.data('settings'));
@@ -16,4 +17,13 @@ export default function stringify(config) {
   }
 
   this.Compiler = compiler;
+}
+
+function serializeNodeToHtmlString(node) {
+  // XMLSerializer puts xmlns on root elements (typically the document element,
+  // but in case of a fragment all of the fragments children).
+  // We’re using the DOM, and we focus on HTML, so we can always remove HTML
+  // XMLNS attributes (HTML inside SVG does not need to have an XMLNS).
+  const serialized = new XMLSerializer().serializeToString(node);
+  return serialized.replace(htmlXmlnsExpression, '');
 }
