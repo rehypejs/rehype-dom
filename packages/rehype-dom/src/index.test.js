@@ -7,7 +7,6 @@ import visit from 'unist-util-visit';
 
 import rehypeDomParse from 'rehype-dom-parse';
 import rehypeDomStringify from 'rehype-dom-stringify';
-
 import rehypeDom from './index';
 
 describe('parse', () => {
@@ -17,21 +16,21 @@ describe('parse', () => {
     .freeze();
 
   it('should parse a complete document', () => {
-    const outputActual = String(processor().data('settings', { fragment: false }).processSync('<title>Hi</title><h2>Hello world!'));
-    const outputExpected = '<html><head><title>Hi</title></head><body><h2>Hello world!</h2></body></html>';
-    expect(outputActual).toEqual(outputExpected);
+    const actual = String(processor().data('settings', { fragment: false }).processSync('<title>Hi</title><h2>Hello world!'));
+    const expected = '<html><head><title>Hi</title></head><body><h2>Hello world!</h2></body></html>';
+    expect(actual).toEqual(expected);
   });
 
   it('should parse a fragment', () => {
-    const outputActual = String(processor().data('settings', { fragment: true }).processSync('<title>Hi</title><h2>Hello world!'));
-    const outputExpected = '<title>Hi</title><h2>Hello world!</h2>';
-    expect(outputActual).toEqual(outputExpected);
+    const actual = String(processor().processSync('<title>Hi</title><h2>Hello world!'));
+    const expected = '<title>Hi</title><h2>Hello world!</h2>';
+    expect(actual).toEqual(expected);
   });
 
   it('should parse data-* attributes correctly', () => {
-    const outputActual = String(processor().data('settings', { fragment: true }).processSync('<p data-test="true">text, <b>hyper'));
-    const outputExpected = '<p data-test="true">text, <b>hyper</b></p>';
-    expect(outputActual).toEqual(outputExpected);
+    const actual = String(processor().processSync('<p data-test="true">text, <b>hyper'));
+    const expected = '<p data-test="true">text, <b>hyper</b></p>';
+    expect(actual).toEqual(expected);
   });
 });
 
@@ -42,107 +41,139 @@ describe('stringify', () => {
     .freeze();
 
   it('should stringify a complete document', () => {
-    const outputActual = String(processor().data('settings', { fragment: false }).processSync('<title>Hi</title><h2>Hello world!'));
-    const outputExpected = '<html><head><title>Hi</title></head><body><h2>Hello world!</h2></body></html>';
-    expect(outputActual).toEqual(outputExpected);
+    expect(
+      processor()
+        .data('settings', { fragment: false })
+        .processSync('<title>Hi</title><h2>Hello world!')
+        .toString(),
+    ).toEqual('<html><head><title>Hi</title></head><body><h2>Hello world!</h2></body></html>');
   });
 
   it('should stringify a fragment', () => {
-    const outputActual = String(processor().data('settings', { fragment: true }).processSync('<title>Hi</title><h2>Hello world!'));
-    const outputExpected = '<title>Hi</title><h2>Hello world!</h2>';
-    expect(outputActual).toEqual(outputExpected);
+    expect(
+      processor()
+        .data('settings', { fragment: true })
+        .processSync('<title>Hi</title><h2>Hello world!')
+        .toString(),
+    ).toEqual('<title>Hi</title><h2>Hello world!</h2>');
   });
 
   it('should stringify data-* attributes correctly', () => {
-    const outputActual = String(processor().data('settings', { fragment: true }).processSync('<p data-test="true">text, <b>hyper'));
-    const outputExpected = '<p data-test="true">text, <b>hyper</b></p>';
-    expect(outputActual).toEqual(outputExpected);
+    expect(
+      processor()
+        .data('settings', { fragment: true })
+        .processSync('<p data-test="true">text, <b>hyper')
+        .toString(),
+    ).toEqual('<p data-test="true">text, <b>hyper</b></p>');
   });
 });
 
 describe('rehype-dom', () => {
   it('should parse a complete document', () => {
-    const outputActual = String(rehypeDom().data('settings', { fragment: false }).processSync('<title>Hi</title><h2>Hello world!'));
-    const outputExpected = '<html><head><title>Hi</title></head><body><h2>Hello world!</h2></body></html>';
-    expect(outputActual).toEqual(outputExpected);
+    expect(
+      rehypeDom()
+        .data('settings', { fragment: false })
+        .processSync('<title>Hi</title><h2>Hello world!')
+        .toString(),
+    ).toEqual('<html><head><title>Hi</title></head><body><h2>Hello world!</h2></body></html>');
   });
 
   it('should parse a fragment', () => {
-    const outputActual = String(rehypeDom().data('settings', { fragment: true }).processSync('<title>Hi</title><h2>Hello world!'));
-    const outputExpected = '<title>Hi</title><h2>Hello world!</h2>';
-    expect(outputActual).toEqual(outputExpected);
+    expect(
+      rehypeDom()
+        .processSync('<title>Hi</title><h2>Hello world!')
+        .toString(),
+    ).toEqual('<title>Hi</title><h2>Hello world!</h2>');
   });
 
   it('should parse as a fragment by default', () => {
-    const outputActual = String(rehypeDom().processSync('<title>Hi</title><h2>Hello world!'));
-    const outputExpected = '<title>Hi</title><h2>Hello world!</h2>';
-    expect(outputActual).toEqual(outputExpected);
+    expect(
+      rehypeDom()
+        .processSync('<title>Hi</title><h2>Hello world!')
+        .toString(),
+    ).toEqual('<title>Hi</title><h2>Hello world!</h2>');
   });
 
   it('should not mangle data-* attributes', () => {
-    const outputActual = String(rehypeDom().processSync('<p data-test="true">text, <b>hyper'));
-    const outputExpected = '<p data-test="true">text, <b>hyper</b></p>';
-    expect(outputActual).toEqual(outputExpected);
+    expect(
+      rehypeDom()
+        .processSync('<p data-test="true">text, <b>hyper')
+        .toString(),
+    ).toEqual('<p data-test="true">text, <b>hyper</b></p>');
   });
 
   it('should support boolean attributes', () => {
-    const outputActual = String(rehypeDom().processSync('<input type="checkbox" checked />'));
-    const outputExpected = '<input type="checkbox" checked="" />';
-    expect(outputActual).toEqual(outputExpected);
+    expect(
+      rehypeDom()
+        .processSync('<input type="checkbox" checked />')
+        .toString(),
+    ).toEqual('<input type="checkbox" checked="" />');
   });
 
   it('should not mangle classnames', () => {
-    const outputActual = String(rehypeDom().processSync('<div class="foo bar">baz</div>'));
-    const outputExpected = '<div class="foo bar">baz</div>';
-    expect(outputActual).toEqual(outputExpected);
+    expect(
+      rehypeDom()
+        .processSync('<div class="foo bar">baz</div>')
+        .toString(),
+    ).toEqual('<div class="foo bar">baz</div>');
   });
 
   it('should support svg', () => {
-    const outputActual = String(rehypeDom().processSync(`<svg width=230 height=120 xmlns=http://www.w3.org/2000/svg xmlns:xlink=http://www.w3.org/1999/xlink>
+    expect(
+      rehypeDom()
+        .processSync(`<svg width=230 height=120 xmlns=http://www.w3.org/2000/svg xmlns:xlink=http://www.w3.org/1999/xlink>
   <circle cx=60 cy=60 r=50 fill=red />
   <circle cx=170 cy=60 r=50 fill=green />
-</svg>`));
-    const outputExpected = `<svg width="230" height="120" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+</svg>`)
+        .toString(),
+    ).toEqual(`<svg width="230" height="120" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
   <circle cx="60" cy="60" r="50" fill="red"></circle>
   <circle cx="170" cy="60" r="50" fill="green"></circle>
-</svg>`;
-    expect(outputActual).toEqual(outputExpected);
+</svg>`);
   });
 
   describe('plugins', () => {
     it('works with a generic plugin', () => {
+      expect(
+        rehypeDom()
+          .use(plugin).processSync('<p>a man a plan a canal panama</p>')
+          .toString(),
+      ).toEqual('<p>amanap lanac a nalp a nam a</p>');
+
       function plugin() {
-        return function transformer(tree) {
-          visit(tree, 'text', (node) => {
-            // eslint-disable-next-line no-param-reassign
-            node.value = node.value.split('').reverse().join('');
-          });
-        };
+        return transformer;
       }
 
-      const outputActual = String(rehypeDom().use(plugin).processSync('<p>a man a plan a canal panama</p>'));
-      const outputExpected = '<p>amanap lanac a nalp a nam a</p>';
-      expect(outputActual).toEqual(outputExpected);
+      function transformer(tree) {
+        visit(tree, 'text', visitor);
+      }
+
+      function visitor(node) {
+        // eslint-disable-next-line no-param-reassign
+        node.value = node.value.split('').reverse().join('');
+      }
     });
 
     it('works with rehype-highlight', () => {
-      const outputActual = String(rehypeDom().use(highlight).processSync(`
-        <h1>Hello World!</h1>
-        <pre><code class="language-js">var name = "World";
-        console.warn("Hello, " + name + "!")</pre></code>
-      `));
-      const outputExpected = `
-        <h1>Hello World!</h1>
-        <pre><code class="hljs language-js"><span class="hljs-keyword">var</span> name = <span class="hljs-string">"World"</span>;
-        <span class="hljs-built_in">console</span>.warn(<span class="hljs-string">"Hello, "</span> + name + <span class="hljs-string">"!"</span>)</code></pre>
-      `;
-      expect(outputActual).toEqual(outputExpected);
+      expect(
+        rehypeDom()
+          .use(highlight)
+          .processSync(`<h1>Hello World!</h1>
+<pre><code class="language-js">var name = "World";
+console.warn("Hello, " + name + "!")</pre></code>`)
+          .toString(),
+      ).toEqual(`<h1>Hello World!</h1>
+<pre><code class="hljs language-js"><span class="hljs-keyword">var</span> name = <span class="hljs-string">"World"</span>;
+<span class="hljs-built_in">console</span>.warn(<span class="hljs-string">"Hello, "</span> + name + <span class="hljs-string">"!"</span>)</code></pre>`);
     });
 
     it('works with rehype-slug', () => {
-      const outputActual = String(rehypeDom().use(slug).processSync('<h1>First</h1><h2>Second'));
-      const outputExpected = '<h1 id="first">First</h1><h2 id="second">Second</h2>';
-      expect(outputActual).toEqual(outputExpected);
+      expect(
+        rehypeDom()
+          .use(slug)
+          .processSync('<h1>First</h1><h2>Second')
+          .toString(),
+      ).toEqual('<h1 id="first">First</h1><h2 id="second">Second</h2>');
     });
   });
 });
