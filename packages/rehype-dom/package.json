@@ -31,8 +31,8 @@
     "dist"
   ],
   "dependencies": {
-    "rehype-dom-parse": "1.0.4",
-    "rehype-dom-stringify": "1.0.4",
+    "rehype-dom-parse": "^1.0.4",
+    "rehype-dom-stringify": "^1.0.4",
     "unified": "^7.0.0"
   },
   "devDependencies": {
