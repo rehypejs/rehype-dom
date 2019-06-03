@@ -7,10 +7,10 @@ const PACKAGE_ENTRY = 'src/index.js';
 const PACKAGES_PATH = path.join(__dirname, PACKAGES_DIRECTORY);
 
 const external = id => (
-  !id.startsWith('.') &&
-  !id.startsWith('/') &&
-  !id.startsWith('\0') &&
-  !id.endsWith(PACKAGE_ENTRY)
+  !id.startsWith('.')
+  && !id.startsWith('/')
+  && !id.startsWith('\0')
+  && !id.endsWith(PACKAGE_ENTRY)
 );
 
 const configs = [];
@@ -34,7 +34,7 @@ pkgNames.forEach((pkgName) => {
       plugins: [
         babel({
           presets: [
-            ['env', { modules: false }],
+            ['@babel/preset-env', { modules: false }],
           ],
           babelrc: false,
         }),

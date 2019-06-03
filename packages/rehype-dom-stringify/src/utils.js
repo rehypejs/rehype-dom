@@ -4,11 +4,17 @@ export function serializeNodeToString(node) {
   }
   if (!node) {
     return '';
-  } else if (node.outerHTML != null) {
+  }
+
+  if (node.outerHTML != null) {
     return node.outerHTML;
-  } else if (node instanceof Document) {
+  }
+
+  if (node instanceof Document) {
     return `${serializeNodeToString(node.doctype)}${serializeNodeToString(node.documentElement)}`;
-  } else if (node instanceof DocumentType) {
+  }
+
+  if (node instanceof DocumentType) {
     const docTypeAttrs = [
       node.name,
       node.publicId ? 'PUBLIC' : '',
@@ -18,6 +24,7 @@ export function serializeNodeToString(node) {
     ].filter(v => v).join(' ');
     return `<!DOCTYPE ${docTypeAttrs}>`;
   }
+
   const el = document.createElement('body');
   el.appendChild(node);
   return el.innerHTML;
