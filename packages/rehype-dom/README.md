@@ -71,7 +71,7 @@ with `.data('settings', {/*...*/})`.
 
 [rehype-dom]: https://github.com/kmck/rehype-dom
 
-[license]: https://github.com/kmck/rehype-dom/blob/master/LICENSE
+[license]: https://github.com/kmck/rehype-dom/blob/master/license
 
 [author]: https://keith.mcknig.ht
 

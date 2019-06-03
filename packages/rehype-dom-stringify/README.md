@@ -78,7 +78,7 @@ In document mode, an `html` element is added to a fragment when needed.
 
 [npm]: https://docs.npmjs.com/cli/install
 
-[license]: https://github.com/kmck/rehype-dom/blob/master/LICENSE
+[license]: https://github.com/kmck/rehype-dom/blob/master/license
 
 [author]: https://keith.mcknig.ht
 

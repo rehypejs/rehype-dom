@@ -82,7 +82,7 @@ Access to the [parser][], if you need it.
 
 [npm]: https://docs.npmjs.com/cli/install
 
-[license]: https://github.com/kmck/rehype-dom/blob/master/LICENSE
+[license]: https://github.com/kmck/rehype-dom/blob/master/license
 
 [author]: https://keith.mcknig.ht
 
