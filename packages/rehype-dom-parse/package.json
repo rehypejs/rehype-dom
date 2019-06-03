@@ -1,6 +1,6 @@
 {
   "name": "rehype-dom-parse",
-  "version": "1.0.4",
+  "version": "2.0.0",
   "description": "rehype plugin to use browser APIs to parse HTML",
   "license": "ISC",
   "keywords": [
