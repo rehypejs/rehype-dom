@@ -1,26 +1,35 @@
 {
   "name": "rehype-dom-stringify",
   "version": "1.0.4",
-  "description": "DOM-based HTML compiler for rehype",
+  "description": "rehype plugin to use browser APIs to stringify HTML",
+  "license": "ISC",
   "keywords": [
+    "unified",
+    "rehype",
     "html",
+    "dom",
     "abstract",
     "syntax",
     "tree",
     "ast",
-    "stringify"
+    "stringify",
+    "compile"
+  ],
+  "homepage": "https://github.com/rehypejs/rehype-dom",
+  "repository": "https://github.com/rehypejs/rehype-dom/tree/master/packages/rehype-dom-stringify",
+  "bugs": "https://github.com/rehypejs/rehype-dom/issues",
+  "author": "Keith McKnight <keith@mcknig.ht> (https://keith.mcknig.ht)",
+  "contributors": [
+    "Keith McKnight <keith@mcknig.ht> (https://keith.mcknig.ht)",
+    "Titus Wormer <tituswormer@gmail.com> (https://wooorm.com)"
   ],
   "main": "dist/rehype-dom-stringify.js",
   "module": "dist/rehype-dom-stringify.mjs",
-  "homepage": "https://github.com/kmck/rehype-dom",
-  "repository": "https://github.com/kmck/rehype-dom/tree/master/packages/rehype-dom-stringify",
-  "author": "Keith McKnight <keith@mcknig.ht> (https://keith.mcknig.ht)",
-  "license": "ISC",
+  "files": [
+    "dist"
+  ],
   "dependencies": {
     "hast-util-to-dom": "^2.0.0",
     "xtend": "^4.0.1"
-  },
-  "files": [
-    "dist"
-  ]
+  }
 }

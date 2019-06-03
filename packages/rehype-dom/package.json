@@ -1,23 +1,35 @@
 {
   "name": "rehype-dom",
   "version": "1.0.4",
-  "description": "DOM-based HTML processor powered by plugins",
+  "description": "unified processor to use browser APIs to parse and stringify HTML",
+  "license": "ISC",
   "keywords": [
+    "unified",
+    "rehype",
     "html",
+    "dom",
     "abstract",
     "syntax",
     "tree",
     "ast",
     "parse",
     "stringify",
+    "compile",
     "process"
+  ],
+  "homepage": "https://github.com/rehypejs/rehype-dom",
+  "repository": "https://github.com/rehypejs/rehype-dom/tree/master/packages/rehype-dom",
+  "bugs": "https://github.com/rehypejs/rehype-dom/issues",
+  "author": "Keith McKnight <keith@mcknig.ht> (https://keith.mcknig.ht)",
+  "contributors": [
+    "Keith McKnight <keith@mcknig.ht> (https://keith.mcknig.ht)",
+    "Titus Wormer <tituswormer@gmail.com> (https://wooorm.com)"
   ],
   "main": "dist/rehype-dom.js",
   "module": "dist/rehype-dom.mjs",
-  "homepage": "https://github.com/kmck/rehype-dom",
-  "repository": "https://github.com/kmck/rehype-dom/tree/master/packages/rehype-dom",
-  "author": "Keith McKnight <keith@mcknig.ht> (https://keith.mcknig.ht)",
-  "license": "ISC",
+  "files": [
+    "dist"
+  ],
   "dependencies": {
     "rehype-dom-parse": "1.0.4",
     "rehype-dom-stringify": "1.0.4",
@@ -29,8 +41,5 @@
     "rehype-slug": "^2.0.0",
     "rehype-stringify": "^5.0.0",
     "unist-util-visit": "^1.0.0"
-  },
-  "files": [
-    "dist"
-  ]
+  }
 }

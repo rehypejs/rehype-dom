@@ -1,22 +1,17 @@
 {
   "private": true,
+  "license": "ISC",
+  "homepage": "https://github.com/rehypejs/rehype-dom",
+  "repository": "rehypejs/rehype-dom",
+  "bugs": "https://github.com/rehypejs/rehype-dom/issues",
+  "author": "Keith McKnight <keith@mcknig.ht> (https://keith.mcknig.ht)",
+  "contributors": [
+    "Keith McKnight <keith@mcknig.ht> (https://keith.mcknig.ht)",
+    "Titus Wormer <tituswormer@gmail.com> (https://wooorm.com)"
+  ],
   "workspaces": [
     "packages/*"
   ],
-  "homepage": "https://github.com/kmck/rehype-dom",
-  "repository": "https://github.com/kmck/rehype-dom.git",
-  "author": "Keith McKnight <keith@mcknig.ht> (https://keith.mcknig.ht)",
-  "license": "ISC",
-  "scripts": {
-    "clean": "npm run clean:rehype-dom && npm run clean:parse && npm run clean:stringify",
-    "clean:rehype-dom": "rm -rf packages/rehype-dom/dist",
-    "clean:parse": "rm -rf packages/rehype-dom-parse/dist",
-    "clean:stringify": "rm -rf packages/rehype-dom-stringify/dist",
-    "build": "rollup -c",
-    "lint": "eslint .",
-    "test": "jest",
-    "test:dev": "jest --watchAll"
-  },
   "devDependencies": {
     "@babel/core": "^7.0.0",
     "@babel/preset-env": "^7.0.0",
@@ -30,6 +25,16 @@
     "rollup": "^1.0.0",
     "rollup-plugin-babel": "^4.0.0",
     "unified": "^7.0.0"
+  },
+  "scripts": {
+    "clean": "npm run clean:rehype-dom && npm run clean:parse && npm run clean:stringify",
+    "clean:rehype-dom": "rm -rf packages/rehype-dom/dist",
+    "clean:parse": "rm -rf packages/rehype-dom-parse/dist",
+    "clean:stringify": "rm -rf packages/rehype-dom-stringify/dist",
+    "build": "rollup -c",
+    "lint": "eslint .",
+    "test": "jest",
+    "test:dev": "jest --watchAll"
   },
   "jest": {
     "moduleDirectories": ["node_modules"]
