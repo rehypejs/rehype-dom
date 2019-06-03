@@ -1,36 +1,50 @@
-# rehype-dom [![Build Status][travis-badge]][travis]
+# rehype-dom
 
-The [**rehype-dom**][rehype-dom] processor is an HTML processor powered by
-[plug-ins][plugins].
+[![Build][build-badge]][build]
+[![Coverage][coverage-badge]][coverage]
+[![Downloads][downloads-badge]][downloads]
+[![Size][size-badge]][size]
+[![Sponsors][sponsors-badge]][collective]
+[![Backers][backers-badge]][collective]
+[![Chat][chat-badge]][chat]
+
+[**unified**][unified] processor to use browser APIs to parse and compile HTML.
 
 *   Interface by [**unified**][unified]
 *   [**hast**][hast] syntax tree
-*   Parses HTML to the tree with [**rehype-parse**][parse]
+*   Parses HTML to the tree with [**rehype-dom-parse**][parse]
 *   [Plug-ins][plugins] transform the tree
-*   Compiles the tree to HTML using [**rehype-stringify**][stringify]
+*   Compiles the tree to HTML using [**rehype-dom-stringify**][stringify]
 
-If you're not concerned with bundle size or are in an environment in which you don't trust (or don't
-have) the native DOM API, you may prefer to use [`rehype`][rehype] instead.
-**Please note** that this library is designed for browser use and defaults to **fragment mode** when
-parsing, whereas [`rehype`][rehype] defaults to **document mode**!
+If you don’t care about bundle size, or if you don’t trust content, or if you’re
+not in a (modern) browser environment, use [`rehype`][rehype] instead.
 
-Don’t need the parser?  Or the compiler?  [That’s OK][unified-usage].
+If you’re not concerned with bundle size or are in an environment in which you
+don’t trust (or don’t have) the native DOM API, you may prefer to use
+[`rehype`][rehype] instead.
 
-## Installation
+As `rehype-dom` is designed for browser use, it defaults to parsing in
+**fragment mode**, whereas [`rehype`][rehype] defaults to **document mode**!
+
+Don’t need the parser?
+Or the compiler?
+[That’s OK][unified-usage].
+
+## Install
 
 [yarn][]:
 
-```bash
+```sh
 yarn add rehype-dom
 ```
 
 [npm][]:
 
-```bash
+```sh
 npm install rehype-dom
 ```
 
-## Usage
+## Use
 
 ```js
 import unified from 'unified';
@@ -48,12 +62,23 @@ rehypeDom().process('<p>text, <b>hyper', (err, file) => {
 
 Yields:
 
-```
+```html
 <p>text, <b>hyper</b></p>
 ```
 
-Configuration for [**rehype-dom-parse**][parse] and [**rehype-dom-stringify**][stringify] can be set
-with `.data('settings', {/*...*/})`.
+Configuration for [**rehype-dom-parse**][parse] and
+[**rehype-dom-stringify**][stringify] can be set with
+`.data('settings', {/*...*/})`.
+
+## Contribute
+
+See [`contributing.md`][contributing] in [`rehypejs/.github`][health] for ways
+to get started.
+See [`support.md`][support] for ways to get help.
+
+This project has a [Code of Conduct][coc].
+By interacting with this repository, organisation, or community you agree to
+abide by its terms.
 
 ## License
 
@@ -61,31 +86,55 @@ with `.data('settings', {/*...*/})`.
 
 <!-- Definitions -->
 
-[travis-badge]: https://img.shields.io/travis/kmck/rehype-dom.svg
+[build-badge]: https://img.shields.io/travis/rehypejs/rehype-dom.svg
 
-[travis]: https://travis-ci.org/kmck/rehype-dom
+[build]: https://travis-ci.org/rehypejs/rehype-dom
+
+[coverage-badge]: https://img.shields.io/codecov/c/github/rehypejs/rehype-dom.svg
+
+[coverage]: https://codecov.io/github/rehypejs/rehype-dom
+
+[downloads-badge]: https://img.shields.io/npm/dm/rehype-dom.svg
+
+[downloads]: https://www.npmjs.com/package/rehype-dom
+
+[size-badge]: https://img.shields.io/bundlephobia/minzip/rehype-dom.svg
+
+[size]: https://bundlephobia.com/result?p=rehype-dom
+
+[sponsors-badge]: https://opencollective.com/unified/sponsors/badge.svg
+
+[backers-badge]: https://opencollective.com/unified/backers/badge.svg
+
+[collective]: https://opencollective.com/unified
+
+[chat-badge]: https://img.shields.io/badge/join%20the%20community-on%20spectrum-7b16ff.svg
+
+[chat]: https://spectrum.chat/unified/rehype
 
 [yarn]: https://yarnpkg.com/lang/en/docs/install
 
 [npm]: https://docs.npmjs.com/cli/install
 
-[rehype-dom]: https://github.com/kmck/rehype-dom
-
-[license]: https://github.com/kmck/rehype-dom/blob/master/license
-
 [author]: https://keith.mcknig.ht
+
+[license]: https://github.com/rehypejs/rehype-dom/blob/master/license
+
+[health]: https://github.com/rehypejs/.github
+
+[contributing]: https://github.com/rehypejs/.github/blob/master/contributing.md
+
+[support]: https://github.com/rehypejs/.github/blob/master/support.md
+
+[coc]: https://github.com/rehypejs/.github/blob/master/code-of-conduct.md
 
 [unified]: https://github.com/unifiedjs/unified
 
-[processor]: https://github.com/kmck/rehype-dom/blob/master/packages/rehype-dom
-
-[compiler]: https://github.com/unifiedjs/unified#processorcompiler
-
 [hast]: https://github.com/syntax-tree/hast
 
-[parse]: https://github.com/kmck/rehype-dom/blob/master/packages/rehype-dom-parse
+[parse]: https://github.com/rehypejs/rehype-dom/blob/master/packages/rehype-dom-parse
 
-[stringify]: https://github.com/kmck/rehype-dom/blob/master/packages/rehype-dom-stringify
+[stringify]: https://github.com/rehypejs/rehype-dom/blob/master/packages/rehype-dom-stringify
 
 [plugins]: https://github.com/rehypejs/rehype/blob/master/doc/plugins.md
 

@@ -23,6 +23,8 @@
     "hastscript": "^5.1.0",
     "jest-cli": "^24.0.0",
     "jest-environment-jsdom-fifteen": "^1.0.0",
+    "remark-cli": "^6.0.1",
+    "remark-preset-wooorm": "^5.0.0",
     "rollup": "^1.0.0",
     "rollup-plugin-babel": "^4.0.0",
     "unified": "^7.0.0",
@@ -34,7 +36,7 @@
     "clean:parse": "rm -rf packages/rehype-dom-parse/dist",
     "clean:stringify": "rm -rf packages/rehype-dom-stringify/dist",
     "build": "rollup -c",
-    "lint": "eslint .",
+    "lint": "remark . -qfo && eslint .",
     "test": "jest",
     "test:dev": "jest --watchAll"
   },
@@ -55,5 +57,10 @@
         "statements": 100
       }
     }
+  },
+  "remarkConfig": {
+    "plugins": [
+      "preset-wooorm"
+    ]
   }
 }
