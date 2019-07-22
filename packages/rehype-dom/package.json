@@ -1,6 +1,6 @@
 {
   "name": "rehype-dom",
-  "version": "2.0.1",
+  "version": "3.0.0",
   "description": "unified processor to use browser APIs to parse and stringify HTML",
   "license": "ISC",
   "keywords": [
