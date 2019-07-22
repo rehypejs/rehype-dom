@@ -14,6 +14,12 @@
 *   [`rehype-dom-parse`][parse] — Parser
 *   [`rehype-dom-stringify`][stringify] — Stringify
 
+## Security
+
+Use of `rehype-dom` can open you up to a [cross-site scripting (XSS)][xss]
+attack if the document is unsafe or unsafe plugins are used.
+Use [`rehype-sanitize`][sanitize] to make the tree safe.
+
 ## Related
 
 *   [`hast`](https://github.com/syntax-tree/hast)
@@ -84,3 +90,7 @@ abide by its terms.
 [parse]: https://github.com/rehypejs/rehype-dom/tree/master/packages/rehype-dom-parse
 
 [stringify]: https://github.com/rehypejs/rehype-dom/tree/master/packages/rehype-dom-stringify
+
+[xss]: https://en.wikipedia.org/wiki/Cross-site_scripting
+
+[sanitize]: https://github.com/rehypejs/rehype-sanitize

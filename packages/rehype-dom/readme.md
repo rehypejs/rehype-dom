@@ -70,6 +70,12 @@ Configuration for [**rehype-dom-parse**][parse] and
 [**rehype-dom-stringify**][stringify] can be set with
 `.data('settings', {/*...*/})`.
 
+## Security
+
+Use of `rehype-dom` can open you up to a [cross-site scripting (XSS)][xss]
+attack if the document is unsafe or unsafe plugins are used.
+Use [`rehype-sanitize`][sanitize] to make the tree safe.
+
 ## Contribute
 
 See [`contributing.md`][contributing] in [`rehypejs/.github`][health] for ways
@@ -141,3 +147,7 @@ abide by its terms.
 [rehype]: https://github.com/rehypejs/rehype/tree/master/packages/rehype
 
 [unified-usage]: https://github.com/unifiedjs/unified#usage
+
+[xss]: https://en.wikipedia.org/wiki/Cross-site_scripting
+
+[sanitize]: https://github.com/rehypejs/rehype-sanitize

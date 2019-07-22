@@ -77,6 +77,12 @@ Specify whether to stringify a fragment (`boolean`, default: `true`), instead of
 a complete document.
 In document mode, an `html` element is added to a fragment when needed.
 
+## Security
+
+Use of `rehype-dom-stringify` can open you up to a
+[cross-site scripting (XSS)][xss] attack if the tree is unsafe.
+Use [`rehype-sanitize`][sanitize] to make the tree safe.
+
 ## Contribute
 
 See [`contributing.md`][contributing] in [`rehypejs/.github`][health] for ways
@@ -146,3 +152,7 @@ abide by its terms.
 [rehype]: https://github.com/rehypejs/rehype
 
 [rehype-stringify]: https://github.com/rehypejs/rehype/tree/master/packages/rehype-stringify
+
+[xss]: https://en.wikipedia.org/wiki/Cross-site_scripting
+
+[sanitize]: https://github.com/rehypejs/rehype-sanitize

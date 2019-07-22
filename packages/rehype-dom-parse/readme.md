@@ -78,6 +78,12 @@ complete document.
 In document mode, unopened `html`, `head`, and `body` elements are opened in
 just the right places.
 
+## Security
+
+Use of `rehype-dom-parse` can open you up to a [cross-site scripting (XSS)][xss]
+attack if the DOM is unsafe.
+Use [`rehype-sanitize`][sanitize] to make the tree safe.
+
 ## Contribute
 
 See [`contributing.md`][contributing] in [`rehypejs/.github`][health] for ways
@@ -147,3 +153,7 @@ abide by its terms.
 [rehype]: https://github.com/rehypejs/rehype
 
 [rehype-parse]: https://github.com/rehypejs/rehype/tree/master/packages/rehype-parse
+
+[xss]: https://en.wikipedia.org/wiki/Cross-site_scripting
+
+[sanitize]: https://github.com/rehypejs/rehype-sanitize
