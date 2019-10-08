@@ -2,10 +2,5 @@ language: node_js
 node_js:
   - lts/dubnium
   - node
-before_script:
-  - yarn build
-script:
-  - yarn test
-  - yarn lint
 cache: yarn
 after_script: bash <(curl -s https://codecov.io/bash)

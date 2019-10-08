@@ -37,8 +37,9 @@
     "clean:stringify": "rm -rf packages/rehype-dom-stringify/dist",
     "build": "rollup -c",
     "lint": "remark . -qfo && eslint .",
-    "test": "jest",
-    "test:dev": "jest --watchAll"
+    "test:api": "jest",
+    "test:dev": "jest --watchAll",
+    "test": "yarn clean && yarn build && yarn lint && yarn test:api"
   },
   "jest": {
     "testEnvironment": "jest-environment-jsdom-fifteen",
