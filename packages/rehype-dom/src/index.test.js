@@ -126,9 +126,9 @@ describe('rehype-dom', () => {
   <circle cx=170 cy=60 r=50 fill=green />
 </svg>`)
         .toString(),
-    ).toEqual(`<svg width="230" height="120" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
-  <circle cx="60" cy="60" r="50" fill="red"></circle>
-  <circle cx="170" cy="60" r="50" fill="green"></circle>
+    ).toEqual(`<svg xmlns="http://www.w3.org/2000/svg" width="230" height="120" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+  <circle cx="60" cy="60" r="50" fill="red"/>
+  <circle cx="170" cy="60" r="50" fill="green"/>
 </svg>`);
   });
 

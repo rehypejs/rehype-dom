@@ -8,6 +8,6 @@ exports[`rehype-dom-stringify should stringify namespaced elements 1`] = `"<exam
 
 exports[`rehype-dom-stringify should support HTML in SVG 1`] = `"<svg xmlns=\\"http://www.w3.org/2000/svg\\"><foreignObject><div>Alpha</div></foreignObject></svg>"`;
 
-exports[`rehype-dom-stringify should support HTML in SVG in HTML 1`] = `"<div><svg xmlns=\\"http://www.w3.org/2000/svg\\"><foreignobject><div>Alpha</div></foreignobject></svg></div>"`;
+exports[`rehype-dom-stringify should support HTML in SVG in HTML 1`] = `"<div><svg xmlns=\\"http://www.w3.org/2000/svg\\" xmlns=\\"http://www.w3.org/2000/svg\\"><foreignObject><div>Alpha</div></foreignObject></svg></div>"`;
 
 exports[`rehype-dom-stringify should support SVG 1`] = `"<g xmlns=\\"http://www.w3.org/2000/svg\\" id=\\"foo\\" class=\\"bar\\"><circle/></g>"`;
