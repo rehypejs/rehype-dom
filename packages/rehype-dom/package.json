@@ -33,7 +33,7 @@
   "dependencies": {
     "rehype-dom-parse": "^2.0.1",
     "rehype-dom-stringify": "^2.0.1",
-    "unified": "^8.0.0"
+    "unified": "^9.0.0"
   },
   "devDependencies": {
     "rehype-highlight": "^4.0.0",
