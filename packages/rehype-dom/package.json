@@ -36,10 +36,10 @@
     "unified": "^8.0.0"
   },
   "devDependencies": {
-    "rehype-highlight": "^3.0.0",
+    "rehype-highlight": "^4.0.0",
     "rehype-parse": "^6.0.0",
-    "rehype-slug": "^2.0.0",
-    "rehype-stringify": "^6.0.0",
-    "unist-util-visit": "^1.0.0"
+    "rehype-slug": "^3.0.0",
+    "rehype-stringify": "^7.0.0",
+    "unist-util-visit": "^2.0.0"
   }
 }
