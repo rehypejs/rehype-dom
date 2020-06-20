@@ -124,27 +124,27 @@ abide by its terms.
 
 [author]: https://keith.mcknig.ht
 
-[license]: https://github.com/rehypejs/rehype-dom/blob/master/license
+[license]: https://github.com/rehypejs/rehype-dom/blob/main/license
 
 [health]: https://github.com/rehypejs/.github
 
-[contributing]: https://github.com/rehypejs/.github/blob/master/contributing.md
+[contributing]: https://github.com/rehypejs/.github/blob/HEAD/contributing.md
 
-[support]: https://github.com/rehypejs/.github/blob/master/support.md
+[support]: https://github.com/rehypejs/.github/blob/HEAD/support.md
 
-[coc]: https://github.com/rehypejs/.github/blob/master/code-of-conduct.md
+[coc]: https://github.com/rehypejs/.github/blob/HEAD/code-of-conduct.md
 
 [unified]: https://github.com/unifiedjs/unified
 
 [hast]: https://github.com/syntax-tree/hast
 
-[parse]: https://github.com/rehypejs/rehype-dom/blob/master/packages/rehype-dom-parse
+[parse]: https://github.com/rehypejs/rehype-dom/blob/main/packages/rehype-dom-parse
 
-[stringify]: https://github.com/rehypejs/rehype-dom/blob/master/packages/rehype-dom-stringify
+[stringify]: https://github.com/rehypejs/rehype-dom/blob/main/packages/rehype-dom-stringify
 
-[plugins]: https://github.com/rehypejs/rehype/blob/master/doc/plugins.md
+[plugins]: https://github.com/rehypejs/rehype/blob/HEAD/doc/plugins.md
 
-[rehype]: https://github.com/rehypejs/rehype/tree/master/packages/rehype
+[rehype]: https://github.com/rehypejs/rehype/tree/HEAD/packages/rehype
 
 [unified-usage]: https://github.com/unifiedjs/unified#usage
 

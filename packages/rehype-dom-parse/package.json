@@ -15,7 +15,7 @@
     "parse"
   ],
   "homepage": "https://github.com/rehypejs/rehype-dom",
-  "repository": "https://github.com/rehypejs/rehype-dom/tree/master/packages/rehype-dom-parse",
+  "repository": "https://github.com/rehypejs/rehype-dom/tree/main/packages/rehype-dom-parse",
   "bugs": "https://github.com/rehypejs/rehype-dom/issues",
   "author": "Keith McKnight <keith@mcknig.ht> (https://keith.mcknig.ht)",
   "contributors": [

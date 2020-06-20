@@ -132,19 +132,19 @@ abide by its terms.
 
 [author]: https://keith.mcknig.ht
 
-[license]: https://github.com/rehypejs/rehype-dom/blob/master/license
+[license]: https://github.com/rehypejs/rehype-dom/blob/main/license
 
 [health]: https://github.com/rehypejs/.github
 
-[contributing]: https://github.com/rehypejs/.github/blob/master/contributing.md
+[contributing]: https://github.com/rehypejs/.github/blob/HEAD/contributing.md
 
-[support]: https://github.com/rehypejs/.github/blob/master/support.md
+[support]: https://github.com/rehypejs/.github/blob/HEAD/support.md
 
-[coc]: https://github.com/rehypejs/.github/blob/master/code-of-conduct.md
+[coc]: https://github.com/rehypejs/.github/blob/HEAD/code-of-conduct.md
 
 [unified]: https://github.com/unifiedjs/unified
 
-[processor]: https://github.com/rehypejs/rehype/blob/master/packages/rehype
+[processor]: https://github.com/rehypejs/rehype/blob/HEAD/packages/rehype
 
 [parser]: https://github.com/unifiedjs/unified#processorparser
 
@@ -152,7 +152,7 @@ abide by its terms.
 
 [rehype]: https://github.com/rehypejs/rehype
 
-[rehype-parse]: https://github.com/rehypejs/rehype/tree/master/packages/rehype-parse
+[rehype-parse]: https://github.com/rehypejs/rehype/tree/HEAD/packages/rehype-parse
 
 [xss]: https://en.wikipedia.org/wiki/Cross-site_scripting
 

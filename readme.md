@@ -75,21 +75,21 @@ abide by its terms.
 
 [health]: https://github.com/rehypejs/.github
 
-[contributing]: https://github.com/rehypejs/.github/blob/master/contributing.md
+[contributing]: https://github.com/rehypejs/.github/blob/HEAD/contributing.md
 
-[support]: https://github.com/rehypejs/.github/blob/master/support.md
+[support]: https://github.com/rehypejs/.github/blob/HEAD/support.md
 
-[coc]: https://github.com/rehypejs/.github/blob/master/code-of-conduct.md
+[coc]: https://github.com/rehypejs/.github/blob/HEAD/code-of-conduct.md
 
 [rehype]: https://github.com/rehypejs/rehype
 
 [unified]: https://github.com/unifiedjs/unified
 
-[api]: https://github.com/rehypejs/rehype-dom/tree/master/packages/rehype-dom
+[api]: https://github.com/rehypejs/rehype-dom/tree/main/packages/rehype-dom
 
-[parse]: https://github.com/rehypejs/rehype-dom/tree/master/packages/rehype-dom-parse
+[parse]: https://github.com/rehypejs/rehype-dom/tree/main/packages/rehype-dom-parse
 
-[stringify]: https://github.com/rehypejs/rehype-dom/tree/master/packages/rehype-dom-stringify
+[stringify]: https://github.com/rehypejs/rehype-dom/tree/main/packages/rehype-dom-stringify
 
 [xss]: https://en.wikipedia.org/wiki/Cross-site_scripting
 
