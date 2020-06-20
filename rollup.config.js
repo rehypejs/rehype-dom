@@ -1,12 +1,12 @@
 import fs from 'fs';
 import path from 'path';
-import babel from 'rollup-plugin-babel';
+import babel from '@rollup/plugin-babel';
 
 const PACKAGES_DIRECTORY = 'packages';
 const PACKAGE_ENTRY = 'src/index.js';
 const PACKAGES_PATH = path.join(__dirname, PACKAGES_DIRECTORY);
 
-const external = id => (
+const external = (id) => (
   !id.startsWith('.')
   && !id.startsWith('/')
   && !id.startsWith('\0')
