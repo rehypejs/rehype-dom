@@ -1,11 +1,10 @@
-import xtend from 'xtend';
 import toDOM from 'hast-util-to-dom';
 import ns from 'web-namespaces';
 
 const htmlXmlnsExpression = new RegExp(` xmlns="${ns.html}"`, 'g');
 
 export default function stringify(config) {
-  const settings = xtend(config, this.data('settings'));
+  const settings = { ...config, ...this.data('settings') };
 
   if (settings.fragment == null) {
     settings.fragment = true;

@@ -1,8 +1,7 @@
-import xtend from 'xtend';
 import fromDOM from 'hast-util-from-dom';
 
 export default function parse(options) {
-  const settings = xtend(options, this.data('settings'));
+  const settings = { ...options, ...this.data('settings') };
 
   function parser(doc, file) {
     const create = settings.fragment == null || settings.fragment ? createFragment : createDocument;

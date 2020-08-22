@@ -28,7 +28,6 @@
     "dist"
   ],
   "dependencies": {
-    "hast-util-from-dom": "^2.0.1",
-    "xtend": "^4.0.1"
+    "hast-util-from-dom": "^3.0.0"
   }
 }

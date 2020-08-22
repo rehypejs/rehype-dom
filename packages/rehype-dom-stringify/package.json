@@ -29,8 +29,7 @@
     "dist"
   ],
   "dependencies": {
-    "hast-util-to-dom": "^2.0.1",
-    "web-namespaces": "^1.0.0",
-    "xtend": "^4.0.1"
+    "hast-util-to-dom": "^2.0.0",
+    "web-namespaces": "^1.0.0"
   }
 }
