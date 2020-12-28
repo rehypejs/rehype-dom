@@ -24,8 +24,8 @@
     "hastscript": "^6.0.0",
     "jest-cli": "^26.0.0",
     "jest-environment-jsdom-fifteen": "^1.0.0",
-    "remark-cli": "^8.0.0",
-    "remark-preset-wooorm": "^7.0.0",
+    "remark-cli": "^9.0.0",
+    "remark-preset-wooorm": "^8.0.0",
     "rollup": "^2.0.0",
     "unified": "^9.0.0",
     "unist-builder": "^2.0.0"
