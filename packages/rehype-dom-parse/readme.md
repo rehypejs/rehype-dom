@@ -100,9 +100,9 @@ abide by its terms.
 
 <!-- Definitions -->
 
-[build-badge]: https://img.shields.io/travis/rehypejs/rehype-dom.svg
+[build-badge]: https://github.com/rehypejs/rehype-dom/workflows/main/badge.svg
 
-[build]: https://travis-ci.org/rehypejs/rehype-dom
+[build]: https://github.com/rehypejs/rehype-dom/actions
 
 [coverage-badge]: https://img.shields.io/codecov/c/github/rehypejs/rehype-dom.svg
 
