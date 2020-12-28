@@ -16,19 +16,16 @@
     "@babel/core": "^7.0.0",
     "@babel/preset-env": "^7.0.0",
     "@rollup/plugin-babel": "^5.0.0",
-    "babel-eslint": "^10.0.0",
-    "babel-jest": "^26.0.0",
-    "eslint": "7.0.0",
-    "eslint-config-airbnb-base": "^14.0.0",
-    "eslint-plugin-import": "^2.0.0",
     "hastscript": "^6.0.0",
     "jest-cli": "^26.0.0",
     "jest-environment-jsdom-fifteen": "^1.0.0",
+    "prettier": "^2.2.1",
     "remark-cli": "^9.0.0",
     "remark-preset-wooorm": "^8.0.0",
     "rollup": "^2.0.0",
     "unified": "^9.0.0",
-    "unist-builder": "^2.0.0"
+    "unist-builder": "^2.0.0",
+    "xo": "^0.36.0"
   },
   "scripts": {
     "clean": "npm run clean:rehype-dom && npm run clean:parse && npm run clean:stringify",
@@ -36,7 +33,7 @@
     "clean:parse": "rm -rf packages/rehype-dom-parse/dist",
     "clean:stringify": "rm -rf packages/rehype-dom-stringify/dist",
     "build": "rollup -c",
-    "lint": "remark . -qfo && eslint . --fix",
+    "lint": "remark . -qfo && prettier . -w --loglevel warn && xo --fix",
     "test:api": "jest",
     "test:dev": "jest --watchAll",
     "test": "yarn clean && yarn build && yarn lint && yarn test:api"
@@ -58,6 +55,39 @@
         "statements": 100
       }
     }
+  },
+  "prettier": {
+    "tabWidth": 2,
+    "useTabs": false,
+    "singleQuote": true,
+    "bracketSpacing": false,
+    "semi": false,
+    "trailingComma": "none"
+  },
+  "xo": {
+    "prettier": true,
+    "esnext": true,
+    "rules": {
+      "eqeqeq": [
+        "error",
+        "always",
+        {
+          "null": "ignore"
+        }
+      ],
+      "no-eq-null": "off",
+      "unicorn/prefer-node-append": "off"
+    },
+    "overrides": [
+      {
+        "files": "**/src/*.js",
+        "envs": "browser"
+      },
+      {
+        "files": "**/*.test.js",
+        "envs": "jest"
+      }
+    ]
   },
   "remarkConfig": {
     "plugins": [

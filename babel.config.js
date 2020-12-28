@@ -1,7 +1,7 @@
-module.exports = config;
+module.exports = config
 
 function config(api) {
-  api.cache(true);
+  api.cache(true)
 
-  return { presets: ['@babel/env'] };
+  return {presets: ['@babel/env']}
 }

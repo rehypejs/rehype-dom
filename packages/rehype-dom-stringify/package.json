@@ -31,5 +31,6 @@
   "dependencies": {
     "hast-util-to-dom": "^2.0.0",
     "web-namespaces": "^1.0.0"
-  }
+  },
+  "xo": false
 }

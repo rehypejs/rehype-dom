@@ -29,5 +29,6 @@
   ],
   "dependencies": {
     "hast-util-from-dom": "^3.0.0"
-  }
+  },
+  "xo": false
 }
