@@ -11,8 +11,8 @@ jobs:
       - uses: dcodeIO/setup-node-nvm@master
         with:
           node-version: ${{matrix.node}}
-      - run: npm install
-      - run: npm test
+      - run: yarn
+      - run: yarn test
       - uses: codecov/codecov-action@v1
     strategy:
       matrix:
