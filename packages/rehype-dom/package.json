@@ -1,6 +1,6 @@
 {
   "name": "rehype-dom",
-  "version": "5.0.0",
+  "version": "6.0.0",
   "description": "unified processor to use browser APIs to parse and stringify HTML",
   "license": "ISC",
   "keywords": [
@@ -35,8 +35,8 @@
   ],
   "dependencies": {
     "@types/hast": "^2.0.0",
-    "rehype-dom-parse": "^3.0.0",
-    "rehype-dom-stringify": "^2.0.1",
+    "rehype-dom-parse": "^4.0.0",
+    "rehype-dom-stringify": "^3.0.0",
     "unified": "^10.0.0"
   },
   "scripts": {
