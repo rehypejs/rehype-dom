@@ -1,4 +1,4 @@
-import toDOM from 'hast-util-to-dom'
+import {toDom} from 'hast-util-to-dom'
 import {webNamespaces} from 'web-namespaces'
 
 const htmlXmlnsExpression = new RegExp(` xmlns="${webNamespaces.html}"`, 'g')
@@ -13,7 +13,7 @@ export default function stringify(config) {
   this.Compiler = compiler
 
   function compiler(tree) {
-    const node = toDOM(tree, settings)
+    const node = toDom(tree, settings)
     const serialized = new XMLSerializer().serializeToString(node)
 
     // XMLSerializer puts xmlns on root elements (typically the document

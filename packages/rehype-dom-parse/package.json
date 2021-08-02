@@ -29,7 +29,7 @@
     "index.js"
   ],
   "dependencies": {
-    "hast-util-from-dom": "^3.0.0"
+    "hast-util-from-dom": "^4.0.0"
   },
   "xo": false
 }

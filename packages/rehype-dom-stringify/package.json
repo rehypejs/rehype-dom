@@ -30,7 +30,7 @@
     "index.js"
   ],
   "dependencies": {
-    "hast-util-to-dom": "^2.0.0",
+    "hast-util-to-dom": "^3.0.0",
     "web-namespaces": "^2.0.0"
   },
   "xo": false

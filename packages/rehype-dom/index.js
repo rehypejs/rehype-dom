@@ -1,4 +1,4 @@
-import unified from 'unified'
+import {unified} from 'unified'
 import parse from 'rehype-dom-parse'
 import stringify from 'rehype-dom-stringify'
 

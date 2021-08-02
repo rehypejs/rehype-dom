@@ -1,4 +1,4 @@
-import fromDOM from 'hast-util-from-dom'
+import {fromDom} from 'hast-util-from-dom'
 
 export default function parse(options) {
   const settings = {...options, ...this.data('settings')}
@@ -8,7 +8,7 @@ export default function parse(options) {
       settings.fragment == null || settings.fragment
         ? createFragment
         : createDocument
-    return fromDOM(create(String(file)))
+    return fromDom(create(String(file)))
   }
 
   this.Parser = parser
