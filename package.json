@@ -45,21 +45,6 @@
   },
   "xo": {
     "prettier": true,
-    "esnext": true,
-    "rules": {
-      "import/extensions": "off",
-      "import/no-useless-path-segments": "off",
-      "unicorn/import-index": "off",
-      "eqeqeq": [
-        "error",
-        "always",
-        {
-          "null": "ignore"
-        }
-      ],
-      "no-eq-null": "off",
-      "unicorn/prefer-node-append": "off"
-    },
     "overrides": [
       {
         "files": "packages/*/index.js",

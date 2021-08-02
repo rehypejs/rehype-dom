@@ -6,7 +6,7 @@ const htmlXmlnsExpression = new RegExp(` xmlns="${webNamespaces.html}"`, 'g')
 export default function stringify(config) {
   const settings = {...config, ...this.data('settings')}
 
-  if (settings.fragment == null) {
+  if (settings.fragment === null || settings.fragment === undefined) {
     settings.fragment = true
   }
 

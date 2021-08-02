@@ -5,7 +5,9 @@ export default function parse(options) {
 
   function parser(doc, file) {
     const create =
-      settings.fragment == null || settings.fragment
+      settings.fragment === null ||
+      settings.fragment === undefined ||
+      settings.fragment
         ? createFragment
         : createDocument
     return fromDom(create(String(file)))
@@ -21,7 +23,7 @@ function createFragment(htmlString) {
   let child = temporary.firstChild
 
   while (child) {
-    fragment.appendChild(child)
+    fragment.append(child)
     child = temporary.firstChild
   }
 
