@@ -1,14 +1,13 @@
 import {JSDOM} from 'jsdom'
 import test from 'tape'
-import unified from 'unified'
+import {unified} from 'unified'
 import rehypeParse from 'rehype-parse'
 import rehypeStringify from 'rehype-stringify'
-import highlight from 'rehype-highlight'
-import slug from 'rehype-slug'
-import visit from 'unist-util-visit'
-import u from 'unist-builder'
-import h from 'hastscript'
-import s from 'hastscript/svg.js'
+import rehypeHighlight from 'rehype-highlight'
+import rehypeSlug from 'rehype-slug'
+import {visit} from 'unist-util-visit'
+import {u} from 'unist-builder'
+import {h, s} from 'hastscript'
 import rehypeDomParse from './packages/rehype-dom-parse/index.js'
 import rehypeDomStringify from './packages/rehype-dom-stringify/index.js'
 import rehypeDom from './packages/rehype-dom/index.js'
@@ -224,7 +223,7 @@ test('parse', (t) => {
 
       t.equal(
         rehypeDom()
-          .use(highlight)
+          .use(rehypeHighlight)
           .processSync(
             `<h1>Hello World!</h1>
   <pre><code class="language-js">var name = "World";
@@ -233,13 +232,13 @@ test('parse', (t) => {
           .toString(),
         `<h1>Hello World!</h1>
   <pre><code class="hljs language-js"><span class="hljs-keyword">var</span> name = <span class="hljs-string">"World"</span>;
-  <span class="hljs-built_in">console</span>.warn(<span class="hljs-string">"Hello, "</span> + name + <span class="hljs-string">"!"</span>)</code></pre>`,
+  <span class="hljs-variable hljs-language">console</span>.<span class="hljs-title hljs-function">warn</span>(<span class="hljs-string">"Hello, "</span> + name + <span class="hljs-string">"!"</span>)</code></pre>`,
         'works with rehype-highlight'
       )
 
       t.equal(
         rehypeDom()
-          .use(slug)
+          .use(rehypeSlug)
           .processSync('<h1>First</h1><h2>Second')
           .toString(),
         '<h1 id="first">First</h1><h2 id="second">Second</h2>',
