@@ -32,26 +32,28 @@ Or the compiler?
 
 ## Install
 
+This package is [ESM only](https://gist.github.com/sindresorhus/a39789f98801d908bbc7ff3ecc99d99c):
+Node 12+ is needed to use it and it must be `import`ed instead of `require`d.
+
 [npm][]:
 
 ```sh
 npm install rehype-dom
 ```
 
+This package exports the following identifier: `rehypeDom`.
+There is no default export.
+
 ## Use
 
 ```js
-import unified from 'unified';
-import createStream from 'unified-stream';
-import rehypeDom from 'rehype-dom';
+import {rehypeDom} from 'rehype-dom'
 
-rehypeDom().process('<p>text, <b>hyper', (err, file) => {
-  if (err) {
-    console.error(err);
-  } else {
-    console.log(String(file));
-  }
-});
+rehypeDom()
+  .process('<p>text, <b>hyper')
+  .then((file) => {
+    console.log(String(file))
+  })
 ```
 
 Yields:

@@ -10,7 +10,7 @@ import {u} from 'unist-builder'
 import {h, s} from 'hastscript'
 import rehypeDomParse from './packages/rehype-dom-parse/index.js'
 import rehypeDomStringify from './packages/rehype-dom-stringify/index.js'
-import rehypeDom from './packages/rehype-dom/index.js'
+import {rehypeDom} from './packages/rehype-dom/index.js'
 
 const {window} = new JSDOM('')
 
