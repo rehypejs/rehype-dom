@@ -35,12 +35,5 @@
     "rehype-dom-stringify": "^2.0.1",
     "unified": "^9.0.0"
   },
-  "devDependencies": {
-    "rehype-highlight": "^4.0.0",
-    "rehype-parse": "^7.0.0",
-    "rehype-slug": "^3.0.0",
-    "rehype-stringify": "^8.0.0",
-    "unist-util-visit": "^2.0.0"
-  },
   "xo": false
 }

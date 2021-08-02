@@ -13,16 +13,22 @@
     "@babel/core": "^7.0.0",
     "@babel/preset-env": "^7.0.0",
     "@rollup/plugin-babel": "^5.0.0",
+    "c8": "^7.0.0",
     "hastscript": "^6.0.0",
-    "jest-cli": "^26.0.0",
-    "jest-environment-jsdom-fifteen": "^1.0.0",
+    "jsdom": "^16.0.0",
     "lerna": "^4.0.0",
-    "prettier": "^2.2.1",
+    "prettier": "^2.0.0",
+    "rehype-highlight": "^4.0.0",
+    "rehype-parse": "^7.0.0",
+    "rehype-slug": "^3.0.0",
+    "rehype-stringify": "^8.0.0",
     "remark-cli": "^9.0.0",
     "remark-preset-wooorm": "^8.0.0",
     "rollup": "^2.0.0",
+    "tape": "^5.0.0",
     "unified": "^9.0.0",
     "unist-builder": "^2.0.0",
+    "unist-util-visit": "^2.0.0",
     "xo": "^0.36.0"
   },
   "scripts": {
@@ -33,27 +39,9 @@
     "clean:stringify": "rm -rf packages/rehype-dom-stringify/dist",
     "build": "rollup -c",
     "lint": "remark . -qfo && prettier . -w --loglevel warn && xo --fix",
-    "test:api": "jest",
-    "test:dev": "jest --watchAll",
-    "test": "npm run clean && npm run build && npm run lint && npm run test:api"
-  },
-  "jest": {
-    "testEnvironment": "jest-environment-jsdom-fifteen",
-    "moduleDirectories": [
-      "node_modules"
-    ],
-    "coveragePathIgnorePatterns": [
-      "/packages/.+/dist/"
-    ],
-    "collectCoverage": true,
-    "coverageThreshold": {
-      "global": {
-        "branches": 100,
-        "functions": 100,
-        "lines": 100,
-        "statements": 100
-      }
-    }
+    "test-api": "node --conditions development test.js",
+    "test-coverage": "c8 --check-coverage --branches 100 --functions 100 --lines 100 --statements 100 --reporter lcov npm run test-api",
+    "test": "npm run clean && npm run build && npm run lint && npm run test-coverage"
   },
   "prettier": {
     "tabWidth": 2,
@@ -81,10 +69,6 @@
       {
         "files": "**/src/*.js",
         "envs": "browser"
-      },
-      {
-        "files": "**/*.test.js",
-        "envs": "jest"
       }
     ]
   },
