@@ -25,11 +25,26 @@
   "sideEffects": false,
   "type": "module",
   "main": "index.js",
+  "types": "index.d.ts",
   "files": [
+    "lib/",
+    "index.d.ts",
     "index.js"
   ],
   "dependencies": {
-    "hast-util-from-dom": "^4.0.0"
+    "@types/hast": "^2.0.0",
+    "@types/web": "^0.0.12",
+    "hast-util-from-dom": "^4.0.0",
+    "unified": "^10.0.0"
   },
-  "xo": false
+  "scripts": {
+    "build": "rimraf \"lib/*.d.ts\" && tsc && type-coverage"
+  },
+  "xo": false,
+  "typeCoverage": {
+    "atLeast": 100,
+    "detail": true,
+    "strict": true,
+    "ignoreCatch": true
+  }
 }

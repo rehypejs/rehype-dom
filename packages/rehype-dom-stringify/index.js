@@ -1,25 +1,3 @@
-import {toDom} from 'hast-util-to-dom'
-import {webNamespaces} from 'web-namespaces'
+import rehypeDomStringify from './lib/index.js'
 
-const htmlXmlnsExpression = new RegExp(` xmlns="${webNamespaces.html}"`, 'g')
-
-export default function stringify(config) {
-  const settings = {...config, ...this.data('settings')}
-
-  if (settings.fragment === null || settings.fragment === undefined) {
-    settings.fragment = true
-  }
-
-  this.Compiler = compiler
-
-  function compiler(tree) {
-    const node = toDom(tree, settings)
-    const serialized = new XMLSerializer().serializeToString(node)
-
-    // XMLSerializer puts xmlns on root elements (typically the document
-    // element, but in case of a fragment all of the fragments children).
-    // We’re using the DOM, and we focus on HTML, so we can always remove HTML
-    // XMLNS attributes (HTML inside SVG does not need to have an XMLNS).
-    return serialized.replace(htmlXmlnsExpression, '')
-  }
-}
+export default rehypeDomStringify

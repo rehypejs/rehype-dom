@@ -1,4 +1,9 @@
 coverage/
 node_modules/
+packages/rehype-dom/*.d.ts
+packages/rehype-dom-parse/lib/*.d.ts
+packages/rehype-dom-stringify/lib/*.d.ts
+/*.d.ts
 .DS_Store
+*.log
 yarn.lock

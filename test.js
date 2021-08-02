@@ -107,7 +107,7 @@ test('parse', (t) => {
     t.equal(
       processor()
         .use(rehypeDomStringify, {namespace: 'http://www.w3.org/2000/svg'})
-        .stringify(s('#foo.bar', s('circle'))),
+        .stringify(u('root', [s('#foo.bar', s('circle'))])),
       '<g xmlns="http://www.w3.org/2000/svg" id="foo" class="bar"><circle/></g>',
       'should support SVG'
     )
@@ -116,9 +116,11 @@ test('parse', (t) => {
       processor()
         .use(rehypeDomStringify, {namespace: 'http://www.w3.org/2000/svg'})
         .stringify(
-          s('svg', [
-            s('foreignObject', [
-              h('div', {xmlns: 'http://www.w3.org/1999/xhtml'}, 'Alpha')
+          u('root', [
+            s('svg', [
+              s('foreignObject', [
+                h('div', {xmlns: 'http://www.w3.org/1999/xhtml'}, 'Alpha')
+              ])
             ])
           ])
         ),
@@ -128,10 +130,12 @@ test('parse', (t) => {
 
     t.equal(
       processor().stringify(
-        h('div', [
-          s('svg', {xmlns: 'http://www.w3.org/2000/svg'}, [
-            s('foreignObject', [
-              h('div', {xmlns: 'http://www.w3.org/1999/xhtml'}, 'Alpha')
+        u('root', [
+          h('div', [
+            s('svg', {xmlns: 'http://www.w3.org/2000/svg'}, [
+              s('foreignObject', [
+                h('div', {xmlns: 'http://www.w3.org/1999/xhtml'}, 'Alpha')
+              ])
             ])
           ])
         ])
@@ -143,7 +147,7 @@ test('parse', (t) => {
     t.equal(
       processor()
         .use(rehypeDomStringify, {namespace: 'https://example.com'})
-        .stringify(h('example', 'Alpha')),
+        .stringify(u('root', [h('example', 'Alpha')])),
       '<example xmlns="https://example.com">Alpha</example>',
       'should stringify namespaced elements'
     )
