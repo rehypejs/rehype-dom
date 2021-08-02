@@ -9,9 +9,6 @@
     "Keith McKnight <keith@mcknig.ht> (https://keith.mcknig.ht)",
     "Titus Wormer <tituswormer@gmail.com> (https://wooorm.com)"
   ],
-  "workspaces": [
-    "packages/*"
-  ],
   "devDependencies": {
     "@babel/core": "^7.0.0",
     "@babel/preset-env": "^7.0.0",
@@ -19,6 +16,7 @@
     "hastscript": "^6.0.0",
     "jest-cli": "^26.0.0",
     "jest-environment-jsdom-fifteen": "^1.0.0",
+    "lerna": "^4.0.0",
     "prettier": "^2.2.1",
     "remark-cli": "^9.0.0",
     "remark-preset-wooorm": "^8.0.0",
@@ -28,6 +26,7 @@
     "xo": "^0.36.0"
   },
   "scripts": {
+    "postinstall": "lerna bootstrap --no-ci",
     "clean": "npm run clean:rehype-dom && npm run clean:parse && npm run clean:stringify",
     "clean:rehype-dom": "rm -rf packages/rehype-dom/dist",
     "clean:parse": "rm -rf packages/rehype-dom-parse/dist",
@@ -36,7 +35,7 @@
     "lint": "remark . -qfo && prettier . -w --loglevel warn && xo --fix",
     "test:api": "jest",
     "test:dev": "jest --watchAll",
-    "test": "yarn clean && yarn build && yarn lint && yarn test:api"
+    "test": "npm run clean && npm run build && npm run lint && npm run test:api"
   },
   "jest": {
     "testEnvironment": "jest-environment-jsdom-fifteen",

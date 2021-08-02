@@ -32,12 +32,6 @@ Or the compiler?
 
 ## Install
 
-[yarn][]:
-
-```sh
-yarn add rehype-dom
-```
-
 [npm][]:
 
 ```sh
@@ -117,8 +111,6 @@ abide by its terms.
 [chat-badge]: https://img.shields.io/badge/chat-discussions-success.svg
 
 [chat]: https://github.com/rehypejs/rehype/discussions
-
-[yarn]: https://yarnpkg.com/lang/en/docs/install
 
 [npm]: https://docs.npmjs.com/cli/install
 
