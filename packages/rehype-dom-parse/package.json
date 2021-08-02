@@ -22,10 +22,11 @@
     "Keith McKnight <keith@mcknig.ht> (https://keith.mcknig.ht)",
     "Titus Wormer <tituswormer@gmail.com> (https://wooorm.com)"
   ],
-  "main": "dist/rehype-dom-parse.js",
-  "module": "dist/rehype-dom-parse.mjs",
+  "sideEffects": false,
+  "type": "module",
+  "main": "index.js",
   "files": [
-    "dist"
+    "index.js"
   ],
   "dependencies": {
     "hast-util-from-dom": "^3.0.0"

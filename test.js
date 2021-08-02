@@ -1,17 +1,17 @@
-const {JSDOM} = require('jsdom')
-const test = require('tape')
-const unified = require('unified')
-const rehypeParse = require('rehype-parse')
-const rehypeStringify = require('rehype-stringify')
-const highlight = require('rehype-highlight')
-const slug = require('rehype-slug')
-const visit = require('unist-util-visit')
-const u = require('unist-builder')
-const h = require('hastscript')
-const s = require('hastscript/svg')
-const rehypeDomParse = require('./packages/rehype-dom-parse')
-const rehypeDomStringify = require('./packages/rehype-dom-stringify')
-const rehypeDom = require('./packages/rehype-dom')
+import {JSDOM} from 'jsdom'
+import test from 'tape'
+import unified from 'unified'
+import rehypeParse from 'rehype-parse'
+import rehypeStringify from 'rehype-stringify'
+import highlight from 'rehype-highlight'
+import slug from 'rehype-slug'
+import visit from 'unist-util-visit'
+import u from 'unist-builder'
+import h from 'hastscript'
+import s from 'hastscript/svg.js'
+import rehypeDomParse from './packages/rehype-dom-parse/index.js'
+import rehypeDomStringify from './packages/rehype-dom-stringify/index.js'
+import rehypeDom from './packages/rehype-dom/index.js'
 
 const {window} = new JSDOM('')
 

@@ -1,7 +1,7 @@
 import toDOM from 'hast-util-to-dom'
-import ns from 'web-namespaces'
+import {webNamespaces} from 'web-namespaces'
 
-const htmlXmlnsExpression = new RegExp(` xmlns="${ns.html}"`, 'g')
+const htmlXmlnsExpression = new RegExp(` xmlns="${webNamespaces.html}"`, 'g')
 
 export default function stringify(config) {
   const settings = {...config, ...this.data('settings')}

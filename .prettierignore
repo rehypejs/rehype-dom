@@ -1,4 +1,2 @@
 coverage/
-dist/
-*.json
 *.md

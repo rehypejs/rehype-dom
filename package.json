@@ -9,10 +9,8 @@
     "Keith McKnight <keith@mcknig.ht> (https://keith.mcknig.ht)",
     "Titus Wormer <tituswormer@gmail.com> (https://wooorm.com)"
   ],
+  "type": "module",
   "devDependencies": {
-    "@babel/core": "^7.0.0",
-    "@babel/preset-env": "^7.0.0",
-    "@rollup/plugin-babel": "^5.0.0",
     "c8": "^7.0.0",
     "hastscript": "^6.0.0",
     "jsdom": "^16.0.0",
@@ -24,7 +22,6 @@
     "rehype-stringify": "^8.0.0",
     "remark-cli": "^9.0.0",
     "remark-preset-wooorm": "^8.0.0",
-    "rollup": "^2.0.0",
     "tape": "^5.0.0",
     "unified": "^9.0.0",
     "unist-builder": "^2.0.0",
@@ -33,15 +30,10 @@
   },
   "scripts": {
     "postinstall": "lerna bootstrap --no-ci",
-    "clean": "npm run clean:rehype-dom && npm run clean:parse && npm run clean:stringify",
-    "clean:rehype-dom": "rm -rf packages/rehype-dom/dist",
-    "clean:parse": "rm -rf packages/rehype-dom-parse/dist",
-    "clean:stringify": "rm -rf packages/rehype-dom-stringify/dist",
-    "build": "rollup -c",
     "lint": "remark . -qfo && prettier . -w --loglevel warn && xo --fix",
     "test-api": "node --conditions development test.js",
     "test-coverage": "c8 --check-coverage --branches 100 --functions 100 --lines 100 --statements 100 --reporter lcov npm run test-api",
-    "test": "npm run clean && npm run build && npm run lint && npm run test-coverage"
+    "test": "npm run lint && npm run test-coverage"
   },
   "prettier": {
     "tabWidth": 2,
@@ -55,6 +47,9 @@
     "prettier": true,
     "esnext": true,
     "rules": {
+      "import/extensions": "off",
+      "import/no-useless-path-segments": "off",
+      "unicorn/import-index": "off",
       "eqeqeq": [
         "error",
         "always",
@@ -67,7 +62,7 @@
     },
     "overrides": [
       {
-        "files": "**/src/*.js",
+        "files": "packages/*/index.js",
         "envs": "browser"
       }
     ]

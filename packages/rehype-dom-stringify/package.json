@@ -23,14 +23,15 @@
     "Keith McKnight <keith@mcknig.ht> (https://keith.mcknig.ht)",
     "Titus Wormer <tituswormer@gmail.com> (https://wooorm.com)"
   ],
-  "main": "dist/rehype-dom-stringify.js",
-  "module": "dist/rehype-dom-stringify.mjs",
+  "sideEffects": false,
+  "type": "module",
+  "main": "index.js",
   "files": [
-    "dist"
+    "index.js"
   ],
   "dependencies": {
     "hast-util-to-dom": "^2.0.0",
-    "web-namespaces": "^1.0.0"
+    "web-namespaces": "^2.0.0"
   },
   "xo": false
 }
