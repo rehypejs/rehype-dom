@@ -36,11 +36,11 @@ function createFragment(htmlString) {
   const fragment = document.createDocumentFragment()
   const doc = createDocument(`<body>${htmlString}</body>`)
 
-  /** @type {Node | null} */
-  let child
+  let child = doc.body.firstChild
 
-  while ((child = doc.body.firstChild)) {
+  while (child) {
     fragment.append(child)
+    child = doc.body.firstChild
   }
 
   return fragment

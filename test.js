@@ -68,6 +68,12 @@ test('parse', (t) => {
       'should parse data-* attributes correctly'
     )
 
+    t.equal(
+      String(processor().processSync('<!--comment-->')),
+      '<!--comment-->',
+      'should parse comment correctly'
+    )
+
     t.end()
   })
 
