@@ -8,9 +8,9 @@ import rehypeSlug from 'rehype-slug'
 import {visit} from 'unist-util-visit'
 import {u} from 'unist-builder'
 import {h, s} from 'hastscript'
-import rehypeDomParse from './packages/rehype-dom-parse/index.js'
-import rehypeDomStringify from './packages/rehype-dom-stringify/index.js'
-import {rehypeDom} from './packages/rehype-dom/index.js'
+import rehypeDomParse from 'rehype-dom-parse'
+import rehypeDomStringify from 'rehype-dom-stringify'
+import {rehypeDom} from 'rehype-dom'
 
 const {window} = new JSDOM('')
 
