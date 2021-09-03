@@ -28,22 +28,23 @@ export default function parse(options) {
   }
 }
 
+const DOCUMENT_FRAGMENT_NODE = 11
+
 /**
  * @param {string} htmlString
  * @returns {DocumentFragment}
  */
 function createFragment(htmlString) {
-  const fragment = document.createDocumentFragment()
   const doc = createDocument(`<body>${htmlString}</body>`)
 
-  let child = doc.body.firstChild
-
-  while (child) {
-    fragment.append(child)
-    child = doc.body.firstChild
-  }
-
-  return fragment
+  /**
+   * Pretend as a DocumentFragment node,
+   * @see https://github.com/rehypejs/rehype-dom/pull/19 for more details
+   */
+  return /** @type {DocumentFragment} */ ({
+    nodeType: DOCUMENT_FRAGMENT_NODE,
+    childNodes: doc.body.childNodes
+  })
 }
 
 /**
