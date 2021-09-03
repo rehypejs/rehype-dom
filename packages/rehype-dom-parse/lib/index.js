@@ -35,7 +35,7 @@ const DOCUMENT_FRAGMENT_NODE = 11
  * @returns {DocumentFragment}
  */
 function createFragment(htmlString) {
-  const doc = createDocument(`<body>${htmlString}</body>`)
+  const doc = createDocument('<!doctype html><body>' + htmlString)
 
   /**
    * Pretend as a DocumentFragment node,
