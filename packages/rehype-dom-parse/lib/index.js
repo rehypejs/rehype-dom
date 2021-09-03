@@ -34,19 +34,13 @@ export default function parse(options) {
  */
 function createFragment(htmlString) {
   const fragment = document.createDocumentFragment()
-  const doc = createDocument(htmlString)
+  const doc = createDocument(`<body>${htmlString}</body>`)
 
-  let headChild = doc.head.firstChild
-  let bodyChild = doc.body.firstChild
+  /** @type {Node | null} */
+  let child
 
-  while (headChild || bodyChild) {
-    if (headChild) {
-      fragment.append(headChild)
-      headChild = doc.head.firstChild
-    } else if (bodyChild) {
-      fragment.append(bodyChild)
-      bodyChild = doc.body.firstChild
-    }
+  while ((child = doc.body.firstChild)) {
+    fragment.append(child)
   }
 
   return fragment
