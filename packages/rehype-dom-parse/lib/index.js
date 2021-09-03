@@ -34,13 +34,12 @@ export default function parse(options) {
  */
 function createFragment(htmlString) {
   const fragment = document.createDocumentFragment()
-  const temporary = document.createElement('body')
-  temporary.innerHTML = htmlString
-  let child = temporary.firstChild
+  const doc = createDocument(htmlString)
 
-  while (child) {
+  let child
+
+  while ((child = doc.body.firstChild)) {
     fragment.append(child)
-    child = temporary.firstChild
   }
 
   return fragment
