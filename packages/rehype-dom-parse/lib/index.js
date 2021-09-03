@@ -36,10 +36,17 @@ function createFragment(htmlString) {
   const fragment = document.createDocumentFragment()
   const doc = createDocument(htmlString)
 
-  let child
+  let headChild = doc.head.firstChild
+  let bodyChild = doc.body.firstChild
 
-  while ((child = doc.body.firstChild)) {
-    fragment.append(child)
+  while (headChild || bodyChild) {
+    if (headChild) {
+      fragment.append(headChild)
+      headChild = doc.head.firstChild
+    } else if (bodyChild) {
+      fragment.append(bodyChild)
+      bodyChild = doc.body.firstChild
+    }
   }
 
   return fragment
