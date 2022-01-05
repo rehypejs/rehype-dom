@@ -5,4 +5,5 @@ import type {Options} from './lib/index.js'
 
 declare const rehypeDomParse: Plugin<[Options?] | void[], string, Root>
 export default rehypeDomParse
-export type {Options}
+
+export {Options} from './lib/index.js'
