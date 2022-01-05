@@ -8,7 +8,7 @@ import {webNamespaces} from 'web-namespaces'
 
 const htmlXmlnsExpression = new RegExp(` xmlns="${webNamespaces.html}"`, 'g')
 
-/** @type {import('unified').Plugin<[Options?] | void[], Root, string>} */
+/** @type {import('unified').Plugin<[Options?] | Array<void>, Root, string>} */
 export default function stringify(options) {
   const config = /** @type {Options} */ (this.data('settings'))
   const settings = {...options, ...config}
