@@ -27,11 +27,8 @@
 ## What is this?
 
 This is like [`rehype-parse`][rehype-parse] but for browsers.
-The default of the `fragment` option is `true` in this package, which is
-different from the value in `rehype`, because it makes more sense in browsers.
-
-This plugin is built on [`hast-util-from-dom`][hast-util-from-dom], which turns
-DOM nodes into hast syntax trees.
+This plugin is built on [`hast-util-from-dom`][hast-util-from-dom], which is a
+lower-level tool to turn DOM nodes into hast syntax trees.
 
 ## When should I use this?
 
@@ -114,6 +111,10 @@ Specify whether to parse a fragment (`boolean`, default: `true`), instead of a
 complete document.
 In document mode, unopened `html`, `head`, and `body` elements are opened in
 just the right places.
+
+> 👉 **Note**: the default of the `fragment` option is `true` in this package,
+> which is different from the value in `rehype-parse`, because it makes more
+> sense in browsers.
 
 ## Types
 

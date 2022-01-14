@@ -27,11 +27,8 @@
 ## What is this?
 
 This is like [`rehype-stringify`][rehype-stringify] but for browsers.
-The default of the `fragment` option is `true` in this package, which is
-different from the value in `rehype`, because it makes more sense in browsers.
-
-This plugin is built on [`hast-util-to-dom`][hast-util-to-dom], which turns hast
-syntax trees into DOM nodes.
+This plugin is built on [`hast-util-to-dom`][hast-util-to-dom], which is a
+lower-level tool to turn hast syntax trees into DOM nodes.
 
 ## When should I use this?
 
@@ -110,6 +107,10 @@ Configuration (optional).
 Specify whether to serialize a fragment (`boolean`, default: `true`), instead of
 a complete document.
 In document mode, an `html` element is added when needed.
+
+> 👉 **Note**: the default of the `fragment` option is `true` in this package,
+> which is different from the value in `rehype-stringify`, because it makes more
+> sense in browsers.
 
 ## Types
 

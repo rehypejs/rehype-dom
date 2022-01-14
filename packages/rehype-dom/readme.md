@@ -30,8 +30,6 @@ HTML as output.
 ## What is this?
 
 This is like [`rehype`][rehype] but for browsers.
-The default of the `fragment` option is `true` in this project, which is
-different from the value in `rehype`, because it makes more sense in browsers.
 
 ## When should I use this?
 
@@ -95,6 +93,10 @@ There is no default export.
 Create a new (unfrozen) `unified` processor that already uses `rehype-dom-parse`
 and `rehype-dom-stringify` and you can add more plugins to.
 See [`unified`][unified] for more information.
+
+> 👉 **Note**: the default of the `fragment` option is `true` in this package,
+> which is different from the value in `rehype`, because it makes more sense in
+> browsers.
 
 ## Examples
 
