@@ -32,7 +32,7 @@ This monorepo contains the following packages:
     browsers
 *   [`rehype-dom`][api]
     — `unified`, `rehype-dom-parse`, and `rehype-dom-stringify`, useful when
-    input and output are HTML in browsers
+    input and output are HTML
 
 ## When should I use this?
 
