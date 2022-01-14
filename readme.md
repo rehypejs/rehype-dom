@@ -27,7 +27,7 @@ This monorepo contains the following packages:
 *   [`rehype-dom-parse`][rehype-dom-parse]
     — plugin to take HTML as input and turn it into a syntax tree (hast) in
     browsers
-*   [`rehype-dom-stringify`][rehype-dom-stringify] — serialize HTML
+*   [`rehype-dom-stringify`][rehype-dom-stringify]
     — plugin to take a syntax tree (hast) and turn it into HTML as output in
     browsers
 *   [`rehype-dom`][api]
