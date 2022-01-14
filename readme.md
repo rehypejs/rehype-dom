@@ -8,11 +8,66 @@
 [![Backers][backers-badge]][collective]
 [![Chat][chat-badge]][chat]
 
-**rehype-dom** is a DOM-based version of [rehype][] built on [unified][]!
+This project is a monorepo that contains alternatives to [rehype][] for use in
+browsers.
 
-*   [`rehype-dom`][api] — Programmatic interface
-*   [`rehype-dom-parse`][parse] — Parser
-*   [`rehype-dom-stringify`][stringify] — Stringify
+## Contents
+
+*   [What is this?](#what-is-this)
+*   [When should I use this?](#when-should-i-use-this)
+*   [Example](#example)
+*   [Security](#security)
+*   [Contribute](#contribute)
+*   [License](#license)
+
+## What is this?
+
+This monorepo contains the following packages:
+
+*   [`rehype-dom-parse`][rehype-dom-parse]
+    — plugin to take HTML as input and turn it into a syntax tree (hast) in
+    browsers
+*   [`rehype-dom-stringify`][rehype-dom-stringify] — serialize HTML
+    — plugin to take a syntax tree (hast) and turn it into HTML as output in
+    browsers
+*   [`rehype-dom`][api]
+    — `unified`, `rehype-dom-parse`, and `rehype-dom-stringify`, useful when
+    input and output are HTML in browsers
+
+## When should I use this?
+
+You can use this project when you want to use rehype in browsers.
+It’s much smaller compared to the APIs used by “normal” rehype because it uses
+DOM APIs to parse HTML and serialize hast.
+However, DOM APIs:
+
+*   …cannot provide positional information (each node knowing where it
+    originated), which is frequently needed when working with rehype
+*   …can provide varying results in different (especially older) browsers
+*   …are safe, but untrusted HTML in browsers is always unsafe
+
+## Example
+
+Say our page `example.html` looks as follows:
+
+```html
+<!doctype html>
+<title>Example</title>
+<body>
+<script type="module">
+  import {rehypeDom} from 'https://cdn.skypack.dev/rehype-dom@6?min'
+
+  const file = await rehypeDom().process('<h1>Hi <del>Mars</del>Venus!</h1>')
+
+  document.body.innerHTML = String(file)
+</script>
+```
+
+Now running `open example.html` renders the following in `<body>`:
+
+```html
+<h1>Hi <del>Mars</del>Venus!</h1>
+```
 
 ## Security
 
@@ -20,20 +75,13 @@ Use of `rehype-dom` can open you up to a [cross-site scripting (XSS)][xss]
 attack if the document is unsafe or unsafe plugins are used.
 Use [`rehype-sanitize`][sanitize] to make the tree safe.
 
-## Related
-
-*   [`hast`](https://github.com/syntax-tree/hast)
-*   [`rehype`](https://github.com/rehypejs/rehype)
-*   [`remark`](https://github.com/remarkjs/remark)
-*   [`retext`](https://github.com/retextjs/retext)
-
 ## Contribute
 
 See [`contributing.md`][contributing] in [`rehypejs/.github`][health] for ways
 to get started.
 See [`support.md`][support] for ways to get help.
 
-This project has a [Code of Conduct][coc].
+This project has a [code of conduct][coc].
 By interacting with this repository, organisation, or community you agree to
 abide by its terms.
 
@@ -75,21 +123,19 @@ abide by its terms.
 
 [health]: https://github.com/rehypejs/.github
 
-[contributing]: https://github.com/rehypejs/.github/blob/HEAD/contributing.md
+[contributing]: https://github.com/rehypejs/.github/blob/main/contributing.md
 
-[support]: https://github.com/rehypejs/.github/blob/HEAD/support.md
+[support]: https://github.com/rehypejs/.github/blob/main/support.md
 
-[coc]: https://github.com/rehypejs/.github/blob/HEAD/code-of-conduct.md
+[coc]: https://github.com/rehypejs/.github/blob/main/code-of-conduct.md
 
 [rehype]: https://github.com/rehypejs/rehype
 
-[unified]: https://github.com/unifiedjs/unified
-
 [api]: https://github.com/rehypejs/rehype-dom/tree/main/packages/rehype-dom
 
-[parse]: https://github.com/rehypejs/rehype-dom/tree/main/packages/rehype-dom-parse
+[rehype-dom-parse]: https://github.com/rehypejs/rehype-dom/tree/main/packages/rehype-dom-parse
 
-[stringify]: https://github.com/rehypejs/rehype-dom/tree/main/packages/rehype-dom-stringify
+[rehype-dom-stringify]: https://github.com/rehypejs/rehype-dom/tree/main/packages/rehype-dom-stringify
 
 [xss]: https://en.wikipedia.org/wiki/Cross-site_scripting
 
