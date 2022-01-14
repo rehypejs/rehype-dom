@@ -33,8 +33,7 @@ lower-level tool to turn DOM nodes into hast syntax trees.
 ## When should I use this?
 
 Use this package when you want to use `rehype-parse` solely in browsers.
-Please see [the monorepo readme][rehype-dom] for info on when to use
-`rehype-dom`.
+See [the monorepo readme][rehype-dom] for info on when to use `rehype-dom`.
 
 ## Install
 
