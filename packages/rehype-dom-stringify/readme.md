@@ -27,8 +27,8 @@
 ## What is this?
 
 This is like [`rehype-stringify`][rehype-stringify] but for browsers.
-This plugin is built on [`hast-util-to-dom`][hast-util-to-dom], which is a
-lower-level tool to turn hast syntax trees into DOM nodes.
+It’s built on [`hast-util-to-dom`][hast-util-to-dom], which is a low level tool
+to turn hast syntax trees into DOM nodes.
 
 ## When should I use this?
 
