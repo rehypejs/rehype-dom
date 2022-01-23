@@ -27,13 +27,16 @@
 ## What is this?
 
 This is like [`rehype-stringify`][rehype-stringify] but for browsers.
-It’s built on [`hast-util-to-dom`][hast-util-to-dom], which is a low level tool
-to turn hast syntax trees into DOM nodes.
 
 ## When should I use this?
 
 Use this package when you want to use `rehype-stringify` solely in browsers.
 See [the monorepo readme][rehype-dom] for info on when to use `rehype-dom`.
+
+This plugin is built on [`hast-util-to-dom`][hast-util-to-dom], which is a low
+level tool to turn hast syntax trees into DOM nodes.
+rehype focusses on making it easier to transform content by abstracting such
+internals away.
 
 ## Install
 

@@ -27,13 +27,16 @@
 ## What is this?
 
 This is like [`rehype-parse`][rehype-parse] but for browsers.
-It’s built on [`hast-util-from-dom`][hast-util-from-dom], which is a low level
-tool to turn DOM nodes into hast syntax trees.
 
 ## When should I use this?
 
 Use this package when you want to use `rehype-parse` solely in browsers.
 See [the monorepo readme][rehype-dom] for info on when to use `rehype-dom`.
+
+This plugin is built on [`hast-util-from-dom`][hast-util-from-dom], which is a
+low level tool to turn DOM nodes into hast syntax trees.
+rehype focusses on making it easier to transform content by abstracting such
+internals away.
 
 ## Install
 
