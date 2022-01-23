@@ -8,69 +8,131 @@
 [![Backers][backers-badge]][collective]
 [![Chat][chat-badge]][chat]
 
-[**unified**][unified] processor to use browser APIs to parse and compile HTML.
+**[unified][]** processor with support for parsing HTML input and serializing
+HTML as output.
 
-*   Interface by [**unified**][unified]
-*   [**hast**][hast] syntax tree
-*   Parses HTML to the tree with [**rehype-dom-parse**][parse]
-*   [Plug-ins][plugins] transform the tree
-*   Compiles the tree to HTML using [**rehype-dom-stringify**][stringify]
+## Contents
 
-If you don’t care about bundle size, or if you don’t trust content, or if you’re
-not in a (modern) browser environment, use [`rehype`][rehype] instead.
+*   [What is this?](#what-is-this)
+*   [When should I use this?](#when-should-i-use-this)
+*   [Install](#install)
+*   [Use](#use)
+*   [API](#api)
+    *   [`rehypeDom()`](#rehypedom)
+*   [Examples](#examples)
+    *   [Example: passing options](#example-passing-options)
+*   [Types](#types)
+*   [Compatibility](#compatibility)
+*   [Security](#security)
+*   [Contribute](#contribute)
+*   [License](#license)
 
-If you’re not concerned with bundle size or are in an environment in which you
-don’t trust (or don’t have) the native DOM API, you may prefer to use
-[`rehype`][rehype] instead.
+## What is this?
 
-As `rehype-dom` is designed for browser use, it defaults to parsing in
-**fragment mode**, whereas [`rehype`][rehype] defaults to **document mode**!
+This is like [`rehype`][rehype] but for browsers.
 
-Don’t need the parser?
-Or the compiler?
-[That’s OK][unified-usage].
+## When should I use this?
+
+Use this package when you want to use `rehype` in browsers.
+See [the monorepo readme][rehype-dom] for info on when to use `rehype-dom`.
 
 ## Install
 
-This package is [ESM only](https://gist.github.com/sindresorhus/a39789f98801d908bbc7ff3ecc99d99c):
-Node 12+ is needed to use it and it must be `import`ed instead of `require`d.
-
-[npm][]:
+This package is [ESM only](https://gist.github.com/sindresorhus/a39789f98801d908bbc7ff3ecc99d99c).
+In Node.js (version 12.20+, 14.14+, or 16.0+), install with [npm][]:
 
 ```sh
 npm install rehype-dom
 ```
 
-This package exports the following identifier: `rehypeDom`.
-There is no default export.
+In Deno with [Skypack][]:
+
+```js
+import {rehypeDom} from 'https://cdn.skypack.dev/rehype-dom@6?dts'
+```
+
+In browsers with [Skypack][]:
+
+```html
+<script type="module">
+  import {rehypeDom} from 'https://cdn.skypack.dev/rehype-dom@6?min'
+</script>
+```
 
 ## Use
 
-```js
-import {rehypeDom} from 'rehype-dom'
-
-rehypeDom()
-  .process('<p>text, <b>hyper')
-  .then((file) => {
-    console.log(String(file))
-  })
-```
-
-Yields:
+Say our page `example.html` looks as follows:
 
 ```html
-<p>text, <b>hyper</b></p>
+<!doctype html>
+<title>Example</title>
+<body>
+<script type="module">
+  import {rehypeDom} from 'https://cdn.skypack.dev/rehype-dom@6?min'
+
+  const file = await rehypeDom().process('<h1>Hi <del>Mars</del>Venus!</h1>')
+
+  document.body.innerHTML = String(file)
+</script>
 ```
 
-Configuration for [**rehype-dom-parse**][parse] and
-[**rehype-dom-stringify**][stringify] can be set with
-`.data('settings', {/*...*/})`.
+Now running `open example.html` renders the following in `<body>`:
+
+```html
+<h1>Hi <del>Mars</del>Venus!</h1>
+```
+
+## API
+
+This package exports the following identifier: `rehypeDom`.
+There is no default export.
+
+### `rehypeDom()`
+
+Create a new (unfrozen) `unified` processor that already uses `rehype-dom-parse`
+and `rehype-dom-stringify` and you can add more plugins to.
+See [`unified`][unified] for more information.
+
+> 👉 **Note**: the default of the `fragment` option is `true` in this package,
+> which is different from the value in `rehype`, because it makes more sense in
+> browsers.
+
+## Examples
+
+### Example: passing options
+
+When you use `remark-dom-parse` and `remark-dom-stringify` manually you can pass
+options to `use`.
+Because these are already used in `rehype-dom`, that’s not possible.
+To define options for them, you can instead pass options to `data`:
+
+```js
+import {rehypeDom} from 'https://cdn.skypack.dev/rehype-dom@6?min'
+
+const file = await rehypeDom()
+  .data('settings', {fragment: false})
+  .process('<!doctype html>' + document.documentElement.outerHTML)
+
+console.log(String(file))
+```
+
+## Types
+
+This package is fully typed with [TypeScript][].
+There are no extra exported types.
+
+## Compatibility
+
+Projects maintained by the unified collective are compatible with all maintained
+versions of Node.js.
+As of now, that is Node.js 12.20+, 14.14+, and 16.0+.
+Our projects sometimes work with older versions, but this is not guaranteed.
 
 ## Security
 
 Use of `rehype-dom` can open you up to a [cross-site scripting (XSS)][xss]
-attack if the document is unsafe or unsafe plugins are used.
-Use [`rehype-sanitize`][sanitize] to make the tree safe.
+attack if the result is used with the actual DOM.
+Use [`rehype-sanitize`][rehype-sanitize] to solve that.
 
 ## Contribute
 
@@ -78,7 +140,7 @@ See [`contributing.md`][contributing] in [`rehypejs/.github`][health] for ways
 to get started.
 See [`support.md`][support] for ways to get help.
 
-This project has a [Code of Conduct][coc].
+This project has a [code of conduct][coc].
 By interacting with this repository, organisation, or community you agree to
 abide by its terms.
 
@@ -116,32 +178,28 @@ abide by its terms.
 
 [npm]: https://docs.npmjs.com/cli/install
 
+[skypack]: https://www.skypack.dev
+
 [author]: https://keith.mcknig.ht
+
+[typescript]: https://www.typescriptlang.org
+
+[unified]: https://github.com/unifiedjs/unified
 
 [license]: https://github.com/rehypejs/rehype-dom/blob/main/license
 
 [health]: https://github.com/rehypejs/.github
 
-[contributing]: https://github.com/rehypejs/.github/blob/HEAD/contributing.md
+[contributing]: https://github.com/rehypejs/.github/blob/main/contributing.md
 
-[support]: https://github.com/rehypejs/.github/blob/HEAD/support.md
+[support]: https://github.com/rehypejs/.github/blob/main/support.md
 
-[coc]: https://github.com/rehypejs/.github/blob/HEAD/code-of-conduct.md
+[coc]: https://github.com/rehypejs/.github/blob/main/code-of-conduct.md
 
-[unified]: https://github.com/unifiedjs/unified
+[rehype]: https://github.com/rehypejs/rehype/tree/main/packages/rehype
 
-[hast]: https://github.com/syntax-tree/hast
+[rehype-dom]: https://github.com/rehypejs/rehype-dom
 
-[parse]: https://github.com/rehypejs/rehype-dom/blob/main/packages/rehype-dom-parse
-
-[stringify]: https://github.com/rehypejs/rehype-dom/blob/main/packages/rehype-dom-stringify
-
-[plugins]: https://github.com/rehypejs/rehype/blob/HEAD/doc/plugins.md
-
-[rehype]: https://github.com/rehypejs/rehype/tree/HEAD/packages/rehype
-
-[unified-usage]: https://github.com/unifiedjs/unified#usage
+[rehype-sanitize]: https://github.com/rehypejs/rehype-sanitize
 
 [xss]: https://en.wikipedia.org/wiki/Cross-site_scripting
-
-[sanitize]: https://github.com/rehypejs/rehype-sanitize
