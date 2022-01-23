@@ -37,12 +37,13 @@ This monorepo contains the following packages:
 ## When should I use this?
 
 You can use this project when you want to use rehype in browsers.
-It’s much smaller compared to the APIs used by “normal” rehype because it uses
-DOM APIs to parse HTML and serialize hast.
+It has a smaller footprint in browsers compared to `rehype` itself as it uses
+DOM APIs to do its work.
 However, DOM APIs:
 
 *   …cannot provide positional information (each node knowing where it
     originated), which is frequently needed when working with rehype
+*   …do not have formatting options that `rehype-stringify` exposes
 *   …can provide varying results in different (especially older) browsers
 *   …are safe, but untrusted HTML in browsers is always unsafe
 

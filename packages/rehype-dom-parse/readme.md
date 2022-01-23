@@ -27,6 +27,8 @@
 ## What is this?
 
 This is like [`rehype-parse`][rehype-parse] but for browsers.
+This plugin uses DOM APIs to do its work, which makes it smaller in browsers, at
+the cost of not supporting positional info on nodes.
 
 ## When should I use this?
 
