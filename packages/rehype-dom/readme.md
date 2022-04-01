@@ -45,17 +45,17 @@ In Node.js (version 12.20+, 14.14+, or 16.0+), install with [npm][]:
 npm install rehype-dom
 ```
 
-In Deno with [Skypack][]:
+In Deno with [`esm.sh`][esmsh]:
 
 ```js
-import {rehypeDom} from 'https://cdn.skypack.dev/rehype-dom@6?dts'
+import {rehypeDom} from 'https://esm.sh/rehype-dom@6'
 ```
 
-In browsers with [Skypack][]:
+In browsers with [`esm.sh`][esmsh]:
 
 ```html
 <script type="module">
-  import {rehypeDom} from 'https://cdn.skypack.dev/rehype-dom@6?min'
+  import {rehypeDom} from 'https://esm.sh/rehype-dom@6?bundle'
 </script>
 ```
 
@@ -68,7 +68,7 @@ Say our page `example.html` looks as follows:
 <title>Example</title>
 <body>
 <script type="module">
-  import {rehypeDom} from 'https://cdn.skypack.dev/rehype-dom@6?min'
+  import {rehypeDom} from 'https://esm.sh/rehype-dom@6?bundle'
 
   const file = await rehypeDom().process('<h1>Hi <del>Mars</del>Venus!</h1>')
 
@@ -107,7 +107,7 @@ Because these are already used in `rehype-dom`, that’s not possible.
 To define options for them, you can instead pass options to `data`:
 
 ```js
-import {rehypeDom} from 'https://cdn.skypack.dev/rehype-dom@6?min'
+import {rehypeDom} from 'https://esm.sh/rehype-dom@6?bundle'
 
 const file = await rehypeDom()
   .data('settings', {fragment: false})
@@ -178,7 +178,7 @@ abide by its terms.
 
 [npm]: https://docs.npmjs.com/cli/install
 
-[skypack]: https://www.skypack.dev
+[esmsh]: https://esm.sh
 
 [author]: https://keith.mcknig.ht
 

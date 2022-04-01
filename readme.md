@@ -56,7 +56,7 @@ Say our page `example.html` looks as follows:
 <title>Example</title>
 <body>
 <script type="module">
-  import {rehypeDom} from 'https://cdn.skypack.dev/rehype-dom@6?min'
+  import {rehypeDom} from 'https://esm.sh/rehype-dom@6?bundle'
 
   const file = await rehypeDom().process('<h1>Hi <del>Mars</del>Venus!</h1>')
 

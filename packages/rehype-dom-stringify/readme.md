@@ -49,17 +49,17 @@ In Node.js (version 12.20+, 14.14+, or 16.0+), install with [npm][]:
 npm install rehype-dom-stringify
 ```
 
-In Deno with [Skypack][]:
+In Deno with [`esm.sh`][esmsh]:
 
 ```js
-import rehypeDomStringify from 'https://cdn.skypack.dev/rehype-dom-stringify@3?dts'
+import rehypeDomStringify from 'https://esm.sh/rehype-dom-stringify@3'
 ```
 
-In browsers with [Skypack][]:
+In browsers with [`esm.sh`][esmsh]:
 
 ```html
 <script type="module">
-  import rehypeDomStringify from 'https://cdn.skypack.dev/rehype-dom-stringify@3?min'
+  import rehypeDomStringify from 'https://esm.sh/rehype-dom-stringify@3?bundle'
 </script>
 ```
 
@@ -72,10 +72,10 @@ Say our page `example.html` looks as follows:
 <title>Example</title>
 <body>
 <script type="module">
-  import {unified} from 'https://cdn.skypack.dev/unified@10?min'
-  import remarkParse from 'https://cdn.skypack.dev/remark-parse@10?min'
-  import remarkRehype from 'https://cdn.skypack.dev/remark-rehype@10?min'
-  import rehypeDomStringify from 'https://cdn.skypack.dev/rehype-dom-stringify@3?min'
+  import {unified} from 'https://esm.sh/unified@10?bundle'
+  import remarkParse from 'https://esm.sh/remark-parse@10?bundle'
+  import remarkRehype from 'https://esm.sh/remark-rehype@10?bundle'
+  import rehypeDomStringify from 'https://esm.sh/rehype-dom-stringify@3?bundle'
 
   const file = await unified()
     .use(remarkParse)
@@ -179,7 +179,7 @@ abide by its terms.
 
 [npm]: https://docs.npmjs.com/cli/install
 
-[skypack]: https://www.skypack.dev
+[esmsh]: https://esm.sh
 
 [author]: https://keith.mcknig.ht
 
