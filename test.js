@@ -242,7 +242,7 @@ test('parse', (t) => {
           .toString(),
         `<h1>Hello World!</h1>
   <pre><code class="hljs language-js"><span class="hljs-keyword">var</span> name = <span class="hljs-string">"World"</span>;
-  <span class="hljs-variable hljs-language">console</span>.<span class="hljs-title hljs-function">warn</span>(<span class="hljs-string">"Hello, "</span> + name + <span class="hljs-string">"!"</span>)</code></pre>`,
+  <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">warn</span>(<span class="hljs-string">"Hello, "</span> + name + <span class="hljs-string">"!"</span>)</code></pre>`,
         'works with rehype-highlight'
       )
 
