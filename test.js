@@ -93,8 +93,23 @@ test('parse', async (t) => {
         .data('settings', {fragment: false})
         .processSync('<title>Hi</title><h2>Hello world!')
         .toString(),
-      '<html><head><title>Hi</title></head><body><h2>Hello world!</h2></body></html>',
+      '<html xmlns="http://www.w3.org/1999/xhtml"><head><title>Hi</title></head><body><h2>Hello world!</h2></body></html>',
       'should stringify a complete document'
+    )
+
+    assert.equal(
+      processor()
+        .data('settings', {fragment: false})
+        .processSync('<!doctype html>')
+        .toString(),
+      '<DOCTYPE html><html xmlns="http://www.w3.org/1999/xhtml"><head></head><body></body></html>',
+      'should stringify a doctype'
+    )
+
+    assert.equal(
+      processor().processSync('<!doctype html>').toString(),
+      '<DOCTYPE html><html xmlns="http://www.w3.org/1999/xhtml"><head></head><body></body></html>',
+      'should support empty documents'
     )
 
     assert.equal(
@@ -119,7 +134,7 @@ test('parse', async (t) => {
       processor()
         .use(rehypeDomStringify, {namespace: 'http://www.w3.org/2000/svg'})
         .stringify(u('root', [s('#foo.bar', s('circle'))])),
-      '<g xmlns="http://www.w3.org/2000/svg" id="foo" class="bar"><circle/></g>',
+      '<g id="foo" class="bar"><circle></circle></g>',
       'should support SVG'
     )
 
@@ -135,7 +150,7 @@ test('parse', async (t) => {
             ])
           ])
         ),
-      '<svg xmlns="http://www.w3.org/2000/svg"><foreignObject><div>Alpha</div></foreignObject></svg>',
+      '<svg><foreignObject><div xmlns="http://www.w3.org/1999/xhtml">Alpha</div></foreignObject></svg>',
       'should support HTML in SVG'
     )
 
@@ -151,7 +166,7 @@ test('parse', async (t) => {
           ])
         ])
       ),
-      '<div><svg xmlns="http://www.w3.org/2000/svg" xmlns="http://www.w3.org/2000/svg"><foreignObject><div>Alpha</div></foreignObject></svg></div>',
+      '<div><svg xmlns="http://www.w3.org/2000/svg"><foreignObject><div xmlns="http://www.w3.org/1999/xhtml">Alpha</div></foreignObject></svg></div>',
       'should support HTML in SVG in HTML'
     )
 
@@ -159,7 +174,7 @@ test('parse', async (t) => {
       processor()
         .use(rehypeDomStringify, {namespace: 'https://example.com'})
         .stringify(u('root', [h('example', 'Alpha')])),
-      '<example xmlns="https://example.com">Alpha</example>',
+      '<example>Alpha</example>',
       'should stringify namespaced elements'
     )
   })
@@ -170,7 +185,7 @@ test('parse', async (t) => {
         .data('settings', {fragment: false})
         .processSync('<title>Hi</title><h2>Hello world!')
         .toString(),
-      '<html><head><title>Hi</title></head><body><h2>Hello world!</h2></body></html>',
+      '<html xmlns="http://www.w3.org/1999/xhtml"><head><title>Hi</title></head><body><h2>Hello world!</h2></body></html>',
       'should parse a complete document'
     )
 
@@ -194,7 +209,7 @@ test('parse', async (t) => {
 
     assert.equal(
       rehypeDom().processSync('<input type="checkbox" checked />').toString(),
-      '<input type="checkbox" checked="" />',
+      '<input type="checkbox" checked="">',
       'should support boolean attributes'
     )
 
@@ -213,11 +228,27 @@ test('parse', async (t) => {
   </svg>`
         )
         .toString(),
-      `<svg xmlns="http://www.w3.org/2000/svg" width="230" height="120" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
-    <circle cx="60" cy="60" r="50" fill="red"/>
-    <circle cx="170" cy="60" r="50" fill="green"/>
+      `<svg width="230" height="120" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <circle cx="60" cy="60" r="50" fill="red"></circle>
+    <circle cx="170" cy="60" r="50" fill="green"></circle>
   </svg>`,
       'should support svg'
+    )
+
+    assert.equal(
+      String(
+        rehypeDom().processSync(`<style>
+  body > style {
+    width: 100px;
+  }
+</style>`)
+      ),
+      `<style>
+  body > style {
+    width: 100px;
+  }
+</style>`,
+      'should process text in `style` correctly'
     )
 
     assert.equal(

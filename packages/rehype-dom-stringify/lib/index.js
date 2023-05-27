@@ -4,9 +4,6 @@
  */
 
 import {toDom} from 'hast-util-to-dom'
-import {webNamespaces} from 'web-namespaces'
-
-const htmlXmlnsExpression = new RegExp(` xmlns="${webNamespaces.html}"`, 'g')
 
 /**
  * @this {import('unified').Processor}
@@ -24,13 +21,43 @@ export default function stringify(options) {
 
   /** @type {import('unified').CompilerFunction<Root, string>} */
   function compiler(tree) {
-    const node = toDom(tree, settings)
-    const serialized = new XMLSerializer().serializeToString(node)
-
-    // XMLSerializer puts xmlns on root elements (typically the document
-    // element, but in case of a fragment all of the fragments children).
-    // We’re using the DOM, and we focus on HTML, so we can always remove HTML
-    // XMLNS attributes (HTML inside SVG does not need to have an XMLNS).
-    return serialized.replace(htmlXmlnsExpression, '')
+    return serialize(toDom(tree, settings))
   }
+}
+
+/**
+ * Serialize DOM nodes.
+ *
+ * @param {XMLDocument | DocumentFragment | Text | DocumentType | Comment | Element} node
+ * @returns {string}
+ */
+function serialize(node) {
+  // Document.
+  if ('doctype' in node) {
+    const doctype = node.doctype ? serialize(node.doctype) : ''
+    const docelem = serialize(node.documentElement)
+    return doctype + docelem
+  }
+
+  // Doctype.
+  if ('publicId' in node) {
+    // We don’t support non-HTML doctypes.
+    return '<DOCTYPE html>'
+  }
+
+  // Element.
+  if ('outerHTML' in node) {
+    return node.outerHTML
+  }
+
+  // Comment, text, fragment.
+  if ('textContent' in node) {
+    const div = document.createElement('div')
+    div.append(node)
+    return div.innerHTML
+    /* c8 ignore next 4 */
+  }
+
+  // ?
+  return ''
 }
