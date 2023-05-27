@@ -16,7 +16,6 @@ import {rehypeDom} from 'rehype-dom'
 const {window} = new JSDOM('')
 
 // The globals needed by `rehype-dom`.
-global.XMLSerializer = window.XMLSerializer
 global.document = window.document
 global.DOMParser = window.DOMParser
 
