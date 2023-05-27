@@ -1,5 +1,6 @@
+import assert from 'node:assert/strict'
+import test from 'node:test'
 import {JSDOM} from 'jsdom'
-import test from 'tape'
 import {unified} from 'unified'
 import rehypeParse from 'rehype-parse'
 import rehypeStringify from 'rehype-stringify'
@@ -19,20 +20,20 @@ global.XMLSerializer = window.XMLSerializer
 global.document = window.document
 global.DOMParser = window.DOMParser
 
-test('parse', (t) => {
-  t.test('parse', (t) => {
+test('parse', async (t) => {
+  await t.test('parse', () => {
     const processor = unified()
       .use(rehypeDomParse)
       .use(rehypeStringify)
       .freeze()
 
-    t.equal(
+    assert.equal(
       String(
         processor()
           .use(
             /** @type {import('unified').Plugin<[], import('hast').Root>} */
             () => (tree) => {
-              t.deepEqual(
+              assert.deepEqual(
                 tree,
                 u('root', [
                   h('html', [
@@ -50,13 +51,13 @@ test('parse', (t) => {
       'should parse a complete document'
     )
 
-    t.equal(
+    assert.equal(
       String(
         processor()
           .use(
             /** @type {import('unified').Plugin<[], import('hast').Root>} */
             () => (tree) => {
-              t.deepEqual(
+              assert.deepEqual(
                 tree,
                 u('root', [h('title', 'Hi'), h('h2', 'Hello world!')])
               )
@@ -68,28 +69,26 @@ test('parse', (t) => {
       'should parse a fragment'
     )
 
-    t.equal(
+    assert.equal(
       String(processor().processSync('<p data-test="true">text, <b>hyper')),
       '<p data-test="true">text, <b>hyper</b></p>',
       'should parse data-* attributes correctly'
     )
 
-    t.equal(
+    assert.equal(
       String(processor().processSync('<!--comment-->')),
       '<!--comment-->',
       'should parse comment correctly'
     )
-
-    t.end()
   })
 
-  t.test('stringify', (t) => {
+  await t.test('stringify', () => {
     const processor = unified()
       .use(rehypeParse)
       .use(rehypeDomStringify)
       .freeze()
 
-    t.equal(
+    assert.equal(
       processor()
         .data('settings', {fragment: false})
         .processSync('<title>Hi</title><h2>Hello world!')
@@ -98,7 +97,7 @@ test('parse', (t) => {
       'should stringify a complete document'
     )
 
-    t.equal(
+    assert.equal(
       processor()
         .data('settings', {fragment: true})
         .processSync('<title>Hi</title><h2>Hello world!')
@@ -107,7 +106,7 @@ test('parse', (t) => {
       'should stringify a fragment'
     )
 
-    t.equal(
+    assert.equal(
       processor()
         .data('settings', {fragment: true})
         .processSync('<p data-test="true">text, <b>hyper')
@@ -116,7 +115,7 @@ test('parse', (t) => {
       'should stringify data-* attributes correctly'
     )
 
-    t.equal(
+    assert.equal(
       processor()
         .use(rehypeDomStringify, {namespace: 'http://www.w3.org/2000/svg'})
         .stringify(u('root', [s('#foo.bar', s('circle'))])),
@@ -124,7 +123,7 @@ test('parse', (t) => {
       'should support SVG'
     )
 
-    t.equal(
+    assert.equal(
       processor()
         .use(rehypeDomStringify, {namespace: 'http://www.w3.org/2000/svg'})
         .stringify(
@@ -140,7 +139,7 @@ test('parse', (t) => {
       'should support HTML in SVG'
     )
 
-    t.equal(
+    assert.equal(
       processor().stringify(
         u('root', [
           h('div', [
@@ -156,19 +155,17 @@ test('parse', (t) => {
       'should support HTML in SVG in HTML'
     )
 
-    t.equal(
+    assert.equal(
       processor()
         .use(rehypeDomStringify, {namespace: 'https://example.com'})
         .stringify(u('root', [h('example', 'Alpha')])),
       '<example xmlns="https://example.com">Alpha</example>',
       'should stringify namespaced elements'
     )
-
-    t.end()
   })
 
-  t.test('rehype-dom', (t) => {
-    t.equal(
+  await t.test('rehype-dom', () => {
+    assert.equal(
       rehypeDom()
         .data('settings', {fragment: false})
         .processSync('<title>Hi</title><h2>Hello world!')
@@ -177,37 +174,37 @@ test('parse', (t) => {
       'should parse a complete document'
     )
 
-    t.equal(
+    assert.equal(
       rehypeDom().processSync('<title>Hi</title><h2>Hello world!').toString(),
       '<title>Hi</title><h2>Hello world!</h2>',
       'should parse a fragment'
     )
 
-    t.equal(
+    assert.equal(
       rehypeDom().processSync('<title>Hi</title><h2>Hello world!').toString(),
       '<title>Hi</title><h2>Hello world!</h2>',
       'should parse as a fragment by default'
     )
 
-    t.equal(
+    assert.equal(
       rehypeDom().processSync('<p data-test="true">text, <b>hyper').toString(),
       '<p data-test="true">text, <b>hyper</b></p>',
       'should not mangle data-* attributes'
     )
 
-    t.equal(
+    assert.equal(
       rehypeDom().processSync('<input type="checkbox" checked />').toString(),
       '<input type="checkbox" checked="" />',
       'should support boolean attributes'
     )
 
-    t.equal(
+    assert.equal(
       rehypeDom().processSync('<div class="foo bar">baz</div>').toString(),
       '<div class="foo bar">baz</div>',
       'should not mangle classnames'
     )
 
-    t.equal(
+    assert.equal(
       rehypeDom()
         .processSync(
           `<svg width=230 height=120 xmlns=http://www.w3.org/2000/svg xmlns:xlink=http://www.w3.org/1999/xlink>
@@ -223,52 +220,46 @@ test('parse', (t) => {
       'should support svg'
     )
 
-    t.test('plugins', (t) => {
-      t.equal(
-        rehypeDom()
-          .use(
-            /** @type {import('unified').Plugin<[], import('hast').Root>} */
-            () => (tree) => {
-              visit(tree, 'text', (node) => {
-                node.value = node.value.split('').reverse().join('')
-              })
-            }
-          )
-          .processSync('<p>a man a plan a canal panama</p>')
-          .toString(),
-        '<p>amanap lanac a nalp a nam a</p>',
-        'works with a generic plugin'
-      )
-
-      t.equal(
-        rehypeDom()
-          .use(rehypeHighlight)
-          .processSync(
-            `<h1>Hello World!</h1>
+    assert.equal(
+      rehypeDom()
+        .use(rehypeHighlight)
+        .processSync(
+          `<h1>Hello World!</h1>
   <pre><code class="language-js">var name = "World";
   console.warn("Hello, " + name + "!")</pre></code>`
-          )
-          .toString(),
-        `<h1>Hello World!</h1>
+        )
+        .toString(),
+      `<h1>Hello World!</h1>
   <pre><code class="hljs language-js"><span class="hljs-keyword">var</span> name = <span class="hljs-string">"World"</span>;
   <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">warn</span>(<span class="hljs-string">"Hello, "</span> + name + <span class="hljs-string">"!"</span>)</code></pre>`,
-        'works with rehype-highlight'
-      )
+      'works with rehype-highlight'
+    )
 
-      t.equal(
-        rehypeDom()
-          .use(rehypeSlug)
-          .processSync('<h1>First</h1><h2>Second')
-          .toString(),
-        '<h1 id="first">First</h1><h2 id="second">Second</h2>',
-        'works with rehype-slug'
-      )
-
-      t.end()
-    })
-
-    t.end()
+    assert.equal(
+      rehypeDom()
+        .use(rehypeSlug)
+        .processSync('<h1>First</h1><h2>Second')
+        .toString(),
+      '<h1 id="first">First</h1><h2 id="second">Second</h2>',
+      'works with rehype-slug'
+    )
   })
 
-  t.end()
+  await t.test('plugins', () => {
+    assert.equal(
+      rehypeDom()
+        .use(
+          /** @type {import('unified').Plugin<[], import('hast').Root>} */
+          () => (tree) => {
+            visit(tree, 'text', (node) => {
+              node.value = node.value.split('').reverse().join('')
+            })
+          }
+        )
+        .processSync('<p>a man a plan a canal panama</p>')
+        .toString(),
+      '<p>amanap lanac a nalp a nam a</p>',
+      'works with a generic plugin'
+    )
+  })
 })
