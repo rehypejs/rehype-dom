@@ -29,17 +29,20 @@ test('parse', (t) => {
     t.equal(
       String(
         processor()
-          .use(() => (tree) => {
-            t.deepEqual(
-              tree,
-              u('root', [
-                h('html', [
-                  h('head', [h('title', 'Hi')]),
-                  h('body', [h('h2', 'Hello world!')])
+          .use(
+            /** @type {import('unified').Plugin<[], import('hast').Root>} */
+            () => (tree) => {
+              t.deepEqual(
+                tree,
+                u('root', [
+                  h('html', [
+                    h('head', [h('title', 'Hi')]),
+                    h('body', [h('h2', 'Hello world!')])
+                  ])
                 ])
-              ])
-            )
-          })
+              )
+            }
+          )
           .data('settings', {fragment: false})
           .processSync('<title>Hi</title><h2>Hello world!')
       ),
@@ -50,12 +53,15 @@ test('parse', (t) => {
     t.equal(
       String(
         processor()
-          .use(() => (tree) => {
-            t.deepEqual(
-              tree,
-              u('root', [h('title', 'Hi'), h('h2', 'Hello world!')])
-            )
-          })
+          .use(
+            /** @type {import('unified').Plugin<[], import('hast').Root>} */
+            () => (tree) => {
+              t.deepEqual(
+                tree,
+                u('root', [h('title', 'Hi'), h('h2', 'Hello world!')])
+              )
+            }
+          )
           .processSync('<title>Hi</title><h2>Hello world!')
       ),
       '<title>Hi</title><h2>Hello world!</h2>',
@@ -220,11 +226,14 @@ test('parse', (t) => {
     t.test('plugins', (t) => {
       t.equal(
         rehypeDom()
-          .use(() => (tree) => {
-            visit(tree, 'text', (node) => {
-              node.value = node.value.split('').reverse().join('')
-            })
-          })
+          .use(
+            /** @type {import('unified').Plugin<[], import('hast').Root>} */
+            () => (tree) => {
+              visit(tree, 'text', (node) => {
+                node.value = node.value.split('').reverse().join('')
+              })
+            }
+          )
           .processSync('<p>a man a plan a canal panama</p>')
           .toString(),
         '<p>amanap lanac a nalp a nam a</p>',

@@ -11,7 +11,10 @@
 
 import {fromDom} from 'hast-util-from-dom'
 
-/** @type {import('unified').Plugin<[Options?] | Array<void>, string, Root>} */
+/**
+ * @this {import('unified').Processor}
+ * @type {import('unified').Plugin<[(Options | null | undefined)?], string, Root>}
+ */
 export default function parse(options) {
   const settings = /** @type {Options} */ (this.data('settings'))
   const {fragment} = {...options, ...settings}

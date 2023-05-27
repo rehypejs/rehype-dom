@@ -34,7 +34,7 @@
   ],
   "dependencies": {
     "@types/hast": "^2.0.0",
-    "@types/web": "^0.0.61",
+    "@types/web": "^0.0.99",
     "hast-util-to-dom": "^3.0.0",
     "unified": "^10.0.0",
     "web-namespaces": "^2.0.0"

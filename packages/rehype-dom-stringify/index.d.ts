@@ -6,4 +6,4 @@ import type {Options} from './lib/index.js'
 declare const rehypeDomStrigify: Plugin<[Options?] | void[], Root, string>
 export default rehypeDomStrigify
 
-export {Options} from './lib/index.js'
+export type {Options} from './lib/index.js'
