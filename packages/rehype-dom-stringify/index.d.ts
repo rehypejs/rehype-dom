@@ -3,7 +3,12 @@ import type {Root} from 'hast'
 import type {Plugin} from 'unified'
 import type {Options} from './lib/index.js'
 
-declare const rehypeDomStrigify: Plugin<[Options?] | void[], Root, string>
+declare const rehypeDomStrigify: Plugin<
+  // eslint-disable-next-line @typescript-eslint/ban-types
+  [(Options | null | undefined)?],
+  Root,
+  string
+>
 export default rehypeDomStrigify
 
 export type {Options} from './lib/index.js'

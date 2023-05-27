@@ -11,9 +11,9 @@
   ],
   "type": "module",
   "workspaces": [
-    "packages/rehype-dom-parse",
-    "packages/rehype-dom-stringify",
-    "packages/rehype-dom"
+    "packages/rehype-dom-parse/",
+    "packages/rehype-dom-stringify/",
+    "packages/rehype-dom/"
   ],
   "devDependencies": {
     "@types/jsdom": "^21.0.0",
@@ -38,9 +38,8 @@
     "xo": "^0.54.0"
   },
   "scripts": {
-    "build-workspace": "npm run build --workspaces",
-    "build-monorepo": "rimraf \"*.d.ts\" \"test/*.d.ts\" && tsc && type-coverage",
-    "build": "npm run build-workspace && npm run build-monorepo",
+    "prepack": "npm run build && npm run format",
+    "build": "tsc --build --clean && tsc --build && type-coverage",
     "format": "remark . -qfo && prettier . -w --loglevel warn && xo --fix",
     "test-api": "node --conditions development test.js",
     "test-coverage": "c8 --check-coverage --branches 100 --functions 100 --lines 100 --statements 100 --reporter lcov npm run test-api",

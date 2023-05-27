@@ -37,9 +37,7 @@
     "hast-util-from-dom": "^4.0.0",
     "unified": "^10.0.0"
   },
-  "scripts": {
-    "build": "rimraf \"lib/*.d.ts\" && tsc && type-coverage"
-  },
+  "scripts": {},
   "xo": false,
   "typeCoverage": {
     "atLeast": 100,
