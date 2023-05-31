@@ -92,7 +92,7 @@ test('parse', async (t) => {
         .data('settings', {fragment: false})
         .processSync('<title>Hi</title><h2>Hello world!')
         .toString(),
-      '<html xmlns="http://www.w3.org/1999/xhtml"><head><title>Hi</title></head><body><h2>Hello world!</h2></body></html>',
+      '<html><head><title>Hi</title></head><body><h2>Hello world!</h2></body></html>',
       'should stringify a complete document'
     )
 
@@ -101,13 +101,13 @@ test('parse', async (t) => {
         .data('settings', {fragment: false})
         .processSync('<!doctype html>')
         .toString(),
-      '<DOCTYPE html><html xmlns="http://www.w3.org/1999/xhtml"><head></head><body></body></html>',
+      '<DOCTYPE html><html><head></head><body></body></html>',
       'should stringify a doctype'
     )
 
     assert.equal(
       processor().processSync('<!doctype html>').toString(),
-      '<DOCTYPE html><html xmlns="http://www.w3.org/1999/xhtml"><head></head><body></body></html>',
+      '<DOCTYPE html><html><head></head><body></body></html>',
       'should support empty documents'
     )
 
@@ -184,7 +184,7 @@ test('parse', async (t) => {
         .data('settings', {fragment: false})
         .processSync('<title>Hi</title><h2>Hello world!')
         .toString(),
-      '<html xmlns="http://www.w3.org/1999/xhtml"><head><title>Hi</title></head><body><h2>Hello world!</h2></body></html>',
+      '<html><head><title>Hi</title></head><body><h2>Hello world!</h2></body></html>',
       'should parse a complete document'
     )
 

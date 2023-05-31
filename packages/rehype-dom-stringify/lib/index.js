@@ -45,19 +45,8 @@ function serialize(node) {
     return '<DOCTYPE html>'
   }
 
-  // Element.
-  if ('outerHTML' in node) {
-    return node.outerHTML
-  }
-
-  // Comment, text, fragment.
-  if ('textContent' in node) {
-    const div = document.createElement('div')
-    div.append(node)
-    return div.innerHTML
-    /* c8 ignore next 4 */
-  }
-
-  // ?
-  return ''
+  // Comment, element, fragment, text.
+  const template = document.createElement('template')
+  template.content.append(node)
+  return template.innerHTML
 }
