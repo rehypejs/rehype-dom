@@ -252,6 +252,7 @@ test('parse', async (t) => {
 
     assert.equal(
       rehypeDom()
+        // @ts-expect-error: to do: remove when `rehype-highlight` is released.
         .use(rehypeHighlight)
         .processSync(
           `<h1>Hello World!</h1>

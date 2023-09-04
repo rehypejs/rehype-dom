@@ -33,10 +33,10 @@
     "index.js"
   ],
   "dependencies": {
-    "@types/hast": "^2.0.0",
-    "@types/web": "^0.0.99",
-    "hast-util-to-dom": "^3.0.0",
-    "unified": "^10.0.0"
+    "@types/hast": "^3.0.0",
+    "@types/web": "^0.0.114",
+    "hast-util-to-dom": "^4.0.0",
+    "unified": "^11.0.0"
   },
   "scripts": {},
   "prettier": {

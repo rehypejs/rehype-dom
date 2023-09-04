@@ -19,7 +19,7 @@ export default function stringify(options) {
 
   Object.assign(this, {Compiler: compiler})
 
-  /** @type {import('unified').CompilerFunction<Root, string>} */
+  /** @type {import('unified').Compiler<Root, string>} */
   function compiler(tree) {
     return serialize(toDom(tree, settings))
   }

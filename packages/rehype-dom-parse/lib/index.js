@@ -21,7 +21,7 @@ export default function parse(options) {
 
   Object.assign(this, {Parser: parser})
 
-  /** @type {import('unified').ParserFunction<Root>} */
+  /** @type {import('unified').Parser<Root>} */
   function parser(doc) {
     const create =
       fragment === null || fragment === undefined || fragment
