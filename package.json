@@ -18,10 +18,10 @@
   "devDependencies": {
     "@types/jsdom": "^21.0.0",
     "@types/node": "^20.0.0",
-    "c8": "^7.0.0",
+    "c8": "^8.0.0",
     "hastscript": "^7.0.0",
     "jsdom": "^22.0.0",
-    "prettier": "^2.0.0",
+    "prettier": "^3.0.0",
     "rehype-highlight": "^6.0.0",
     "rehype-parse": "^8.0.0",
     "rehype-slug": "^5.0.0",
@@ -33,7 +33,7 @@
     "unified": "^10.0.0",
     "unist-builder": "^3.0.0",
     "unist-util-visit": "^4.0.0",
-    "xo": "^0.54.0"
+    "xo": "^0.56.0"
   },
   "scripts": {
     "prepack": "npm run build && npm run format",
@@ -44,21 +44,15 @@
     "test": "npm run build && npm run format && npm run test-coverage"
   },
   "prettier": {
-    "tabWidth": 2,
-    "useTabs": false,
-    "singleQuote": true,
     "bracketSpacing": false,
+    "singleQuote": true,
     "semi": false,
-    "trailingComma": "none"
+    "tabWidth": 2,
+    "trailingComma": "none",
+    "useTabs": false
   },
   "xo": {
-    "prettier": true,
-    "overrides": [
-      {
-        "files": "packages/*/{lib/**,}*.js",
-        "envs": "browser"
-      }
-    ]
+    "prettier": true
   },
   "remarkConfig": {
     "plugins": [
