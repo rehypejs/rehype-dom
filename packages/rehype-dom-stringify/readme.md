@@ -55,14 +55,14 @@ npm install rehype-dom-stringify
 In Deno with [`esm.sh`][esmsh]:
 
 ```js
-import rehypeDomStringify from 'https://esm.sh/rehype-dom-stringify@3'
+import rehypeDomStringify from 'https://esm.sh/rehype-dom-stringify@4'
 ```
 
 In browsers with [`esm.sh`][esmsh]:
 
 ```html
 <script type="module">
-  import rehypeDomStringify from 'https://esm.sh/rehype-dom-stringify@3?bundle'
+  import rehypeDomStringify from 'https://esm.sh/rehype-dom-stringify@4?bundle'
 </script>
 ```
 
