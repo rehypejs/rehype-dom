@@ -1,14 +1,39 @@
-// This wrapper exists because JS in TS can’t export a `@type` of a function.
 import type {Root} from 'hast'
 import type {Plugin} from 'unified'
-import type {Options} from './lib/index.js'
 
-declare const rehypeDomStrigify: Plugin<
-  // eslint-disable-next-line @typescript-eslint/ban-types
-  [(Options | null | undefined)?],
+/**
+ * Configuration.
+ */
+// Note: has to be an interface so that `Settings extends` can accept multiple.
+export interface Options {
+  /**
+   * Specify whether to serialize a fragment (default: `true`).
+   */
+  fragment?: boolean | null | undefined
+  /**
+   * Namespace to use to create elements (optional).
+   */
+  namespace?: string | null | undefined
+}
+
+/**
+ * Plugin to add support for serializing as HTML.
+ *
+ * @this
+ *   Unified processor.
+ * @param
+ *   Configuration (optional).
+ * @returns
+ *   Nothing.
+ */
+declare const rehypeDomStringify: Plugin<
+  [(Readonly<Options> | null | undefined)?],
   Root,
   string
 >
-export default rehypeDomStrigify
+export default rehypeDomStringify
 
-export type {Options} from './lib/index.js'
+// Add custom settings supported when `rehype-dom-stringify` is added.
+declare module 'unified' {
+  interface Settings extends Options {}
+}

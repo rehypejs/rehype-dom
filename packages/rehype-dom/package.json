@@ -58,6 +58,16 @@
     "envs": [
       "browser"
     ],
+    "overrides": [
+      {
+        "files": [
+          "*.ts"
+        ],
+        "rules": {
+          "@typescript-eslint/triple-slash-reference": "off"
+        }
+      }
+    ],
     "prettier": true
   }
 }

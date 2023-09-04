@@ -1,59 +1,65 @@
 /**
  * @typedef {import('hast').Root} Root
  *
- * @typedef Options
- *   Configuration.
- * @property {boolean} [fragment=true]
- *   Specify whether to parse a fragment, instead of a complete document.
- *   In document mode, unopened `html`, `head`, and `body` elements are opened
- *   in just the right places.
+ * @typedef {import('unified').Parser<Root>} Parser
+ *
+ * @typedef {import('../index.js').Options} Options
  */
 
 import {fromDom} from 'hast-util-from-dom'
 
 /**
- * @this {import('unified').Processor}
- * @type {import('unified').Plugin<[(Options | null | undefined)?], string, Root>}
+ * Add support for parsing from HTML with DOM APIs.
+ *
+ * @param {Readonly<Options> | null | undefined} [options]
+ *   Configuration (optional).
+ * @returns {undefined}
+ *   Nothing.
  */
 export default function parse(options) {
-  const settings = /** @type {Options} */ (this.data('settings'))
-  const {fragment} = {...options, ...settings}
+  /** @type {import('unified').Processor<Root>} */
+  // @ts-expect-error: TS in JSDoc generates wrong types if `this` is typed regularly.
+  const self = this
+  const settings = {...self.data('settings'), ...options}
 
-  Object.assign(this, {Parser: parser})
+  self.parser = parser
 
-  /** @type {import('unified').Parser<Root>} */
+  /** @type {Parser} */
   function parser(doc) {
-    const create =
-      fragment === null || fragment === undefined || fragment
-        ? createFragment
-        : createDocument
+    const create = settings.fragment === false ? createDocument : createFragment
+    // Assume document/fragment in -> root out.
     return /** @type {Root} */ (fromDom(create(doc)))
   }
 }
 
-const DOCUMENT_FRAGMENT_NODE = 11
-
 /**
- * @param {string} htmlString
+ * Create a fragment.
+ *
+ * @param {string} value
+ *   HTML.
  * @returns {DocumentFragment}
+ *   Document fragment.
  */
-function createFragment(htmlString) {
-  const doc = createDocument('<!doctype html><body>' + htmlString)
+function createFragment(value) {
+  const doc = createDocument('<!doctype html><body>' + value)
 
   /**
-   * Pretend as a DocumentFragment node,
-   * @see https://github.com/rehypejs/rehype-dom/pull/19 for more details
+   * Pretend as a DocumentFragment node, which is fine for `fromDom`.
    */
   return /** @type {DocumentFragment} */ ({
-    nodeType: DOCUMENT_FRAGMENT_NODE,
+    nodeType: 11,
     childNodes: doc.body.childNodes
   })
 }
 
 /**
- * @param {string} htmlString
+ * Create a document.
+ *
+ * @param {string} value
+ *   HTML.
  * @returns {Document}
+ *   Document.
  */
-function createDocument(htmlString) {
-  return new DOMParser().parseFromString(htmlString, 'text/html')
+function createDocument(value) {
+  return new DOMParser().parseFromString(value, 'text/html')
 }

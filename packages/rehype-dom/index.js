@@ -1,5 +1,8 @@
+import rehypeDomParse from 'rehype-dom-parse'
+import rehypeDomStringify from 'rehype-dom-stringify'
 import {unified} from 'unified'
-import parse from 'rehype-dom-parse'
-import stringify from 'rehype-dom-stringify'
 
-export const rehypeDom = unified().use(parse).use(stringify).freeze()
+export const rehypeDom = unified()
+  .use(rehypeDomParse)
+  .use(rehypeDomStringify)
+  .freeze()

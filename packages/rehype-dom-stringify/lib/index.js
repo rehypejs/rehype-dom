@@ -1,25 +1,34 @@
 /**
  * @typedef {import('hast').Root} Root
- * @typedef {import('hast-util-to-dom').Options} Options
+ *
+ * @typedef {import('unified').Compiler<Root, string>} Compiler
+ *
+ * @typedef {import('../index.js').Options} Options
  */
 
 import {toDom} from 'hast-util-to-dom'
 
 /**
- * @this {import('unified').Processor}
- * @type {import('unified').Plugin<[(Options | null | undefined)?], Root, string>}
+ * Add support for serializing as HTML with DOM APIs.
+ *
+ * @param {Readonly<Options> | null | undefined} [options]
+ *   Configuration (optional).
+ * @returns {undefined}
+ *   Nothing.
  */
 export default function stringify(options) {
-  const config = /** @type {Options} */ (this.data('settings'))
-  const settings = {...options, ...config}
+  /** @type {import('unified').Processor<undefined, undefined, undefined, Root, string>} */
+  // @ts-expect-error: TS in JSDoc generates wrong types if `this` is typed regularly.
+  const self = this
+  const settings = {...self.data('settings'), ...options}
 
-  if (settings.fragment === null || settings.fragment === undefined) {
+  if (settings.fragment !== false) {
     settings.fragment = true
   }
 
-  Object.assign(this, {Compiler: compiler})
+  self.compiler = compiler
 
-  /** @type {import('unified').Compiler<Root, string>} */
+  /** @type {Compiler} */
   function compiler(tree) {
     return serialize(toDom(tree, settings))
   }
@@ -28,8 +37,10 @@ export default function stringify(options) {
 /**
  * Serialize DOM nodes.
  *
- * @param {XMLDocument | DocumentFragment | Text | DocumentType | Comment | Element} node
+ * @param {Comment | DocumentFragment | DocumentType | Element | Text | XMLDocument} node
+ *   DOM node.
  * @returns {string}
+ *   HTML.
  */
 function serialize(node) {
   // Document.

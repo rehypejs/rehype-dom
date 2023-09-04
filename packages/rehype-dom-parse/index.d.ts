@@ -1,14 +1,36 @@
-// This wrapper exists because JS in TS can’t export a `@type` of a function.
 import type {Root} from 'hast'
 import type {Plugin} from 'unified'
-import type {Options} from './lib/index.js'
 
+/**
+ * Configuration.
+ */
+// Note: has to be an interface so that `Settings extends` can accept multiple.
+export interface Options {
+  /**
+   * Specify whether to parse a fragment (default: `true`).
+   */
+  fragment?: boolean | null | undefined
+}
+
+/**
+ * Plugin to add support for parsing from HTML with DOM APIs.
+ *
+ * @this
+ *   Unified processor.
+ * @param
+ *   Configuration (optional).
+ * @returns
+ *   Nothing.
+ */
 declare const rehypeDomParse: Plugin<
-  // eslint-disable-next-line @typescript-eslint/ban-types
-  [(Options | null | undefined)?],
+  [(Readonly<Options> | null | undefined)?],
   string,
   Root
 >
+
 export default rehypeDomParse
 
-export type {Options} from './lib/index.js'
+// Add custom settings supported when `rehype-dom-parse` is added.
+declare module 'unified' {
+  interface Settings extends Options {}
+}
