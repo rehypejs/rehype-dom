@@ -4,15 +4,15 @@
   "description": "rehype plugin to use browser APIs to parse HTML",
   "license": "ISC",
   "keywords": [
-    "unified",
-    "rehype",
-    "html",
-    "dom",
     "abstract",
+    "ast",
+    "dom",
+    "html",
+    "parse",
+    "rehype",
     "syntax",
     "tree",
-    "ast",
-    "parse"
+    "unified"
   ],
   "homepage": "https://github.com/rehypejs/rehype-dom",
   "repository": "https://github.com/rehypejs/rehype-dom/tree/main/packages/rehype-dom-parse",
@@ -52,9 +52,9 @@
     "strict": true
   },
   "xo": {
-    "prettier": true,
     "envs": [
       "browser"
-    ]
+    ],
+    "prettier": true
   }
 }

@@ -4,18 +4,18 @@
   "description": "unified processor to use browser APIs to parse and stringify HTML",
   "license": "ISC",
   "keywords": [
-    "unified",
-    "rehype",
-    "html",
-    "dom",
     "abstract",
+    "ast",
+    "compile",
+    "dom",
+    "html",
+    "parse",
+    "process",
+    "rehype",
+    "stringify",
     "syntax",
     "tree",
-    "ast",
-    "parse",
-    "stringify",
-    "compile",
-    "process"
+    "unified"
   ],
   "homepage": "https://github.com/rehypejs/rehype-dom",
   "repository": "https://github.com/rehypejs/rehype-dom/tree/main/packages/rehype-dom",
@@ -55,9 +55,9 @@
     "strict": true
   },
   "xo": {
-    "prettier": true,
     "envs": [
       "browser"
-    ]
+    ],
+    "prettier": true
   }
 }

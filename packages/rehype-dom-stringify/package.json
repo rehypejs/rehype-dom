@@ -4,16 +4,16 @@
   "description": "rehype plugin to use browser APIs to stringify HTML",
   "license": "ISC",
   "keywords": [
-    "unified",
-    "rehype",
-    "html",
-    "dom",
     "abstract",
+    "ast",
+    "compile",
+    "dom",
+    "html",
+    "rehype",
+    "stringify",
     "syntax",
     "tree",
-    "ast",
-    "stringify",
-    "compile"
+    "unified"
   ],
   "homepage": "https://github.com/rehypejs/rehype-dom",
   "repository": "https://github.com/rehypejs/rehype-dom/tree/main/packages/rehype-dom-stringify",
@@ -53,9 +53,9 @@
     "strict": true
   },
   "xo": {
-    "prettier": true,
     "envs": [
       "browser"
-    ]
+    ],
+    "prettier": true
   }
 }
