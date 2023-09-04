@@ -1,20 +1,16 @@
 {
   "compilerOptions": {
-    "customConditions": ["development"],
     "checkJs": true,
+    "customConditions": ["development"],
     "declaration": true,
     "emitDeclarationOnly": true,
     "exactOptionalPropertyTypes": true,
-    "forceConsistentCasingInFileNames": true,
     "lib": ["es2020"],
     "module": "node16",
-    "newLine": "lf",
-    "resolveJsonModule": true,
-    "skipLibCheck": true,
     "strict": true,
     "target": "es2020"
   },
-  "exclude": ["**/coverage/", "**/node_modules/"],
+  "exclude": ["coverage/", "node_modules/"],
   "include": [
     "**/*.js",
     "packages/rehype-dom-parse/index.d.ts",

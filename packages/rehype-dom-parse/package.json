@@ -33,7 +33,6 @@
   ],
   "dependencies": {
     "@types/hast": "^3.0.0",
-    "@types/web": "^0.0.114",
     "hast-util-from-dom": "^5.0.0",
     "unified": "^11.0.0"
   },
