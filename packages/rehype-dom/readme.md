@@ -21,6 +21,8 @@ HTML as output.
     *   [`rehypeDom()`](#rehypedom)
 *   [Examples](#examples)
     *   [Example: passing options](#example-passing-options)
+*   [Syntax](#syntax)
+*   [Syntax tree](#syntax-tree)
 *   [Types](#types)
 *   [Compatibility](#compatibility)
 *   [Security](#security)
@@ -34,12 +36,13 @@ This is like [`rehype`][rehype] but for browsers.
 ## When should I use this?
 
 Use this package when you want to use `rehype` in browsers.
-See [the monorepo readme][rehype-dom] for info on when to use `rehype-dom`.
+There are some limitations: see [the monorepo readme][rehype-dom] for info on
+when (not) to use `rehype-dom`.
 
 ## Install
 
-This package is [ESM only](https://gist.github.com/sindresorhus/a39789f98801d908bbc7ff3ecc99d99c).
-In Node.js (version 12.20+, 14.14+, or 16.0+), install with [npm][]:
+This package is [ESM only][esm].
+In Node.js (version 16+), install with [npm][]:
 
 ```sh
 npm install rehype-dom
@@ -61,14 +64,14 @@ In browsers with [`esm.sh`][esmsh]:
 
 ## Use
 
-Say our page `example.html` looks as follows:
+Say our page `example.html` contains:
 
 ```html
 <!doctype html>
 <title>Example</title>
 <body>
 <script type="module">
-  import {rehypeDom} from 'https://esm.sh/rehype-dom@6?bundle'
+  import {rehypeDom} from 'https://esm.sh/rehype-dom@7?bundle'
 
   const file = await rehypeDom().process('<h1>Hi <del>Mars</del>Venus!</h1>')
 
@@ -76,7 +79,7 @@ Say our page `example.html` looks as follows:
 </script>
 ```
 
-Now running `open example.html` renders the following in `<body>`:
+…opening it in a browser renders the following in `<body>`:
 
 ```html
 <h1>Hi <del>Mars</del>Venus!</h1>
@@ -84,13 +87,16 @@ Now running `open example.html` renders the following in `<body>`:
 
 ## API
 
-This package exports the following identifier: `rehypeDom`.
+This package exports the identifier [`rehypeDom`][api-rehype-dom].
 There is no default export.
 
 ### `rehypeDom()`
 
-Create a new (unfrozen) `unified` processor that already uses `rehype-dom-parse`
-and `rehype-dom-stringify` and you can add more plugins to.
+Create a new unified processor that already uses
+[`rehype-dom-parse`][rehype-dom-parse] and
+[`rehype-dom-stringify`][rehype-dom-stringify].
+
+You can add more plugins with `use`.
 See [`unified`][unified] for more information.
 
 > 👉 **Note**: the default of the `fragment` option is `true` in this package,
@@ -101,9 +107,9 @@ See [`unified`][unified] for more information.
 
 ### Example: passing options
 
-When you use `remark-dom-parse` and `remark-dom-stringify` manually you can pass
-options to `use`.
-Because these are already used in `rehype-dom`, that’s not possible.
+When you use `rehype-dom-parse` or `rehype-dom-stringify` manually you can pass
+options directly to them with `use`.
+Because both plugins are already used in `rehype`, that’s not possible.
 To define options for them, you can instead pass options to `data`:
 
 ```js
@@ -116,22 +122,49 @@ const file = await rehypeDom()
 console.log(String(file))
 ```
 
+## Syntax
+
+HTML is parsed and serialized according to what a browser supports (which
+*should* be WHATWG HTML).
+
+## Syntax tree
+
+The syntax tree used in rehype is [hast][].
+
 ## Types
 
 This package is fully typed with [TypeScript][].
-There are no extra exported types.
+It exports no additional types.
+
+It also registers `Settings` with `unified`.
+If you’re passing options with `.data('settings', …)`, make sure to import this
+package somewhere in your types, as that registers the fields.
+
+```js
+/**
+ * @typedef {import('rehype-dom')}
+ */
+
+import {unified} from 'unified'
+
+// @ts-expect-error: `thisDoesNotExist` is not a valid option.
+unified().data('settings', {thisDoesNotExist: false})
+```
 
 ## Compatibility
 
-Projects maintained by the unified collective are compatible with all maintained
+Projects maintained by the unified collective are compatible with maintained
 versions of Node.js.
-As of now, that is Node.js 12.20+, 14.14+, and 16.0+.
-Our projects sometimes work with older versions, but this is not guaranteed.
+
+When we cut a new major release, we drop support for unmaintained versions of
+Node.
+This means we try to keep the current release line,
+`rehype-dom@^6`, compatible with Node.js 12.
 
 ## Security
 
 Use of `rehype-dom` can open you up to a [cross-site scripting (XSS)][xss]
-attack if the result is used with the actual DOM.
+attack if dangerous content is used and the result is used with the actual DOM.
 Use [`rehype-sanitize`][rehype-sanitize] to solve that.
 
 ## Contribute
@@ -162,9 +195,9 @@ abide by its terms.
 
 [downloads]: https://www.npmjs.com/package/rehype-dom
 
-[size-badge]: https://img.shields.io/bundlephobia/minzip/rehype-dom.svg
+[size-badge]: https://img.shields.io/bundlejs/size/rehype-dom
 
-[size]: https://bundlephobia.com/result?p=rehype-dom
+[size]: https://bundlejs.com/?q=rehype-dom
 
 [sponsors-badge]: https://opencollective.com/unified/sponsors/badge.svg
 
@@ -178,13 +211,11 @@ abide by its terms.
 
 [npm]: https://docs.npmjs.com/cli/install
 
+[esm]: https://gist.github.com/sindresorhus/a39789f98801d908bbc7ff3ecc99d99c
+
 [esmsh]: https://esm.sh
 
 [author]: https://keith.mcknig.ht
-
-[typescript]: https://www.typescriptlang.org
-
-[unified]: https://github.com/unifiedjs/unified
 
 [license]: https://github.com/rehypejs/rehype-dom/blob/main/license
 
@@ -196,10 +227,22 @@ abide by its terms.
 
 [coc]: https://github.com/rehypejs/.github/blob/main/code-of-conduct.md
 
+[xss]: https://en.wikipedia.org/wiki/Cross-site_scripting
+
+[hast]: https://github.com/syntax-tree/hast
+
 [rehype]: https://github.com/rehypejs/rehype/tree/main/packages/rehype
 
 [rehype-dom]: https://github.com/rehypejs/rehype-dom
 
+[rehype-dom-parse]: https://github.com/rehypejs/rehype-dom/tree/main/packages/rehype-dom-parse
+
+[rehype-dom-stringify]: https://github.com/rehypejs/rehype-dom/tree/main/packages/rehype-dom-stringify
+
 [rehype-sanitize]: https://github.com/rehypejs/rehype-sanitize
 
-[xss]: https://en.wikipedia.org/wiki/Cross-site_scripting
+[typescript]: https://www.typescriptlang.org
+
+[unified]: https://github.com/unifiedjs/unified
+
+[api-rehype-dom]: #rehypedom

@@ -17,7 +17,10 @@
 *   [Install](#install)
 *   [Use](#use)
 *   [API](#api)
-    *   [`unified.use(rehypeDomParse[, options])`](#unifieduserehypedomparse-options)
+    *   [`unified().use(rehypeDomParse[, options])`](#unifieduserehypedomparse-options)
+    *   [`Options`](#options)
+*   [Syntax](#syntax)
+*   [Syntax tree](#syntax-tree)
 *   [Types](#types)
 *   [Compatibility](#compatibility)
 *   [Security](#security)
@@ -42,8 +45,8 @@ internals away.
 
 ## Install
 
-This package is [ESM only](https://gist.github.com/sindresorhus/a39789f98801d908bbc7ff3ecc99d99c).
-In Node.js (version 12.20+, 14.14+, or 16.0+), install with [npm][]:
+This package is [ESM only][esm].
+In Node.js (version 16+), install with [npm][]:
 
 ```sh
 npm install rehype-dom-parse
@@ -65,17 +68,17 @@ In browsers with [`esm.sh`][esmsh]:
 
 ## Use
 
-Say our page `example.html` looks as follows:
+Say our page `example.html` contains:
 
 ```html
 <!doctype html>
 <title>Example</title>
 <body>
 <script type="module">
-  import {unified} from 'https://esm.sh/unified@10?bundle'
-  import rehypeDomParse from 'https://esm.sh/rehype-dom-parse@4?bundle'
-  import rehypeRemark from 'https://esm.sh/rehype-remark@8?bundle'
-  import remarkStringify from 'https://esm.sh/remark-stringify@10?bundle'
+  import rehypeDomParse from 'https://esm.sh/rehype-dom-parse@5?bundle'
+  import rehypeRemark from 'https://esm.sh/rehype-remark@10?bundle'
+  import remarkStringify from 'https://esm.sh/remark-stringify@11?bundle'
+  import {unified} from 'https://esm.sh/unified@11?bundle'
 
   const file = await unified()
     .use(rehypeDomParse)
@@ -88,7 +91,7 @@ Say our page `example.html` looks as follows:
 </script>
 ```
 
-Now running `open example.html` prints the following to the console:
+…opening it in a browser prints the following to the browser console:
 
 ```markdown
 # Hi
@@ -99,43 +102,76 @@ Now running `open example.html` prints the following to the console:
 ## API
 
 This package exports no identifiers.
-The default export is `rehypeDomParse`.
+The default export is [`rehypeDomParse`][api-rehype-dom-parse].
 
-### `unified.use(rehypeDomParse[, options])`
+### `unified().use(rehypeDomParse[, options])`
 
-Add support for parsing HTML input.
+Add support for parsing from HTML with DOM APIs.
 
-##### `options`
+###### Parameters
 
-Configuration (optional).
+*   `options` ([`Options`][api-options], optional)
+    — configuration
 
-###### `options.fragment`
+###### Returns
 
-Specify whether to parse a fragment (`boolean`, default: `true`), instead of a
-complete document.
-In document mode, unopened `html`, `head`, and `body` elements are opened in
-just the right places.
+Transform ([`Transformer`][unified-transformer]).
+
+### `Options`
+
+Configuration (TypeScript type).
 
 > 👉 **Note**: the default of the `fragment` option is `true` in this package,
-> which is different from the value in `rehype-parse`, because it makes more
-> sense in browsers.
+> which is different from the value in `rehype-parse`, as this makes more sense
+> in browsers.
+
+###### Fields
+
+*   `fragment` (`boolean`, default: `true`)
+    — specify whether to parse a fragment
+
+## Syntax
+
+HTML is parsed and serialized according to what a browser supports (which
+*should* be WHATWG HTML).
+
+## Syntax tree
+
+The syntax tree used in rehype is [hast][].
 
 ## Types
 
 This package is fully typed with [TypeScript][].
-The extra type `Options` is exported.
+It exports the additional type [`Options`][api-options].
+
+It also registers `Settings` with `unified`.
+If you’re passing options with `.data('settings', …)`, make sure to import this
+package somewhere in your types, as that registers the fields.
+
+```js
+/**
+ * @typedef {import('rehype-dom-parse')}
+ */
+
+import {unified} from 'unified'
+
+// @ts-expect-error: `thisDoesNotExist` is not a valid option.
+unified().data('settings', {thisDoesNotExist: false})
+```
 
 ## Compatibility
 
-Projects maintained by the unified collective are compatible with all maintained
+Projects maintained by the unified collective are compatible with maintained
 versions of Node.js.
-As of now, that is Node.js 12.20+, 14.14+, and 16.0+.
-Our projects sometimes work with older versions, but this is not guaranteed.
+
+When we cut a new major release, we drop support for unmaintained versions of
+Node.
+This means we try to keep the current release line,
+`rehype-dom-parse@^4`, compatible with Node.js 12.
 
 ## Security
 
-Use of `rehype-dom-parse` itself is safe but see `rehype`, `rehype-dom`, or
-`rehype-dom-stringify` for more information on potential security problems.
+Use of `rehype-dom-parse` is safe.
 
 ## Contribute
 
@@ -165,9 +201,9 @@ abide by its terms.
 
 [downloads]: https://www.npmjs.com/package/rehype-dom-parse
 
-[size-badge]: https://img.shields.io/bundlephobia/minzip/rehype-dom-parse.svg
+[size-badge]: https://img.shields.io/bundlejs/size/rehype-dom-parse
 
-[size]: https://bundlephobia.com/result?p=rehype-dom-parse
+[size]: https://bundlejs.com/?q=rehype-dom-parse
 
 [sponsors-badge]: https://opencollective.com/unified/sponsors/badge.svg
 
@@ -181,13 +217,13 @@ abide by its terms.
 
 [npm]: https://docs.npmjs.com/cli/install
 
+[esm]: https://gist.github.com/sindresorhus/a39789f98801d908bbc7ff3ecc99d99c
+
 [esmsh]: https://esm.sh
 
 [author]: https://keith.mcknig.ht
 
 [license]: https://github.com/rehypejs/rehype-dom/blob/main/license
-
-[typescript]: https://www.typescriptlang.org
 
 [health]: https://github.com/rehypejs/.github
 
@@ -197,10 +233,20 @@ abide by its terms.
 
 [coc]: https://github.com/rehypejs/.github/blob/main/code-of-conduct.md
 
+[hast]: https://github.com/syntax-tree/hast
+
+[hast-util-from-dom]: https://github.com/syntax-tree/hast-util-from-dom
+
 [rehype]: https://github.com/rehypejs/rehype
 
 [rehype-dom]: https://github.com/rehypejs/rehype-dom
 
 [rehype-parse]: https://github.com/rehypejs/rehype/tree/main/packages/rehype-parse
 
-[hast-util-from-dom]: https://github.com/syntax-tree/hast-util-from-dom
+[typescript]: https://www.typescriptlang.org
+
+[unified-transformer]: https://github.com/unifiedjs/unified#transformer
+
+[api-options]: #options
+
+[api-rehype-dom-parse]: #unifieduserehypedomparse-options

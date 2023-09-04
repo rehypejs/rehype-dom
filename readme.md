@@ -30,7 +30,7 @@ This monorepo contains the following packages:
 *   [`rehype-dom-stringify`][rehype-dom-stringify]
     — plugin to take a syntax tree (hast) and turn it into HTML as output in
     browsers
-*   [`rehype-dom`][api]
+*   [`rehype-dom`][rehype-dom]
     — `unified`, `rehype-dom-parse`, and `rehype-dom-stringify`, useful when
     input and output are HTML
 
@@ -56,7 +56,7 @@ Say our page `example.html` looks as follows:
 <title>Example</title>
 <body>
 <script type="module">
-  import {rehypeDom} from 'https://esm.sh/rehype-dom@6?bundle'
+  import {rehypeDom} from 'https://esm.sh/rehype-dom@7?bundle'
 
   const file = await rehypeDom().process('<h1>Hi <del>Mars</del>Venus!</h1>')
 
@@ -73,8 +73,8 @@ Now running `open example.html` renders the following in `<body>`:
 ## Security
 
 Use of `rehype-dom` can open you up to a [cross-site scripting (XSS)][xss]
-attack if the document is unsafe or unsafe plugins are used.
-Use [`rehype-sanitize`][sanitize] to make the tree safe.
+attack if dangerous content is used and the result is used with the actual DOM.
+Use [`rehype-sanitize`][rehype-sanitize] to solve that.
 
 ## Contribute
 
@@ -104,9 +104,9 @@ abide by its terms.
 
 [downloads]: https://www.npmjs.com/package/rehype-dom
 
-[size-badge]: https://img.shields.io/bundlephobia/minzip/rehype-dom.svg
+[size-badge]: https://img.shields.io/bundlejs/size/rehype-dom
 
-[size]: https://bundlephobia.com/result?p=rehype-dom
+[size]: https://bundlejs.com/?q=rehype-dom
 
 [sponsors-badge]: https://opencollective.com/unified/sponsors/badge.svg
 
@@ -132,12 +132,12 @@ abide by its terms.
 
 [rehype]: https://github.com/rehypejs/rehype
 
-[api]: https://github.com/rehypejs/rehype-dom/tree/main/packages/rehype-dom
+[rehype-dom]: https://github.com/rehypejs/rehype-dom/tree/main/packages/rehype-dom
 
 [rehype-dom-parse]: https://github.com/rehypejs/rehype-dom/tree/main/packages/rehype-dom-parse
 
 [rehype-dom-stringify]: https://github.com/rehypejs/rehype-dom/tree/main/packages/rehype-dom-stringify
 
-[xss]: https://en.wikipedia.org/wiki/Cross-site_scripting
+[rehype-sanitize]: https://github.com/rehypejs/rehype-sanitize
 
-[sanitize]: https://github.com/rehypejs/rehype-sanitize
+[xss]: https://en.wikipedia.org/wiki/Cross-site_scripting

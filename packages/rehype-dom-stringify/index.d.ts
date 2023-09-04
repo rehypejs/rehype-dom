@@ -11,13 +11,13 @@ export interface Options {
    */
   fragment?: boolean | null | undefined
   /**
-   * Namespace to use to create elements (optional).
+   * Namespace to start with (optional).
    */
   namespace?: string | null | undefined
 }
 
 /**
- * Plugin to add support for serializing as HTML.
+ * Add support for serializing as HTML with DOM APIs.
  *
  * @this
  *   Unified processor.

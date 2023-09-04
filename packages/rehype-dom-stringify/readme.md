@@ -18,6 +18,9 @@
 *   [Use](#use)
 *   [API](#api)
     *   [`unified().use(rehypeDomStringify[, options])`](#unifieduserehypedomstringify-options)
+    *   [`Options`](#options)
+*   [Syntax](#syntax)
+*   [Syntax tree](#syntax-tree)
 *   [Types](#types)
 *   [Compatibility](#compatibility)
 *   [Security](#security)
@@ -42,8 +45,8 @@ internals away.
 
 ## Install
 
-This package is [ESM only](https://gist.github.com/sindresorhus/a39789f98801d908bbc7ff3ecc99d99c).
-In Node.js (version 12.20+, 14.14+, or 16.0+), install with [npm][]:
+This package is [ESM only][esm].
+In Node.js (version 16+), install with [npm][]:
 
 ```sh
 npm install rehype-dom-stringify
@@ -65,17 +68,17 @@ In browsers with [`esm.sh`][esmsh]:
 
 ## Use
 
-Say our page `example.html` looks as follows:
+Say our page `example.html` contains:
 
 ```html
 <!doctype html>
 <title>Example</title>
 <body>
 <script type="module">
-  import {unified} from 'https://esm.sh/unified@10?bundle'
-  import remarkParse from 'https://esm.sh/remark-parse@10?bundle'
-  import remarkRehype from 'https://esm.sh/remark-rehype@10?bundle'
-  import rehypeDomStringify from 'https://esm.sh/rehype-dom-stringify@3?bundle'
+  import remarkParse from 'https://esm.sh/remark-parse@11?bundle'
+  import remarkRehype from 'https://esm.sh/remark-rehype@11?bundle'
+  import rehypeDomStringify from 'https://esm.sh/rehype-dom-stringify@4?bundle'
+  import {unified} from 'https://esm.sh/unified@11?bundle'
 
   const file = await unified()
     .use(remarkParse)
@@ -87,7 +90,7 @@ Say our page `example.html` looks as follows:
 </script>
 ```
 
-Now running `open example.html` prints the following to the console:
+…opening it in a browser prints the following to the browser console:
 
 ```html
 <h1>Hello, world!</h1>
@@ -96,43 +99,80 @@ Now running `open example.html` prints the following to the console:
 ## API
 
 This package exports no identifiers.
-The default export is `rehypeDomStringify`.
+The default export is [`rehypeDomStringify`][api-rehype-dom-stringify].
 
 ### `unified().use(rehypeDomStringify[, options])`
 
-Add support for serializing HTML.
+Add support for serializing as HTML with DOM APIs.
 
-##### `options`
+###### Parameters
 
-Configuration (optional).
+*   `options` ([`Options`][api-options], optional)
+    — configuration
 
-###### `options.fragment`
+###### Returns
 
-Specify whether to serialize a fragment (`boolean`, default: `true`), instead of
-a complete document.
-In document mode, an `html` element is added when needed.
+Transform ([`Transformer`][unified-transformer]).
+
+### `Options`
+
+Configuration (TypeScript type).
 
 > 👉 **Note**: the default of the `fragment` option is `true` in this package,
-> which is different from the value in `rehype-stringify`, because it makes more
-> sense in browsers.
+> which is different from the value in `rehype-parse`, as this makes more sense
+> in browsers.
+
+###### Fields
+
+*   `fragment` (`boolean`, default: `true`)
+    — specify whether to serialize a fragment
+*   `namespace` (`string`, optional)
+    — namespace to start with
+
+## Syntax
+
+HTML is parsed and serialized according to what a browser supports (which
+*should* be WHATWG HTML).
+
+## Syntax tree
+
+The syntax tree used in rehype is [hast][].
 
 ## Types
 
 This package is fully typed with [TypeScript][].
-The extra type `Options` is exported.
+It exports the additional type [`Options`][api-options].
+
+It also registers `Settings` with `unified`.
+If you’re passing options with `.data('settings', …)`, make sure to import this
+package somewhere in your types, as that registers the fields.
+
+```js
+/**
+ * @typedef {import('rehype-dom-parse')}
+ */
+
+import {unified} from 'unified'
+
+// @ts-expect-error: `thisDoesNotExist` is not a valid option.
+unified().data('settings', {thisDoesNotExist: false})
+```
 
 ## Compatibility
 
-Projects maintained by the unified collective are compatible with all maintained
+Projects maintained by the unified collective are compatible with maintained
 versions of Node.js.
-As of now, that is Node.js 12.20+, 14.14+, and 16.0+.
-Our projects sometimes work with older versions, but this is not guaranteed.
+
+When we cut a new major release, we drop support for unmaintained versions of
+Node.
+This means we try to keep the current release line,
+`rehype-dom-stringify@^3`, compatible with Node.js 12.
 
 ## Security
 
-Use of `rehype-dom-stringify` can open you up to a
-[cross-site scripting (XSS)][xss] attack if the result is used with the actual
-DOM.
+Use of `rehype-dom-stringify` can open you up to a [cross-site scripting
+(XSS)][xss] attack if dangerous content is used and the result is used with
+the actual DOM.
 Use [`rehype-sanitize`][rehype-sanitize] to solve that.
 
 ## Contribute
@@ -163,9 +203,9 @@ abide by its terms.
 
 [downloads]: https://www.npmjs.com/package/rehype-dom-stringify
 
-[size-badge]: https://img.shields.io/bundlephobia/minzip/rehype-dom-stringify.svg
+[size-badge]: https://img.shields.io/bundlejs/size/rehype-dom-stringify
 
-[size]: https://bundlephobia.com/result?p=rehype-dom-stringify
+[size]: https://bundlejs.com/?q=rehype-dom-stringify
 
 [sponsors-badge]: https://opencollective.com/unified/sponsors/badge.svg
 
@@ -179,13 +219,13 @@ abide by its terms.
 
 [npm]: https://docs.npmjs.com/cli/install
 
+[esm]: https://gist.github.com/sindresorhus/a39789f98801d908bbc7ff3ecc99d99c
+
 [esmsh]: https://esm.sh
 
 [author]: https://keith.mcknig.ht
 
 [license]: https://github.com/rehypejs/rehype-dom/blob/main/license
-
-[typescript]: https://www.typescriptlang.org
 
 [health]: https://github.com/rehypejs/.github
 
@@ -195,14 +235,24 @@ abide by its terms.
 
 [coc]: https://github.com/rehypejs/.github/blob/main/code-of-conduct.md
 
+[xss]: https://en.wikipedia.org/wiki/Cross-site_scripting
+
+[hast]: https://github.com/syntax-tree/hast
+
+[hast-util-to-dom]: https://github.com/syntax-tree/hast-util-to-dom
+
 [rehype]: https://github.com/rehypejs/rehype
 
 [rehype-dom]: https://github.com/rehypejs/rehype-dom
 
-[rehype-stringify]: https://github.com/rehypejs/rehype/tree/main/packages/rehype-stringify
-
-[xss]: https://en.wikipedia.org/wiki/Cross-site_scripting
-
 [rehype-sanitize]: https://github.com/rehypejs/rehype-sanitize
 
-[hast-util-to-dom]: https://github.com/syntax-tree/hast-util-to-dom
+[rehype-stringify]: https://github.com/rehypejs/rehype/tree/main/packages/rehype-stringify
+
+[typescript]: https://www.typescriptlang.org
+
+[unified-transformer]: https://github.com/unifiedjs/unified#transformer
+
+[api-options]: #options
+
+[api-rehype-dom-stringify]: #unifieduserehypedomstringify-options

@@ -13,7 +13,7 @@ export interface Options {
 }
 
 /**
- * Plugin to add support for parsing from HTML with DOM APIs.
+ * Add support for parsing from HTML with DOM APIs.
  *
  * @this
  *   Unified processor.
