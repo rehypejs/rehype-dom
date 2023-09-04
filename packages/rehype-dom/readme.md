@@ -51,14 +51,14 @@ npm install rehype-dom
 In Deno with [`esm.sh`][esmsh]:
 
 ```js
-import {rehypeDom} from 'https://esm.sh/rehype-dom@6'
+import {rehypeDom} from 'https://esm.sh/rehype-dom@7'
 ```
 
 In browsers with [`esm.sh`][esmsh]:
 
 ```html
 <script type="module">
-  import {rehypeDom} from 'https://esm.sh/rehype-dom@6?bundle'
+  import {rehypeDom} from 'https://esm.sh/rehype-dom@7?bundle'
 </script>
 ```
 
@@ -113,7 +113,7 @@ Because both plugins are already used in `rehype`, that’s not possible.
 To define options for them, you can instead pass options to `data`:
 
 ```js
-import {rehypeDom} from 'https://esm.sh/rehype-dom@6?bundle'
+import {rehypeDom} from 'https://esm.sh/rehype-dom@7?bundle'
 
 const file = await rehypeDom()
   .data('settings', {fragment: false})
