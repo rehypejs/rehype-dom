@@ -9,7 +9,7 @@ import {JSDOM} from 'jsdom'
 import {rehypeDom} from 'rehype-dom'
 import rehypeDomParse from 'rehype-dom-parse'
 import rehypeDomStringify from 'rehype-dom-stringify'
-import rehypeHighlight from 'rehype-highlight'
+import rehypeStarryNight from 'rehype-starry-night'
 import rehypeParse from 'rehype-parse'
 import rehypeSlug from 'rehype-slug'
 import rehypeStringify from 'rehype-stringify'
@@ -287,19 +287,20 @@ test('rehype-dom', async function (t) {
     )
   })
 
-  await t.test('should work w/ `rehype-highlight`', async function () {
+  await t.test('should work w/ `rehype-starry-night`', async function () {
     assert.equal(
-      rehypeDom()
-        .use(rehypeHighlight)
-        .processSync(
-          `<h1>Hello World!</h1>
+      String(
+        await rehypeDom()
+          .use(rehypeStarryNight)
+          .process(
+            `<h1>Hello World!</h1>
   <pre><code class="language-js">var name = "World";
   console.warn("Hello, " + name + "!")</pre></code>`
-        )
-        .toString(),
+          )
+      ),
       `<h1>Hello World!</h1>
-  <pre><code class="hljs language-js"><span class="hljs-keyword">var</span> name = <span class="hljs-string">"World"</span>;
-  <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">warn</span>(<span class="hljs-string">"Hello, "</span> + name + <span class="hljs-string">"!"</span>)</code></pre>`
+  <pre><code class="language-js"><span class="pl-k">var</span> name <span class="pl-k">=</span> <span class="pl-s"><span class="pl-pds">"</span>World<span class="pl-pds">"</span></span>;
+  <span class="pl-en">console</span>.<span class="pl-c1">warn</span>(<span class="pl-s"><span class="pl-pds">"</span>Hello, <span class="pl-pds">"</span></span> <span class="pl-k">+</span> name <span class="pl-k">+</span> <span class="pl-s"><span class="pl-pds">"</span>!<span class="pl-pds">"</span></span>)</code></pre>`
     )
   })
 
