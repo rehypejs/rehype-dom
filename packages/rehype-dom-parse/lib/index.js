@@ -1,7 +1,7 @@
 /**
  * @import {Root} from 'hast'
  * @import {Options} from 'rehype-dom-parse'
- * @import {Parser, Processor} from 'unified'
+ * @import {Processor} from 'unified'
  */
 
 import {fromDom} from 'hast-util-from-dom'
@@ -22,42 +22,41 @@ export default function parse(options) {
 
   self.parser = parser
 
-  /** @type {Parser<Root>} */
+  /**
+   * @param {string} value
+   *   Value to parse.
+   * @returns {Root}
+   *   Tree.
+   */
   function parser(value) {
-    const create = settings.fragment === false ? createDocument : createFragment
+    const create = settings.fragment === false ? parseDocument : parseFragment
     // Assume document/fragment in -> root out.
     return /** @type {Root} */ (fromDom(create(value)))
   }
 }
 
 /**
- * Create a fragment.
- *
- * @param {string} value
- *   HTML.
- * @returns {DocumentFragment}
- *   Document fragment.
- */
-function createFragment(value) {
-  const node = createDocument('<!doctype html><body>' + value)
-
-  /**
-   * Pretend as a DocumentFragment node, which is fine for `fromDom`.
-   */
-  return /** @type {DocumentFragment} */ ({
-    nodeType: 11,
-    childNodes: node.body.childNodes
-  })
-}
-
-/**
  * Create a document.
  *
  * @param {string} value
- *   HTML.
+ *   Value to parse.
  * @returns {Document}
  *   Document.
  */
-function createDocument(value) {
+function parseDocument(value) {
   return new DOMParser().parseFromString(value, 'text/html')
+}
+
+/**
+ * Parse as a fragment.
+ *
+ * @param {string} value
+ *   Value to parse.
+ * @returns {DocumentFragment}
+ *   Document fragment.
+ */
+function parseFragment(value) {
+  const template = document.createElement('template')
+  template.innerHTML = value
+  return template.content
 }
