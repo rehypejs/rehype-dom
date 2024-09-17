@@ -25,10 +25,10 @@ export default function parse(options) {
   self.parser = parser
 
   /** @type {Parser} */
-  function parser(doc) {
+  function parser(value) {
     const create = settings.fragment === false ? createDocument : createFragment
     // Assume document/fragment in -> root out.
-    return /** @type {Root} */ (fromDom(create(doc)))
+    return /** @type {Root} */ (fromDom(create(value)))
   }
 }
 
@@ -41,14 +41,14 @@ export default function parse(options) {
  *   Document fragment.
  */
 function createFragment(value) {
-  const doc = createDocument('<!doctype html><body>' + value)
+  const node = createDocument('<!doctype html><body>' + value)
 
   /**
    * Pretend as a DocumentFragment node, which is fine for `fromDom`.
    */
   return /** @type {DocumentFragment} */ ({
     nodeType: 11,
-    childNodes: doc.body.childNodes
+    childNodes: node.body.childNodes
   })
 }
 

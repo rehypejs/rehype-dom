@@ -13,26 +13,26 @@ browsers.
 
 ## Contents
 
-*   [What is this?](#what-is-this)
-*   [When should I use this?](#when-should-i-use-this)
-*   [Example](#example)
-*   [Security](#security)
-*   [Contribute](#contribute)
-*   [License](#license)
+* [What is this?](#what-is-this)
+* [When should I use this?](#when-should-i-use-this)
+* [Example](#example)
+* [Security](#security)
+* [Contribute](#contribute)
+* [License](#license)
 
 ## What is this?
 
 This monorepo contains the following packages:
 
-*   [`rehype-dom-parse`][rehype-dom-parse]
-    — plugin to take HTML as input and turn it into a syntax tree (hast) in
-    browsers
-*   [`rehype-dom-stringify`][rehype-dom-stringify]
-    — plugin to take a syntax tree (hast) and turn it into HTML as output in
-    browsers
-*   [`rehype-dom`][rehype-dom]
-    — `unified`, `rehype-dom-parse`, and `rehype-dom-stringify`, useful when
-    input and output are HTML
+* [`rehype-dom-parse`][rehype-dom-parse]
+  — plugin to take HTML as input and turn it into a syntax tree (hast) in
+  browsers
+* [`rehype-dom-stringify`][rehype-dom-stringify]
+  — plugin to take a syntax tree (hast) and turn it into HTML as output in
+  browsers
+* [`rehype-dom`][rehype-dom]
+  — `unified`, `rehype-dom-parse`, and `rehype-dom-stringify`, useful when
+  input and output are HTML
 
 ## When should I use this?
 
@@ -41,11 +41,11 @@ It has a smaller footprint in browsers compared to `rehype` itself as it uses
 DOM APIs to do its work.
 However, DOM APIs:
 
-*   …cannot provide positional information (each node knowing where it
-    originated), which is frequently needed when working with rehype
-*   …do not have formatting options that `rehype-stringify` exposes
-*   …can provide varying results in different (especially older) browsers
-*   …are safe, but untrusted HTML in browsers is always unsafe
+* …cannot provide positional information (each node knowing where it
+  originated), which is frequently needed when working with rehype
+* …do not have formatting options that `rehype-stringify` exposes
+* …can provide varying results in different (especially older) browsers
+* …are safe, but untrusted HTML in browsers is always unsafe
 
 ## Example
 

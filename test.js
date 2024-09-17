@@ -290,7 +290,6 @@ test('rehype-dom', async function (t) {
   await t.test('should work w/ `rehype-highlight`', async function () {
     assert.equal(
       rehypeDom()
-        // @ts-expect-error: to do: remove when `rehype-highlight` is released.
         .use(rehypeHighlight)
         .processSync(
           `<h1>Hello World!</h1>

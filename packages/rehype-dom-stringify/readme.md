@@ -12,20 +12,20 @@
 
 ## Contents
 
-*   [What is this?](#what-is-this)
-*   [When should I use this?](#when-should-i-use-this)
-*   [Install](#install)
-*   [Use](#use)
-*   [API](#api)
-    *   [`unified().use(rehypeDomStringify[, options])`](#unifieduserehypedomstringify-options)
-    *   [`Options`](#options)
-*   [Syntax](#syntax)
-*   [Syntax tree](#syntax-tree)
-*   [Types](#types)
-*   [Compatibility](#compatibility)
-*   [Security](#security)
-*   [Contribute](#contribute)
-*   [License](#license)
+* [What is this?](#what-is-this)
+* [When should I use this?](#when-should-i-use-this)
+* [Install](#install)
+* [Use](#use)
+* [API](#api)
+  * [`unified().use(rehypeDomStringify[, options])`](#unifieduserehypedomstringify-options)
+  * [`Options`](#options)
+* [Syntax](#syntax)
+* [Syntax tree](#syntax-tree)
+* [Types](#types)
+* [Compatibility](#compatibility)
+* [Security](#security)
+* [Contribute](#contribute)
+* [License](#license)
 
 ## What is this?
 
@@ -107,8 +107,8 @@ Add support for serializing as HTML with DOM APIs.
 
 ###### Parameters
 
-*   `options` ([`Options`][api-options], optional)
-    — configuration
+* `options` ([`Options`][api-options], optional)
+  — configuration
 
 ###### Returns
 
@@ -124,10 +124,10 @@ Configuration (TypeScript type).
 
 ###### Fields
 
-*   `fragment` (`boolean`, default: `true`)
-    — specify whether to serialize a fragment
-*   `namespace` (`string`, optional)
-    — namespace to start with
+* `fragment` (`boolean`, default: `true`)
+  — specify whether to serialize a fragment
+* `namespace` (`string`, optional)
+  — namespace to start with
 
 ## Syntax
 
