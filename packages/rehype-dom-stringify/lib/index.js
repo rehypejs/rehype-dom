@@ -1,9 +1,7 @@
 /**
- * @typedef {import('hast').Root} Root
- *
- * @typedef {import('unified').Compiler<Root, string>} Compiler
- *
- * @typedef {import('../index.js').Options} Options
+ * @import {Root} from 'hast'
+ * @import {Options} from 'rehype-dom-stringify'
+ * @import {Compiler, Processor} from 'unified'
  */
 
 import {toDom} from 'hast-util-to-dom'
@@ -17,7 +15,7 @@ import {toDom} from 'hast-util-to-dom'
  *   Nothing.
  */
 export default function stringify(options) {
-  /** @type {import('unified').Processor<undefined, undefined, undefined, Root, string>} */
+  /** @type {Processor<undefined, undefined, undefined, Root, string>} */
   // @ts-expect-error: TS in JSDoc generates wrong types if `this` is typed regularly.
   const self = this
   const settings = {...self.data('settings'), ...options}
@@ -28,7 +26,7 @@ export default function stringify(options) {
 
   self.compiler = compiler
 
-  /** @type {Compiler} */
+  /** @type {Compiler<Root, string>} */
   function compiler(tree) {
     return serialize(toDom(tree, settings))
   }

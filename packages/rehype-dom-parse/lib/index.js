@@ -1,9 +1,7 @@
 /**
- * @typedef {import('hast').Root} Root
- *
- * @typedef {import('unified').Parser<Root>} Parser
- *
- * @typedef {import('../index.js').Options} Options
+ * @import {Root} from 'hast'
+ * @import {Options} from 'rehype-dom-parse'
+ * @import {Parser, Processor} from 'unified'
  */
 
 import {fromDom} from 'hast-util-from-dom'
@@ -17,14 +15,14 @@ import {fromDom} from 'hast-util-from-dom'
  *   Nothing.
  */
 export default function parse(options) {
-  /** @type {import('unified').Processor<Root>} */
+  /** @type {Processor<Root>} */
   // @ts-expect-error: TS in JSDoc generates wrong types if `this` is typed regularly.
   const self = this
   const settings = {...self.data('settings'), ...options}
 
   self.parser = parser
 
-  /** @type {Parser} */
+  /** @type {Parser<Root>} */
   function parser(value) {
     const create = settings.fragment === false ? createDocument : createFragment
     // Assume document/fragment in -> root out.

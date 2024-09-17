@@ -149,7 +149,7 @@ package somewhere in your types, as that registers the fields.
 
 ```js
 /**
- * @typedef {import('rehype-dom-parse')}
+ * @import {} from 'rehype-dom-stringify'
  */
 
 import {unified} from 'unified'

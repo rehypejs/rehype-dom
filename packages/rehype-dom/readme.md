@@ -142,7 +142,7 @@ package somewhere in your types, as that registers the fields.
 
 ```js
 /**
- * @typedef {import('rehype-dom')}
+ * @import {} from 'rehype-dom'
  */
 
 import {unified} from 'unified'
