@@ -44,7 +44,7 @@ function serialize(node) {
   // Document.
   if ('doctype' in node) {
     const doctype = node.doctype ? serialize(node.doctype) : ''
-    const docelem = serialize(node.documentElement)
+    const docelem = node.documentElement ? serialize(node.documentElement) : ''
     return doctype + docelem
   }
 
