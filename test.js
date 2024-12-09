@@ -20,8 +20,8 @@ import {visit} from 'unist-util-visit'
 const {window} = new JSDOM('')
 
 // The globals needed by `rehype-dom`.
-global.DOMParser = window.DOMParser
-global.document = window.document
+globalThis.DOMParser = window.DOMParser
+globalThis.document = window.document
 
 test('rehype-dom-parse', async function (t) {
   const processor = unified().use(rehypeDomParse).use(rehypeStringify).freeze()
@@ -127,10 +127,7 @@ test('rehype-dom-stringify', async function (t) {
 
   await t.test('should support empty fragment', async function () {
     assert.equal(
-      processor()
-        .data('settings', {fragment: true})
-        .processSync('')
-        .toString(),
+      processor().data('settings', {fragment: true}).processSync('').toString(),
       ''
     )
   })
