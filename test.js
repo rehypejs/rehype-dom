@@ -125,6 +125,16 @@ test('rehype-dom-stringify', async function (t) {
     )
   })
 
+  await t.test('should support empty fragment', async function () {
+    assert.equal(
+      processor()
+        .data('settings', {fragment: true})
+        .processSync('')
+        .toString(),
+      ''
+    )
+  })
+
   await t.test('should stringify a fragment', async function () {
     assert.equal(
       processor()
